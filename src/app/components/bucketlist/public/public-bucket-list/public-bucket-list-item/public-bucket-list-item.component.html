@@ -1,0 +1,27 @@
+<mat-expansion-panel class="accordion bucket-list">
+  <mat-expansion-panel-header>
+    <mat-panel-title class="head">
+      <div class="row">
+        <div class="col">
+          {{ bucketListItem().title }}
+        </div>
+        <div class="col">
+          {{ bucketListItem().nickname }}
+        </div>
+      </div>
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title> {{ bucketListItem().title }} </mat-card-title>
+      <mat-card-subtitle> {{ prio() }} </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      {{ bucketListItem().description }}
+    </mat-card-content>
+  </mat-card>
+  <mat-action-row>
+    <app-accept-button (acceptAction)="accept()"></app-accept-button>
+    <app-deny-button (denyAction)="deny()"></app-deny-button>
+  </mat-action-row>
+</mat-expansion-panel>

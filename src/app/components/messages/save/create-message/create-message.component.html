@@ -1,0 +1,40 @@
+<form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <mat-label>Empfänger</mat-label>
+    <mat-select formControlName="userIdRecipient">
+      @for ( user of availableUsers(); track user) {
+      <mat-option [value]="user.id">{{user.nickname}}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field class="form-field">
+    <mat-label>Betreff</mat-label>
+    <input matInput id="subject" formControlName="subject">
+  </mat-form-field>
+  <mat-form-field class="form-field">
+    <mat-label>Nachricht</mat-label>
+    <textarea matInput id="text" formControlName="text"></textarea>
+  </mat-form-field>
+  <mat-action-row>
+    <button mat-button>abbrechen</button>
+    <button mat-button type="button" (click)="saveAsDraft()" [disabled]="messageForm.invalid">Entwurf
+      speichern</button>
+    <button mat-button type="submit" [disabled]="messageForm.invalid">senden</button>
+  </mat-action-row>
+  <!-- <button type="submit" [disabled]="bucketListForm.invalid">Submit</button> -->
+</form>
+
+
+
+<!-- userIdRecipient?: number;
+subject?: string;
+text?: string;
+sent?: boolean;
+sentAt?: Date;
+received?: boolean;
+receivedAt?: Date;
+wasRead?: boolean;
+wasReadAt?: Date;
+answered?: boolean;
+answeredAt?: Date;
+type?: MessageType; -->

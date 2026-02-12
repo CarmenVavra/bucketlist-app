@@ -1,0 +1,15 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.form-field {
+  display: block;
+  padding: 2px;
+}
+
+.form-container {
+  width: 90vw;
+  max-width: 600px;
+}

@@ -1,0 +1,30 @@
+<div class="form-container">
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field class="form-field">
+      <mat-label>
+        @if('' != titleLabel()){
+        {{ titleLabel() }}
+        }@else {
+        Titel
+        }
+      </mat-label>
+      <input matInput id="title" formControlName="title">
+    </mat-form-field>
+    <mat-form-field class="form-field">
+      <mat-label>
+        @if('' != textLabel()){
+        {{ textLabel() }}
+        }@else {
+        Beschreibung
+        }
+      </mat-label>
+      <textarea matInput id="description" formControlName="text"></textarea>
+    </mat-form-field>
+
+    <mat-action-row>
+      <button mat-button (click)="onCancel()">abbrechen</button>
+      <button mat-button type="submit" [disabled]="form.invalid">speichern</button>
+    </mat-action-row>
+  </form>
+</div>

@@ -1,0 +1,20 @@
+<h2>Nachrichten</h2>
+<div class="show-container">
+        <span class="show received" (click)="getReceivedMessages()"><i
+                        class="fa-solid fa-envelope sizing-icon"></i><i>empfangen</i></span>
+        <span class="show sent" (click)="getSentMessages()">
+                <i class="fa-solid fa-paper-plane sizing-icon"></i><i>gesendet</i>
+        </span>
+        <span class="show answered" (click)="getAnsweredMessages()"><i
+                        class="fa-solid fa-envelope-circle-check sizing-icon"></i><i>beantwortet</i></span>
+        <span class="show done" (click)="getDraftMessages()"><i
+                        class="fa-solid fa-envelope-open-text sizing-icon"></i><i>Entwürfe</i></span>
+</div>
+<mat-divider></mat-divider>
+<div class="plus-button-container">
+        <div (click)="openCreateMessage()"><i class="fa-solid fa-circle-plus fa-2x"></i></div>
+</div>
+
+<app-message-list [messages]="messages()" [color]="color()" [messageType]="messageType()"
+        (deleteAction)="deleteItem($event)" (editAction)="openEditMessage($event)"
+        (replyAction)="openReplyMessage($event)"></app-message-list>

@@ -1,0 +1,24 @@
+<h2>Privater Bereich Bucket-List</h2>
+<div class="show-container">
+  <span class="show done" (click)="loadPrivateBucketList()"><i
+      class="fa-solid fa-eye sizing-eyes"></i><i>Alle</i></span>
+  <span class="show done" (click)="loadPrivateDone()"><i class="fa-solid fa-eye sizing-eyes"></i><i>erledigt</i></span>
+  <span class="show accepted" (click)="loadPrivateAccepted()"><i
+      class="fa-solid fa-eye sizing-eyes"></i><i>angenommen</i></span>
+  <span class="show denied" (click)="loadPrivateDenied()"><i
+      class="fa-solid fa-eye sizing-eyes"></i><i>abgelehnt</i></span>
+</div>
+<mat-divider></mat-divider>
+<!-- <div class="plus-button-container">
+  <div (click)="openCreateBucketListItem()"><i class="fa-solid fa-circle-plus fa-2x"></i></div>
+</div> -->
+<app-plus-button (openCreateAction)="openCreateBucketListItem()"></app-plus-button>
+<mat-accordion multi>
+  @for(bucket of privateBucketList(); track $index){
+  <app-private-bucket-list-item [bucketListItem]="bucket" (editBucketListItemAction)="openEditBucketListItem($event)"
+    (deleteBucketListItemAction)="deleteBucketListItem($event)"
+    (publishBucketListItemAction)="publishBucketListItem($event)"
+    (unpublishBucketListItemAction)="unpublishBucketListItem($event)"
+    (doneBucketListItemAction)="doneBucketListItem($event)"></app-private-bucket-list-item>
+  }
+</mat-accordion>

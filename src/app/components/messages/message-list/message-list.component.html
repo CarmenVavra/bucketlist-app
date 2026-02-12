@@ -1,0 +1,8 @@
+<!-- <div (click)="openCreateActivityItem()"><i class="fa-solid fa-circle-plus fa-2x"></i></div> -->
+<mat-accordion multi>
+  @for(message of messages(); track $index){
+  <app-message-list-item [messageItem]="message" [color]="color()" [messageType]="messageType()"
+    (deleteAction)="deleteItem($event)" (editAction)="editItem($event)"
+    (replyAction)="replyItem($event)"></app-message-list-item>
+  }
+</mat-accordion>

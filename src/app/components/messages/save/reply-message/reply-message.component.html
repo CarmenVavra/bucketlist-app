@@ -1,0 +1,30 @@
+<mat-card appearance="outlined">
+  <mat-card-header>
+    <mat-card-title>
+      {{ sentMessageItem().subject }}
+    </mat-card-title>
+    <mat-card-subtitle>
+      gesendet von: {{ sender() }}
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>{{ sentMessageItem().text }}</mat-card-content>
+  <mat-card-footer>
+    gesendet am: {{ sentMessageItem().sentAt | date: 'dd.MM.yyyy' }}
+  </mat-card-footer>
+</mat-card>
+
+<form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+  <mat-form-field class="form-field">
+    <mat-label>Betreff</mat-label>
+    <input matInput id="subject" formControlName="subject">
+  </mat-form-field>
+  <mat-form-field class="form-field">
+    <mat-label>Nachricht</mat-label>
+    <textarea matInput id="text" formControlName="text"></textarea>
+  </mat-form-field>
+  <mat-action-row>
+    <button mat-button (click)="onCancel()">abbrechen</button>
+    <button mat-button type="submit" [disabled]="messageForm.invalid">speichern</button>
+  </mat-action-row>
+  <!-- <button type="submit" [disabled]="bucketListForm.invalid">Submit</button> -->
+</form>

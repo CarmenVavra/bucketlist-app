@@ -1,0 +1,29 @@
+<app-accordion [title]="messageItem()?.subject!" [sender]="sender().nickname!" [text]="messageItem()?.text"
+  [sent]="messageItem()?.sent" [color]="color()" [messageType]="messageType()" [showSender]="showSender()"
+  (editAction)="edit()" (deleteAction)="delete()" (replyAction)="reply()"></app-accordion>
+
+
+<!-- <mat-expansion-panel class="accordion">
+  <mat-expansion-panel-header>
+    <mat-panel-title class="accordion-title">
+      <div class="row">
+        <div class="col">
+          {{ messageItem()?.subject }}
+        </div>
+        <div class="col sender">
+          @if(showSender() == true){
+          gesendet von: {{sender().nickname}}
+          }
+        </div>
+      </div>
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <p>{{ messageItem()?.text }}</p>
+  <mat-action-row>
+    @if(messageItem()?.sent == false){
+    <button mat-button (click)="edit()" title="bearbeiten"><i class="fa-solid fa-pencil sizing edit-icon"></i></button>
+    }
+    <button mat-button (click)="delete()" title="löschen"><i
+        class="fa-solid fa-trash-can sizing delete-icon"></i></button>
+  </mat-action-row>
+</mat-expansion-panel> -->

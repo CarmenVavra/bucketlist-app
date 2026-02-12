@@ -1,0 +1,13 @@
+.menu-icon {
+  border: none;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.toolbar,
+.menu-icon {
+  background-color: #272932;
+  color: rgb(0, 92, 187);
+}

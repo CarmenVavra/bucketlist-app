@@ -1,0 +1,23 @@
+mat-expansion-panel {
+  width: 90vw !important;
+  max-width: 600px;
+  /* background-color: #D0E1F9; */
+  /* background-color: #D5D6D2; */
+  background-color: #D1DDD8;
+  border: 1px solid #272932;
+}
+
+mat-panel-title,
+mat-panel-description {
+  max-width: 280px;
+  min-width: 110px;
+}
+
+.mat-expanded {
+  background-color: #b0b8b4;
+}
+
+
+/* .mat-expansion-panel-header-description{
+
+} */

@@ -1,1 +1,95 @@
 /* You can add global styles to this file, and also import other style files */
+@import "@angular/material/prebuilt-themes/azure-blue.css";
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #272932;
+  color: rgb(109, 145, 182);
+}
+
+.fa-circle-plus {
+  color: rgb(0, 92, 187);
+  cursor: pointer;
+  height: 60px;
+  width: 60px;
+}
+
+.plus-button-container {
+  margin-top: 1rem;
+}
+
+.mat-expansion-indicator svg {
+  fill: #272932 !important;
+}
+
+.bucket-list {
+  background-color: #1995AD;
+}
+
+.fantasies {
+  background-color: #bb63a9;
+}
+
+.notes {
+  background-color: #9a60dd;
+}
+
+.activities {
+  background-color: #4daf74;
+}
+
+.messages {
+  background-color: #467fbd;
+}
+
+.mat-accordion .mat-expansion-panel:last-of-type {
+  border-bottom-right-radius: var(--mat-expansion-container-shape, 0px) !important;
+  border-bottom-left-radius: var(--mat-expansion-container-shape, 0px) !important;
+}
+
+.mat-accordion .mat-expansion-panel:first-of-type {
+  border-top-right-radius: var(--mat-expansion-container-shape, 0px) !important;
+  border-top-left-radius: var(--mat-expansion-container-shape, 0px) !important;
+}
+
+mat-expansion-panel-header {
+  height: 64px;
+}
+
+mat-expansion-panel-title {
+  font-weight: bold;
+}
+
+.head {
+  display: table;
+  width: 100%;
+}
+
+.row {
+  display: table-row;
+  width: 100%;
+}
+
+.col {
+  display: table-cell;
+  width: 100%;
+  font-size: 1.2rem;
+}
+
+.align-end {
+  text-align: end;
+}
+
+.sizing {
+  font-size: 1.2rem;
+}
+
+.hide {
+  display: none;
+}

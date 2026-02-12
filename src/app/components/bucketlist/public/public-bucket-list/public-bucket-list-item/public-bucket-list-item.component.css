@@ -1,0 +1,52 @@
+.sizing {
+  font-size: 1.5rem;
+}
+
+.accordion {
+  /* background-color: rgb(0, 49, 97); */
+  border: 1px solid #157b90;
+}
+
+.bucket-list {
+  background-color: #1995AD;
+  color: #157b90;
+}
+
+/* .head {
+  display: table;
+  width: 100%;
+}
+
+.row {
+  display: table-row;
+  width: 100%;
+}
+
+.col {
+  display: table-cell;
+  width: 65%;
+  font-size: 1.2rem;
+}
+
+.align-end {
+  text-align: end;
+} */
+
+mat-panel-title {
+  /* font-weight: bold; */
+  color: #0f5664;
+}
+
+mat-expansion-panel-header {
+  height: 64px;
+}
+
+mat-card {
+  background-color: #0f5664;
+  color: #1995AD;
+}
+
+.btn-accept,
+.btn-deny {
+  color: #0f5664;
+}

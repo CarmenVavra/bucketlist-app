@@ -1,0 +1,10 @@
+.list-icon,
+.list-item {
+  /* color: lightslategray; */
+  color: rgb(109, 145, 182);
+  cursor: pointer;
+}
+
+i {
+  margin-right: 12px;
+}

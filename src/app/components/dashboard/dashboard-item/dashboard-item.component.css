@@ -1,0 +1,26 @@
+mat-card {
+  max-width: 350px;
+  width: 100%;
+  color: aliceblue;
+  margin-bottom: 1.3rem;
+}
+
+.bucket-list {
+  background-color: #1995AD;
+}
+
+.fantasies {
+  background-color: #bb63a9;
+}
+
+.notes {
+  background-color: #9a60dd;
+}
+
+.activities {
+  background-color: #4daf74;
+}
+
+.messages {
+  background-color: #467fbd;
+}

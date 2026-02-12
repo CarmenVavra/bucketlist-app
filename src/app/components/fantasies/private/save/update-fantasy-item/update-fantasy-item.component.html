@@ -1,0 +1,4 @@
+@if('' != fantasyItem().title){
+<app-simple-title-text-form [title]="fantasyItem().title" [text]="fantasyItem().description"
+  (submitAction)="submit($event)" (cancelAction)="cancel()"></app-simple-title-text-form>
+}

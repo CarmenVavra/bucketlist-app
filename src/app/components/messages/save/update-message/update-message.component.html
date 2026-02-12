@@ -1,0 +1,15 @@
+<form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+  <mat-form-field class="form-field">
+    <mat-label>Betreff</mat-label>
+    <input matInput id="subject" formControlName="subject">
+  </mat-form-field>
+  <mat-form-field class="form-field">
+    <mat-label>Nachricht</mat-label>
+    <textarea matInput id="text" formControlName="text"></textarea>
+  </mat-form-field>
+  <mat-action-row>
+    <button mat-button (click)="onCancel()">abbrechen</button>
+    <button mat-button type="submit" [disabled]="messageForm.invalid">speichern</button>
+  </mat-action-row>
+  <!-- <button type="submit" [disabled]="bucketListForm.invalid">Submit</button> -->
+</form>

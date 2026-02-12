@@ -3,7 +3,18 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+import { AuthGuard } from './components/auth/services/auth-guard';
+import { MAT_DATE_LOCALE, MAT_NATIVE_DATE_FORMATS, provideNativeDateAdapter } from '@angular/material/core';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideClientHydration(withEventReplay())]
+  providers: [
+    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideRouter(routes),
+    provideClientHydration(withEventReplay()),
+    provideHttpClient(withFetch()),
+    AuthGuard,
+    provideNativeDateAdapter(MAT_NATIVE_DATE_FORMATS),
+    { provide: MAT_DATE_LOCALE, useValue: 'de-DE' },
+  ]
 };

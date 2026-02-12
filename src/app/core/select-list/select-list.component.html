@@ -1,0 +1,8 @@
+<mat-form-field [class.hide]="hide()">
+  <mat-label>Menu</mat-label>
+  <mat-select [formControl]="listItemControl">
+    @for (listItem of listItems(); track listItem) {
+    <mat-option [value]="listItem.id">{{listItem.text}}</mat-option>
+    }
+  </mat-select>
+</mat-form-field>

@@ -1,0 +1,7 @@
+<mat-list role="list" class="mat-list">
+  @for(navItem of navigationList(); track $index){
+  <app-navigation-list-item [item]="navItem" (selectedItemAction)="selectedItem($event)"></app-navigation-list-item>
+  }
+  <app-navigation-list-item [item]="logoutItem()"
+    (selectedItemAction)="selectedItem($event)"></app-navigation-list-item>
+</mat-list>

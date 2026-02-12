@@ -1,0 +1,21 @@
+.drawer-container {
+  width: 98vw;
+  max-width: 600px;
+  /* width: 50vw; */
+  height: 100vh;
+  margin: 12px;
+  background-color: #272932;
+  color: rgb(171, 192, 213);
+}
+
+mat-drawer-content {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  scrollbar-width: none;
+}
+
+mat-drawer {
+  scrollbar-width: none;
+}

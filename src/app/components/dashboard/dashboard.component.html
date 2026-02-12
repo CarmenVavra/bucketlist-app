@@ -1,0 +1,7 @@
+<h3>{{ headline() }}</h3>
+<div class="dashboard-container">
+  @for(card of cardList(); track $index){
+  <app-dashboard-item [title]="card.title" [subtitle]="card.subtitle" [content]="card.content" [path]="card.path"
+    [icon]="card.icon" [color]="card.color" (buttonClickAction)="buttonClick($event)"></app-dashboard-item>
+  }
+</div>

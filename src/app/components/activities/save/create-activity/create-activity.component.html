@@ -1,0 +1,83 @@
+<form [formGroup]="activityForm" (ngSubmit)="onSubmit()">
+  <mat-form-field class="form-field">
+    <mat-label>Titel</mat-label>
+    <input matInput id="title" formControlName="title">
+  </mat-form-field>
+  <mat-form-field class="form-field">
+    <mat-label>Beschreibung</mat-label>
+    <textarea matInput id="description" formControlName="description"></textarea>
+  </mat-form-field>
+  <mat-form-field class="form-field">
+    <mat-label>Location</mat-label>
+    <input matInput id="location" formControlName="location">
+  </mat-form-field>
+  <mat-form-field class="form-field">
+    <mat-label>Dauer</mat-label>
+    <input matInput id="duration" formControlName="duration">
+  </mat-form-field>
+  <div class="date-container">
+    <mat-form-field>
+      <mat-label>Datum</mat-label>
+      <input matInput [matDatepicker]="datePicker" formControlName="executionDate">
+      <mat-hint>DD/MM/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="datePicker"></mat-datepicker-toggle>
+      <mat-datepicker #datePicker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>von</mat-label>
+      <input matInput [matDatepicker]="fromDatePicker" formControlName="executionFromDate">
+      <mat-hint>DD/MM/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="fromDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #fromDatePicker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>bis</mat-label>
+      <input matInput [matDatepicker]="toDatePicker" formControlName="executionToDate">
+      <mat-hint>DD/MM/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="toDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #toDatePicker></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <div class="time-container">
+    <mat-form-field>
+      <mat-label>Uhrzeit</mat-label>
+      <input matInput [matTimepicker]="timePicker" formControlName="executionTime" />
+      <mat-timepicker-toggle matIconSuffix [for]="timePicker" />
+      <mat-timepicker #timePicker />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Uhrzeit von</mat-label>
+      <input matInput [matTimepicker]="fromTimePicker" formControlName="executionFromTime" />
+      <mat-timepicker-toggle matIconSuffix [for]="fromTimePicker" />
+      <mat-timepicker #fromTimePicker />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Uhrzeit bis</mat-label>
+      <input matInput [matTimepicker]="toTimePicker" formControlName="executionToTime" />
+      <mat-timepicker-toggle matIconSuffix [for]="toTimePicker" />
+      <mat-timepicker #toTimePicker />
+    </mat-form-field>
+  </div>
+
+
+
+  <!-- <mat-form-field>
+    <mat-label>Geburtsdatum</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="birthdate">
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Geburtsdatum</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="birthdate">
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field> -->
+  <mat-action-row>
+    <button mat-button>abbrechen</button>
+    <button mat-button type="submit" [disabled]="activityForm.invalid">speichern</button>
+  </mat-action-row>
+  <!-- <button type="submit" [disabled]="bucketListForm.invalid">Submit</button> -->
+</form>

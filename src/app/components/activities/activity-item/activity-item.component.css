@@ -1,0 +1,57 @@
+.title-date {
+  text-align: end;
+}
+
+.head {
+  display: table;
+  width: 100%;
+}
+
+.row {
+  display: table-row;
+  width: 100%;
+}
+
+.col {
+  display: table-cell;
+  width: 65%;
+}
+
+.align-end {
+  text-align: end;
+}
+
+mat-expansion-panel {
+  background-color: #4daf74;
+}
+
+mat-expansion-panel-header {
+  height: 64px;
+}
+
+mat-card {
+  background-color: #204931;
+  color: #4daf74;
+}
+
+.mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:not([aria-disabled=true]):hover {
+  background: #4daf74;
+  color: aliceblue;
+}
+
+mat-card-subtitle {
+  color: #4daf74;
+}
+
+mat-panel-title {
+  color: #204931;
+  font-weight: bold;
+}
+
+.mat-expansion-indicator svg {
+  fill: #204931 !important;
+}
+
+.accordion {
+  border: 1px solid #204931;
+}

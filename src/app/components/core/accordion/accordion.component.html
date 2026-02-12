@@ -1,0 +1,28 @@
+<mat-expansion-panel class="accordion {{color()}}">
+  <mat-expansion-panel-header>
+    <mat-panel-title class="accordion-title">
+      <div class="row">
+        <div class="col">
+          {{ title() }}
+        </div>
+        <div class="col sender">
+          @if(showSender() == true){
+          gesendet von: {{sender()}}
+          }
+        </div>
+      </div>
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <p>{{ text() }}</p>
+  <mat-action-row>
+    @if(sent() == false){
+    <button mat-button (click)="edit()" title="bearbeiten"><i class="fa-solid fa-pencil sizing edit-icon"></i></button>
+    }
+    @if(messageType() == messageTypes.RECEIVED){
+    <app-reply-button (replyAction)="reply()"></app-reply-button>
+    <!-- <button mat-button (click)="reply()" title="antworten"><i class="fa-solid fa-reply sizing reply-icon"></i></button> -->
+    }
+    <button mat-button (click)="delete()" title="löschen"><i
+        class="fa-solid fa-trash-can sizing delete-icon"></i></button>
+  </mat-action-row>
+</mat-expansion-panel>

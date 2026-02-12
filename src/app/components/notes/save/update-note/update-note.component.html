@@ -1,0 +1,4 @@
+@if('' != noteItem().title){
+<app-simple-title-text-form [title]="noteItem().title" [text]="noteItem().text" (submitAction)="onSubmit($event)"
+  (cancelAction)="onCancel()"></app-simple-title-text-form>
+}

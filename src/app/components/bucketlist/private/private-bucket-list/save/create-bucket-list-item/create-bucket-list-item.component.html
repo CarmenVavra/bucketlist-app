@@ -1,0 +1,21 @@
+<form [formGroup]="bucketListForm" (ngSubmit)="onSubmit()">
+  <mat-form-field class="form-field">
+    <mat-label>Titel</mat-label>
+    <input matInput id="title" formControlName="title">
+  </mat-form-field>
+  <mat-form-field class="form-field">
+    <mat-label>Beschreibung</mat-label>
+    <textarea matInput id="description" formControlName="description"></textarea>
+  </mat-form-field>
+  <mat-button-toggle-group name="fontStyle" aria-label="Font Style" formControlName="priorityId">
+    @for(prio of priority; track $index){
+    <mat-button-toggle value="{{ prio.id }}">{{ prio.displayName }}</mat-button-toggle>
+    }
+  </mat-button-toggle-group>
+
+  <mat-action-row>
+    <button mat-button>abbrechen</button>
+    <button mat-button type="submit" [disabled]="bucketListForm.invalid">speichern</button>
+  </mat-action-row>
+  <!-- <button type="submit" [disabled]="bucketListForm.invalid">Submit</button> -->
+</form>

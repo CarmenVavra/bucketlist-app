@@ -1,0 +1,40 @@
+<app-expander [title]="activityItem().title!" [text]="activityItem().description!" [subtitle]="activityItem().location"
+  (editAction)="edit()" (deleteAction)="delete()"></app-expander>
+
+
+
+
+
+
+
+
+<!-- <mat-expansion-panel class="accordion">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      {{ activityItem().title }}
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title> {{ activityItem().title }} </mat-card-title>
+      <mat-card-subtitle> {{ activityItem().location }} </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      {{ activityItem().description }}
+    </mat-card-content>
+
+    <mat-card-footer>
+      @if(activityItem().executionFromDate?.includes('0000')) {
+      {{ activityItem().executionDate | date:'dd.MM.yyyy' }}
+      } @else{
+      {{ activityItem().executionFromDate | date:'dd.MM.yyyy' }} - {{ activityItem().executionToDate | date:
+      'dd.MM.yyyy' }}
+      }
+    </mat-card-footer>
+  </mat-card>
+  <mat-action-row>
+    <app-done-button (doneAction)="done()"></app-done-button>
+    <app-edit-button (editAction)="edit()"></app-edit-button>
+    <app-delete-button (deleteAction)="delete()"></app-delete-button>
+  </mat-action-row>
+</mat-expansion-panel> -->

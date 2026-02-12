@@ -1,0 +1,53 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <mat-label>Benutzername</mat-label>
+    <input matInput id="nickName" formControlName="nickname">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Vorname</mat-label>
+    <input matInput id="firstName" formControlName="firstname">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Nachname</mat-label>
+    <input matInput id="lastName" formControlName="lastname">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>E-Mail</mat-label>
+    <input matInput id="email" formControlName="email">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Passwort</mat-label>
+    <input type="password" matInput id="password" formControlName="password">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Passwort wiederholen</mat-label>
+    <input type="password" matInput id="passwordRepeat" formControlName="passwordRep">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Geburtsdatum</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="birthdate">
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Straße</mat-label>
+    <input matInput id="street" formControlName="street">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Postleitzahl</mat-label>
+    <input matInput id="zip" formControlName="zip">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Ort</mat-label>
+    <input matInput id="place" formControlName="place">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Telefonnummer</mat-label>
+    <input matInput id="phone" formControlName="phone">
+  </mat-form-field>
+  <!-- <button type="submit" mat-raised-button color="primary" class="m-2" style="width: 150px;"
+    [disabled]="!registerForm.valid">registrieren</button> -->
+  <button type="submit" mat-raised-button color="primary" class="m-2" style="width: 150px;">registrieren</button>
+</form>

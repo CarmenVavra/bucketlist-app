@@ -1,0 +1,6 @@
+<h2>Notizen</h2>
+<app-plus-button (openCreateAction)="openCreate()"></app-plus-button>
+@for(noteItem of noteItems(); track noteItem.id){
+<app-note-item [noteItem]="noteItem" (openEditAction)="openEdit($event)"
+  (deleteAction)="delete($event)"></app-note-item>
+}

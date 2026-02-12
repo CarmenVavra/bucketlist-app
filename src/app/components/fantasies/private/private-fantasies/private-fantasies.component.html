@@ -1,0 +1,7 @@
+<h2>Privater Bereich Fantasien</h2>
+<app-plus-button (openCreateAction)="openCreate()"></app-plus-button>
+@for(fantasy of fantasies(); track fantasy.id){
+<app-private-fantasy-item [fantasyItem]="fantasy!" (editAction)="openEdit($event)"
+  (deleteAction)="delete($event)"></app-private-fantasy-item>
+
+}
