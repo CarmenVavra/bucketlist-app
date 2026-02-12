@@ -16,6 +16,7 @@ export class ExpanderComponent {
 
   readonly title = input.required<string>();
   readonly text = input.required<string>();
+  readonly published = input<boolean>();
   readonly headerRightSide = input<string>();
   readonly subtitle = input<string>();
   readonly showPublishBtn = input<boolean>();

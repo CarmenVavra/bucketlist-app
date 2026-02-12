@@ -7,12 +7,13 @@
     <div>{{ subtitle() }}</div>
     <p>{{ text() }}</p>
     <mat-action-row>
-      <app-publish-button [class.hide]="!showPublishBtn()" (publishAction)="publish()"></app-publish-button>
-      <app-unpublish-button [class.hide]="!showUnpublishBtn()" (unpublishAction)="unpublish()"></app-unpublish-button>
+      <app-publish-button [published]="published()" [class.hide]="!showPublishBtn()"
+        (publishAction)="publish()"></app-publish-button>
+      <app-unpublish-button [published]="published()" [class.hide]="!showUnpublishBtn()"
+        (unpublishAction)="unpublish()"></app-unpublish-button>
       <app-done-button [class.hide]="!showDoneBtn()" (doneAction)="done()"></app-done-button>
       <app-edit-button [class.hide]="!showEditBtn()" (editAction)="edit()"></app-edit-button>
       <app-delete-button [class.hide]="!showDeleteBtn()" (deleteAction)="delete()"></app-delete-button>
     </mat-action-row>
   </mat-expansion-panel>
-
 </mat-accordion>
