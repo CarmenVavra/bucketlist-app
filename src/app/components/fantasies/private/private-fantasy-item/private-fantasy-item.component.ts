@@ -11,8 +11,23 @@ import { FantasyItem } from '../../models/fantasy.model';
 export class PrivateFantasyItemComponent {
   readonly fantasyItem = input.required<FantasyItem>();
 
+  readonly publishAction = output<FantasyItem>();
+  readonly unpublishAction = output<FantasyItem>();
+  readonly doneAction = output<FantasyItem>();
   readonly editAction = output<FantasyItem>();
   readonly deleteAction = output<FantasyItem>();
+
+  protected publish() {
+    this.publishAction.emit(this.fantasyItem());
+  }
+
+  protected unpublish() {
+    this.unpublishAction.emit(this.fantasyItem());
+  }
+
+  protected done() {
+    this.doneAction.emit(this.fantasyItem());
+  }
 
   protected openEdit() {
     this.editAction.emit(this.fantasyItem());

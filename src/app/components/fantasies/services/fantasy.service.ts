@@ -76,10 +76,10 @@ export class FantasyService {
     );
   }
 
-  togglePublishBucketList(id: number, published: boolean): Observable<FantasyItem> {
+  togglePublishFantasies(id: number, published: boolean): Observable<FantasyItem> {
     return this.#http.put(`${this.baseUrl}/publish`, { id: id, published: published }).pipe(
       map((res: any) => {
-        return res['bucketList'];
+        return res['fantasy'];
       })
     );
   }
@@ -87,7 +87,7 @@ export class FantasyService {
   setIsDone(id: number): Observable<FantasyItem> {
     return this.#http.put(`${this.baseUrl}/done`, { id: id }).pipe(
       map((res: any) => {
-        return res['bucketList'];
+        return res['fantasy'];
       })
     );
   }
@@ -95,7 +95,7 @@ export class FantasyService {
   setIsAccepted(id: number): Observable<FantasyItem> {
     return this.#http.put(`${this.baseUrl}/accepted`, { id: id }).pipe(
       map((res: any) => {
-        return res['bucketList'];
+        return res['fantasy'];
       })
     );
   }
@@ -103,8 +103,8 @@ export class FantasyService {
   setIsDenied(id: number): Observable<FantasyItem> {
     return this.#http.put(`${this.baseUrl}/denied`, { id: id }).pipe(
       map((res: any) => {
-        console.log('res', res['bucketList']);
-        return res['bucketList'];
+        console.log('res', res['fantasy']);
+        return res['fantasy'];
       })
     );
   }
@@ -112,7 +112,7 @@ export class FantasyService {
   showAccepted(): Observable<FantasyItem[]> {
     return this.#http.get(`${this.baseUrl}/listByAccepted`).pipe(
       map((res: any) => {
-        return res['bucketLists'];
+        return res['fantasies'];
       })
     );
   }
@@ -128,7 +128,7 @@ export class FantasyService {
   showDenied(): Observable<FantasyItem[]> {
     return this.#http.get(`${this.baseUrl}/listByDenied`).pipe(
       map((res: any) => {
-        return res['bucketLists'];
+        return res['fantasies'];
       })
     );
   }
@@ -136,7 +136,7 @@ export class FantasyService {
   showPrivateDenied(userId: number): Observable<FantasyItem[]> {
     return this.#http.get(`${this.baseUrl}/listByPrivateDenied?userId=${userId}`).pipe(
       map((res: any) => {
-        return res['bucketLists'];
+        return res['fantasies'];
       })
     );
   }
@@ -144,7 +144,7 @@ export class FantasyService {
   showDone(): Observable<FantasyItem[]> {
     return this.#http.get(`${this.baseUrl}/listByPrivateDone`).pipe(
       map((res: any) => {
-        return res['bucketLists'];
+        return res['fantasies'];
       })
     );
   }
@@ -152,7 +152,7 @@ export class FantasyService {
   showPrivateDone(userId: number): Observable<FantasyItem[]> {
     return this.#http.get(`${this.baseUrl}/listByPrivateDone?userId=${userId}`).pipe(
       map((res: any) => {
-        return res['bucketLists'];
+        return res['fantasies'];
       })
     );
   }

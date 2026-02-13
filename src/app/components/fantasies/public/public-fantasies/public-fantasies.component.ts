@@ -13,14 +13,27 @@ import { AuthService } from '../../../auth/services/auth-service.service';
 export class PublicFantasiesComponent {
   readonly fantasies = signal<FantasyItem[]>([]);
 
-  #authService = inject(AuthService);
   #fantasyService = inject(FantasyService);
 
   ngOnInit(): void {
-    const userId = this.#authService.getStoredUser().id;
     this.#fantasyService.getPublicList().subscribe((fantasies) => {
       this.fantasies.set(fantasies);
-      console.log('this.fantasies', this.fantasies());
+    });
+  }
+
+  protected accept(fantasyItem: FantasyItem) {
+    this.#fantasyService.setIsAccepted(fantasyItem.id!).subscribe((fantasy) => {
+      this.fantasies.update((fantasies) => {
+        return fantasies.filter((f) => f.id !== fantasyItem.id);
+      });
+    });
+  }
+
+  protected deny(fantasyItem: FantasyItem) {
+    this.#fantasyService.setIsDenied(fantasyItem.id!).subscribe((fantasy) => {
+      this.fantasies.update((fantasies) => {
+        return fantasies.filter((f) => f.id !== fantasyItem.id);
+      });
     });
   }
 }

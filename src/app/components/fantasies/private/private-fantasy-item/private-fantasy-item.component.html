@@ -1,3 +1,4 @@
 <app-expander [title]="fantasyItem().title!" [text]="fantasyItem().description!" [showDeleteBtn]="true"
   [showEditBtn]="true" [showEditBtn]="true" [showDoneBtn]="true" [showUnpublishBtn]="true" [showPublishBtn]="true"
-  [published]="fantasyItem().published" (editAction)="openEdit()" (deleteAction)="delete()"></app-expander>
+  [published]="fantasyItem().published" (publishAction)="publish()" (unpublishAction)="unpublish()"
+  (doneAction)="done()" (editAction)="openEdit()" (deleteAction)="delete()"></app-expander>

@@ -32,8 +32,28 @@ export class PrivateFantasiesComponent {
     });
   }
 
+
+
   protected openCreate() {
     this.#router.navigateByUrl(ROUTE_PATHS.FANTASY_ITEM_CREATE);
+  }
+
+  protected publish(fantasyItem: FantasyItem) {
+    this.#fantasyService.togglePublishFantasies(fantasyItem.id!, true).subscribe((fantasy) => {
+      this.loadItems();
+    });
+  }
+
+  protected unpublish(fantasyItem: FantasyItem) {
+    this.#fantasyService.togglePublishFantasies(fantasyItem.id!, false).subscribe((fantasy) => {
+      this.loadItems();
+    });
+  }
+
+  protected done(fantasyItem: FantasyItem) {
+    this.#fantasyService.setIsDone(fantasyItem.id!).subscribe((fantasy) => {
+      this.loadItems();
+    });
   }
 
   protected openEdit(fantasyItem: FantasyItem) {

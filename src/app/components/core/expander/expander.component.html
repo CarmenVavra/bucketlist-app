@@ -7,6 +7,8 @@
     <div>{{ subtitle() }}</div>
     <p>{{ text() }}</p>
     <mat-action-row>
+      <app-accept-button [class.hide]="!showAcceptBtn()" (acceptAction)="accept()"></app-accept-button>
+      <app-deny-button [class.hide]="!showDenyBtn()" (denyAction)="deny()"></app-deny-button>
       <app-publish-button [published]="published()" [class.hide]="!showPublishBtn()"
         (publishAction)="publish()"></app-publish-button>
       <app-unpublish-button [published]="published()" [class.hide]="!showUnpublishBtn()"
