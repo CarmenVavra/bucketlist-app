@@ -6,10 +6,11 @@ import { ROUTE_PATHS } from '../../../../models/general.model';
 import { PrivateFantasyItemComponent } from "../private-fantasy-item/private-fantasy-item.component";
 import { AuthService } from '../../../auth/services/auth-service.service';
 import { FantasyService } from '../../services/fantasy.service';
+import { MatDivider } from "@angular/material/divider";
 
 @Component({
   selector: 'app-private-fantasies',
-  imports: [PlusButtonComponent, PrivateFantasyItemComponent],
+  imports: [PlusButtonComponent, PrivateFantasyItemComponent, MatDivider],
   templateUrl: './private-fantasies.component.html',
   styleUrl: './private-fantasies.component.css'
 })
@@ -63,6 +64,28 @@ export class PrivateFantasiesComponent {
   protected delete(fantasyItem: FantasyItem) {
     this.#fantasyService.delete(fantasyItem.id!).subscribe((message) => {
       this.loadItems();
+    });
+  }
+
+  protected loadPrivateFantasies() {
+    this.loadItems();
+  }
+
+  protected loadPrivateDone() {
+    this.#fantasyService.showPrivateDone(this.userId!).subscribe((fantasies) => {
+      this.fantasies.set(fantasies);
+    });
+  }
+
+  protected loadPrivateAccepted() {
+    this.#fantasyService.showPrivateAccepted(this.userId!).subscribe((fantasies) => {
+      this.fantasies.set(fantasies);
+    });
+  }
+
+  protected loadPrivateDenied() {
+    this.#fantasyService.showPrivateDenied(this.userId!).subscribe((fantasies) => {
+      this.fantasies.set(fantasies);
     });
   }
 

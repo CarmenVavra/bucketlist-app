@@ -1,4 +1,13 @@
 <h2>Privater Bereich Fantasien</h2>
+<div class="show-container">
+  <span class="show done" (click)="loadPrivateFantasies()"><i class="fa-solid fa-eye sizing-eyes"></i><i>Alle</i></span>
+  <span class="show done" (click)="loadPrivateDone()"><i class="fa-solid fa-eye sizing-eyes"></i><i>erledigt</i></span>
+  <span class="show accepted" (click)="loadPrivateAccepted()"><i
+      class="fa-solid fa-eye sizing-eyes"></i><i>angenommen</i></span>
+  <span class="show denied" (click)="loadPrivateDenied()"><i
+      class="fa-solid fa-eye sizing-eyes"></i><i>abgelehnt</i></span>
+</div>
+<mat-divider></mat-divider>
 <app-plus-button (openCreateAction)="openCreate()"></app-plus-button>
 @for(fantasy of fantasies(); track fantasy.id){
 <app-private-fantasy-item [fantasyItem]="fantasy!" (publishAction)="publish($event)"

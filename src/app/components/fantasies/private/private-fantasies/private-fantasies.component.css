@@ -1,0 +1,25 @@
+.sizing-eyes {
+  font-size: 1.2rem;
+  margin: 0.26rem;
+}
+
+.show-container {
+  margin: 1rem;
+}
+
+.show {
+  margin: 0.5rem;
+  cursor: pointer;
+}
+
+.done {
+  color: seagreen;
+}
+
+.accepted {
+  color: dodgerblue;
+}
+
+.denied {
+  color: indianred;
+}

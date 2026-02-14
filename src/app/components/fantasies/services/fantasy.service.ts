@@ -120,7 +120,7 @@ export class FantasyService {
   showPrivateAccepted(userId: number): Observable<FantasyItem[]> {
     return this.#http.get(`${this.baseUrl}/listByPrivateAccepted?userId=${userId}`).pipe(
       map((res: any) => {
-        return res['bucketLists'];
+        return res['fantasies'];
       })
     );
   }

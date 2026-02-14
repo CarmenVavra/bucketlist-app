@@ -2,7 +2,6 @@ import { Component, inject, signal } from '@angular/core';
 import { PublicFantasyItemComponent } from "../public-fantasy-item/public-fantasy-item.component";
 import { FantasyItem } from '../../models/fantasy.model';
 import { FantasyService } from '../../services/fantasy.service';
-import { AuthService } from '../../../auth/services/auth-service.service';
 
 @Component({
   selector: 'app-public-fantasies',
