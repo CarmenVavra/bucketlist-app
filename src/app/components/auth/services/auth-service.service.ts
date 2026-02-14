@@ -32,6 +32,8 @@ export class AuthService {
   register(user: RegisterUser): Observable<RegisterUser> {
     return this.#http.post(`${this.baseUrl}/register`, { user: user }).pipe(
       map((res: any) => {
+        this.#localStorageService.saveToLocalStorage(AUTH_DATA, JSON.stringify(res['user']));
+        this.subject.next(res['user']);
         return res['user'];
       })
     );
@@ -41,6 +43,7 @@ export class AuthService {
     return this.#http.post(`${this.baseUrl}/login`, { user: user }).pipe(
       map((res: any) => {
         this.#localStorageService.saveToLocalStorage(AUTH_DATA, JSON.stringify(res['user']));
+        this.subject.next(res['user']);
         return res['user'];
       })
     );

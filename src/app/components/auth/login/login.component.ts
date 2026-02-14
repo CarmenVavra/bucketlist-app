@@ -32,7 +32,9 @@ export class LoginComponent {
     this.loginUser.set(this.loginForm.value);
     this.#authService.login(this.loginUser()).pipe(first()).subscribe((loginUser) => {
       this.loginUser.set(loginUser);
-      this.#router.navigateByUrl(ROUTE_PATHS.PUBLIC);
+      setTimeout(() => {
+        this.#router.navigateByUrl(ROUTE_PATHS.PUBLIC);
+      }, 1000);
     });
   }
 }
