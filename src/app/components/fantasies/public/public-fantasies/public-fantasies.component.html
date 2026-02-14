@@ -1,6 +1,6 @@
 <h2>Öffentlicher Bereich Fantasien</h2>
 
 @for(fantasy of fantasies(); track fantasy.id){
-<app-public-fantasy-item [title]="fantasy.title!" [text]="fantasy.description!" (acceptAction)="accept(fantasy)"
-  (denyAction)="deny(fantasy)"></app-public-fantasy-item>
+<app-public-fantasy-item [title]="fantasy.title!" [text]="fantasy.description!" [nickname]="fantasy.nickname!"
+  (acceptAction)="accept(fantasy)" (denyAction)="deny(fantasy)"></app-public-fantasy-item>
 }

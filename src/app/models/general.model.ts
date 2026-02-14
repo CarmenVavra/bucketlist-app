@@ -32,7 +32,7 @@ export enum ROUTE_PATHS_ACTIONS {
 }
 
 export const MENUITEMS: MenuItem[] = [
-  { id: 10, text: 'Home', path: ROUTE_PATHS.LOGIN, icon: 'fa-solid fa-house' },
+  { id: 10, text: 'Home', path: ROUTE_PATHS.PUBLIC, icon: 'fa-solid fa-house' },
   { id: 20, text: 'Öffentlich', path: ROUTE_PATHS.PUBLIC, icon: 'fa-solid fa-bullhorn' },
   { id: 21, text: 'Bucket-List', path: ROUTE_PATHS.PUBLIC_BUCKET_LIST, icon: 'fa-solid fa-bucket' },
   { id: 22, text: 'Fantasies', path: ROUTE_PATHS.PUBLIC_FANTASIES, icon: 'fa-solid fa-comment-dots' },

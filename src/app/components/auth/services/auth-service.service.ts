@@ -63,7 +63,11 @@ export class AuthService {
   }
 
   getStoredUser(): LoginUser {
-    return JSON.parse(this.#localStorageService.getFromLocalStorage(AUTH_DATA)!) as LoginUser;
+    const storedUser = this.#localStorageService.getFromLocalStorage(AUTH_DATA);
+    if (storedUser) {
+      return JSON.parse(storedUser) as LoginUser;
+    }
+    return null!;
   }
 
   getRegisteredUsers(): Observable<LoginUser[]> {

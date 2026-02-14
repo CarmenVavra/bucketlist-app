@@ -44,10 +44,6 @@ export class MessageListItemComponent {
     }
   }
 
-  ngOnInit(): void {
-    console.log('color()', this.color());
-  }
-
   delete() {
     this.deleteAction.emit(this.messageItem()!);
   }

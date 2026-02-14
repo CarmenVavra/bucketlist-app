@@ -69,8 +69,6 @@ export class ReplyMessageComponent {
   }
 
   onSubmit() {
-    console.log('this.messageForm', this.messageForm);
-    console.log('this.sentMessageItem()', this.sentMessageItem());
     // this.messageItem.set(this.messageForm.value);
     this.messageItem().subject = this.messageForm.value['subject'];
     this.messageItem().text = this.messageForm.value['text'];
@@ -78,7 +76,6 @@ export class ReplyMessageComponent {
     this.messageItem().sentAt = new Date();
     this.sentMessageItem().answered = true;
     this.sentMessageItem().answeredAt = new Date();
-    console.log('this.messageItem()', this.messageItem());
     this.#messageService.reply(this.messageItem(), this.sentMessageItem()).subscribe((item) => {
       console.log('item', item);
     });

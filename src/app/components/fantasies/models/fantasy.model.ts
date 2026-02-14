@@ -4,4 +4,5 @@ export interface FantasyItem {
   title?: string;
   description?: string;
   published?: boolean;
+  nickname?: string;
 }

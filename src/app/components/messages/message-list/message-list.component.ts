@@ -27,15 +27,6 @@ export class MessageListComponent {
 
   constructor() { }
 
-  ngOnInit(): void {
-    console.log('this.messages', this.messages());
-    console.log('this.color()', this.color());
-    // console.log('loggedInUser', this.loggedInUser);
-    // this.#messageService.getAllReceivedByUserIdRecipient(this.loggedInUser.id!).subscribe((messages) => {
-    //   this.messages.set(messages);
-    // });
-  }
-
   deleteItem(messageItem: MessageItem) {
     this.deleteAction.emit(messageItem);
   }

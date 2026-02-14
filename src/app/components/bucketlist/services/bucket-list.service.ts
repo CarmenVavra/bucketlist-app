@@ -33,7 +33,6 @@ export class BucketListService {
   getBucketListItemById(id: number): Observable<BucketListItem> {
     return this.#http.get(`${this.baseUrl}/listItemById?id=${id}`).pipe(
       map((res: any) => {
-        console.log('res bucketlist', res['bucketListItem']);
         return res['bucketListItem'];
       })
     );
@@ -104,7 +103,6 @@ export class BucketListService {
   setIsDenied(id: number): Observable<BucketListItem> {
     return this.#http.put(`${this.baseUrl}/denied`, { id: id }).pipe(
       map((res: any) => {
-        console.log('res', res['bucketList']);
         return res['bucketList'];
       })
     );

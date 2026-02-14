@@ -17,6 +17,16 @@ mat-panel-description {
   background-color: #b0b8b4;
 }
 
+.header-right {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+mat-expansion-panel-header {
+  font-weight: bold;
+}
+
 
 /* .mat-expansion-panel-header-description{
 

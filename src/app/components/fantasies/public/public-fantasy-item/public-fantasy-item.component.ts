@@ -10,6 +10,7 @@ import { ExpanderComponent } from "../../../core/expander/expander.component";
 export class PublicFantasyItemComponent {
   readonly title = input.required<string>();
   readonly text = input.required<string>();
+  readonly nickname = input<string>();
 
   readonly acceptAction = output();
   readonly denyAction = output();

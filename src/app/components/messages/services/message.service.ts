@@ -80,8 +80,6 @@ export class MessageService {
   }
 
   reply(replyItem: MessageItem, messageItem: MessageItem): Observable<MessageItem> {
-    console.log('replyItem', replyItem);
-    console.log('messageItem', messageItem);
     return this.#http.post(`${this.baseUrl}/replyMessage`, { reply: replyItem, received: messageItem }).pipe(
       map((res: any) => {
         return res['message'];

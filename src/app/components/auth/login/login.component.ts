@@ -8,20 +8,22 @@ import { LoginUser } from '../models/auth.model';
 import { first } from 'rxjs';
 import { Router } from '@angular/router';
 import { ROUTE_PATHS } from '../../../models/general.model';
+import { MatExpansionModule } from "@angular/material/expansion";
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-login',
-  imports: [MatFormFieldModule, FormsModule, ReactiveFormsModule, MatButtonModule, MatInput],
+  imports: [MatFormFieldModule, FormsModule, ReactiveFormsModule, MatButtonModule, MatInput, MatExpansionModule, MatProgressSpinnerModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
 
   readonly loginUser = signal<LoginUser>({});
+  readonly loading = signal<boolean>(false);
 
   loginForm = new FormGroup({
-    email: new FormControl('carmen.gregor@chello.at', [Validators.required, Validators.email]),
-    // passwordControl: new FormControl('', [Validators.required, Validators.pattern(this.passwordPattern)]),
+    email: new FormControl('chelsie123@gmx.at', [Validators.required, Validators.email]),
     password: new FormControl('schnuFFi69'),
   });
 
@@ -29,12 +31,11 @@ export class LoginComponent {
   #router = inject(Router);
 
   onSubmit() {
+    // this.loading.set(true);
     this.loginUser.set(this.loginForm.value);
     this.#authService.login(this.loginUser()).pipe(first()).subscribe((loginUser) => {
       this.loginUser.set(loginUser);
-      setTimeout(() => {
-        this.#router.navigateByUrl(ROUTE_PATHS.PUBLIC);
-      }, 1000);
+      this.#router.navigateByUrl(ROUTE_PATHS.PUBLIC);
     });
   }
 }

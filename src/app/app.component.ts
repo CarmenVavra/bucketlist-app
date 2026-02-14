@@ -7,7 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { NavigationListComponent } from "./components/core/navigation-list/navigation-list.component";
-import { AUTH_DATA } from './components/auth/models/auth.model';
+import { AUTH_DATA, LoginUser } from './components/auth/models/auth.model';
 import { AuthService } from './components/auth/services/auth-service.service';
 
 @Component({
@@ -22,11 +22,20 @@ export class AppComponent {
   readonly title = signal<string>('cartoni-bucketlist');
   readonly opened = signal<boolean>(false);
   readonly hide = signal<boolean>(false);
+  readonly loggedInUser = signal<LoginUser>(null!);
 
   #autService = inject(AuthService);
 
-  ngOnInit(): void {
-    // this.hideNavigation();
+  ngDoCheck() {
+    this.handleNavtop();
+  }
+
+  private handleNavtop() {
+    if (this.#autService.getStoredUser()) {
+      this.loggedInUser.set(this.#autService.getStoredUser());
+    } else {
+      this.loggedInUser.set(null!);
+    }
   }
 
   hideNavigation() {

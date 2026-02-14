@@ -51,9 +51,7 @@ export class CreateBucketListItemComponent {
   }
 
   onSubmit() {
-    console.log('this.bucketListForm.value', this.bucketListForm.value);
     this.bucketListItem.set(this.bucketListForm.value);
-    console.log('this.bucketListItem', this.bucketListItem());
     this.bucketListItem().userId = this.userId!;
     if (this.bucketListItem().userId) {
       this.#bucketListService.create(this.bucketListItem()).pipe(first()).subscribe((bucketList: BucketListItem) => {
