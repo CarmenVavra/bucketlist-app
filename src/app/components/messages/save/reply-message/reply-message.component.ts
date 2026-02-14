@@ -1,10 +1,10 @@
 import { Component, inject, input, signal } from '@angular/core';
 import { MatFormField, MatLabel } from "@angular/material/select";
 import { MatExpansionModule } from "@angular/material/expansion";
-import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MessageItem } from '../../models/message.model';
 import { MessageService } from '../../services/message.service';
-import { first, Observable, Subject } from 'rxjs';
+import { first } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
 import { ROUTE_PATHS } from '../../../../models/general.model';
@@ -55,11 +55,7 @@ export class ReplyMessageComponent {
       this.#messageService.getMessageById(itemId).pipe(first()).subscribe((messageItem) => {
         this.sentMessageItem.set(messageItem);
         this.setNickname(messageItem);
-        // console.log('in ngOnInit this.sentmessageItem', this.sentMessageItem());
         this.messageForm.controls['subject'].setValue(`Re: ${messageItem.subject}`);
-        // if (this.messageItem()) {
-        //   this.messageForm.patchValue(this.messageItem());
-        // }
       });
     }
   }
@@ -69,7 +65,6 @@ export class ReplyMessageComponent {
   }
 
   onSubmit() {
-    // this.messageItem.set(this.messageForm.value);
     this.messageItem().subject = this.messageForm.value['subject'];
     this.messageItem().text = this.messageForm.value['text'];
     this.messageItem().sent = true;
@@ -77,14 +72,8 @@ export class ReplyMessageComponent {
     this.sentMessageItem().answered = true;
     this.sentMessageItem().answeredAt = new Date();
     this.#messageService.reply(this.messageItem(), this.sentMessageItem()).subscribe((item) => {
-      console.log('item', item);
+      this.goBack();
     });
-    // this.bucketListItem().title = this.bucketListForm.value.title;
-    // this.bucketListItem().description = this.bucketListForm.value.description;
-    // this.#bucketListService.update(this.bucketListItem()).pipe(first()).subscribe((bucketListItem) => {
-    //   this.bucketListItem.set(bucketListItem);
-    //   this.goBack();
-    // });
   }
 
   onCancel() {
