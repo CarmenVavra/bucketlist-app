@@ -18,4 +18,11 @@ mat-drawer-content {
 
 mat-drawer {
   scrollbar-width: none;
+  background-color: #272932;
 }
+
+/* mat-drawer.mat-drawer-inner-container {
+  width: 0 !important;
+  height: 0 !important;
+  overflow: unset !important;
+} */

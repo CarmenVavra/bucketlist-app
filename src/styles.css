@@ -93,3 +93,7 @@ mat-expansion-panel-title {
 .hide {
   display: none;
 }
+
+.mat-drawer-inner-container {
+  overflow: unset !important;
+}

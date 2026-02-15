@@ -5,7 +5,7 @@
 }
 <!-- Breadcrumb hier -->
 <mat-drawer-container class="drawer-container" hasBackdrop="true">
-  <mat-drawer #drawer mode="side" [opened]="opened()" disableClose="true">
+  <mat-drawer #drawer mode="side" [opened]="opened()" disableClose="true" class="hide-scrollbar">
     <app-navigation-list (navItemClickedAction)="navItemClicked()"
       (hideNavigationAction)="hideNavigation()"></app-navigation-list>
   </mat-drawer>

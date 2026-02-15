@@ -13,7 +13,7 @@ mat-panel-title,
 mat-panel-description {
   max-width: 280px;
   min-width: 110px;
-  color: rgb(109, 145, 182);
+  color: rgb(126, 166, 207);
 }
 
 .mat-expanded {
