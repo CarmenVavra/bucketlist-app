@@ -1,4 +1,5 @@
 .dashboard-container {
-  width: 350px;
+  width: 90vw;
+  max-width: 600px;
   /* width: 100%; */
 }

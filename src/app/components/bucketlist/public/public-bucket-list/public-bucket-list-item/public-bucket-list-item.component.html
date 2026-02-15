@@ -1,4 +1,10 @@
-<mat-expansion-panel class="accordion bucket-list">
+<app-expander [title]="bucketListItem().title" [text]="bucketListItem().description"
+  [headerRightSide]="bucketListItem().nickname" [showAcceptBtn]="true" [showDenyBtn]="true" (acceptAction)="accept()"
+  (denyAction)="deny()"></app-expander>
+
+
+
+<!-- <mat-expansion-panel class="accordion bucket-list">
   <mat-expansion-panel-header>
     <mat-panel-title class="head">
       <div class="row">
@@ -24,4 +30,4 @@
     <app-accept-button (acceptAction)="accept()"></app-accept-button>
     <app-deny-button (denyAction)="deny()"></app-deny-button>
   </mat-action-row>
-</mat-expansion-panel>
+</mat-expansion-panel> -->

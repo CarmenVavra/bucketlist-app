@@ -1,20 +1,24 @@
 mat-expansion-panel {
   width: 90vw !important;
-  max-width: 600px;
+  max-width: 550px;
   /* background-color: #D0E1F9; */
   /* background-color: #D5D6D2; */
-  background-color: #D1DDD8;
-  border: 1px solid #272932;
+  /* background-color: #D1DDD8;
+  border: 1px solid #272932; */
+  background-color: rgb(35, 57, 73);
+  border: 1px solid rgb(66, 109, 139);
 }
 
 mat-panel-title,
 mat-panel-description {
   max-width: 280px;
   min-width: 110px;
+  color: rgb(109, 145, 182);
 }
 
 .mat-expanded {
   background-color: #b0b8b4;
+  color: rgb(35, 57, 73) !important;
 }
 
 .header-right {
@@ -27,7 +31,20 @@ mat-expansion-panel-header {
   font-weight: bold;
 }
 
+.mat-expanded.mat-expansion-panel-spacing {
+  margin: 16px 0 !important;
+}
 
-/* .mat-expansion-panel-header-description{
+.mat-expanded mat-panel-title,
+.mat-expanded mat-panel-description {
+  /* background-color: #b0b8b4; */
+  color: rgb(35, 57, 73) !important;
+}
 
+/* .mat-expansion-indicator svg {
+  color: rgb(109, 145, 182) !important;
+}
+
+.mat-expansion-toggle-indicator-after {
+  color: rgb(109, 145, 182) !important;
 } */

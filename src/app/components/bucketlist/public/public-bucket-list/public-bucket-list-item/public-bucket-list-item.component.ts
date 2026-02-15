@@ -4,12 +4,11 @@ import { BucketListItem, PRIORITY } from '../../../models/bucket-list.model';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from "@angular/material/card";
 import { LoginUser } from '../../../../auth/models/auth.model';
-import { DenyButtonComponent } from "../../../../core/buttons/deny-button/deny-button.component";
-import { AcceptButtonComponent } from "../../../../core/buttons/accept-button/accept-button.component";
+import { ExpanderComponent } from "../../../../core/expander/expander.component";
 
 @Component({
   selector: 'app-public-bucket-list-item',
-  imports: [MatExpansionModule, MatButtonModule, MatCardModule, DenyButtonComponent, AcceptButtonComponent],
+  imports: [MatExpansionModule, MatButtonModule, MatCardModule, ExpanderComponent],
   templateUrl: './public-bucket-list-item.component.html',
   styleUrl: './public-bucket-list-item.component.css',
 })
@@ -37,7 +36,6 @@ export class PublicBucketListItemComponent {
       }
     });
   }
-
 
   accept() {
     this.acceptBucketListItemAction.emit(this.bucketListItem());
