@@ -1,3 +1,4 @@
+<h2>Fantasie Eintrag bearbeiten</h2>
 @if('' != fantasyItem().title){
 <app-simple-title-text-form [title]="fantasyItem().title" [text]="fantasyItem().description"
   (submitAction)="submit($event)" (cancelAction)="cancel()"></app-simple-title-text-form>

@@ -8,3 +8,11 @@
   display: block;
   padding: 2px;
 }
+
+.mat-button-toggle-label-content {
+  color: rgb(109, 145, 182) !important;
+}
+
+.mat-button-toggle-appearance-standard.mat-button-toggle-checked {
+  color: #272932 !important;
+}
