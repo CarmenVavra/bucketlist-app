@@ -59,7 +59,7 @@ body {
 }
 
 mat-expansion-panel-header {
-  height: 64px;
+  height: 80px !important;
 }
 
 mat-expansion-panel-title {

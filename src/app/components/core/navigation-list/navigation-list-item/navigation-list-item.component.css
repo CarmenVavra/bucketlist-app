@@ -1,8 +1,12 @@
 .list-icon,
 .list-item {
   /* color: lightslategray; */
-  color: rgb(109, 145, 182);
+  color: rgb(117, 155, 193);
   cursor: pointer;
+}
+
+.child {
+  margin-left: 24px;
 }
 
 i {

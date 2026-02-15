@@ -32,16 +32,17 @@ export enum ROUTE_PATHS_ACTIONS {
 }
 
 export const MENUITEMS: MenuItem[] = [
-  { id: 10, text: 'Home', path: ROUTE_PATHS.PUBLIC, icon: 'fa-solid fa-house' },
-  { id: 20, text: 'Öffentlich', path: ROUTE_PATHS.PUBLIC, icon: 'fa-solid fa-bullhorn' },
-  { id: 21, text: 'Bucket-List', path: ROUTE_PATHS.PUBLIC_BUCKET_LIST, icon: 'fa-solid fa-bucket' },
-  { id: 22, text: 'Fantasies', path: ROUTE_PATHS.PUBLIC_FANTASIES, icon: 'fa-solid fa-comment-dots' },
-  { id: 30, text: 'Privat', path: ROUTE_PATHS.PRIVATE, icon: 'fa-solid fa-key' },
-  { id: 31, text: 'Bucket-List', path: ROUTE_PATHS.PRIVATE_BUCKET_LIST, icon: 'fa-solid fa-bucket' },
-  { id: 32, text: 'Fantasies', path: ROUTE_PATHS.PRIVATE_FANTASIES, icon: 'fa-solid fa-comment-dots' },
-  { id: 40, text: 'Notizen', path: ROUTE_PATHS.NOTES, icon: 'fa-solid fa-clipboard' },
-  { id: 50, text: 'Unternehmungen', path: ROUTE_PATHS.ACTIVITIES, icon: 'fa-solid fa-children' },
-  { id: 60, text: 'Nachrichten', path: ROUTE_PATHS.MESSAGES, icon: 'fa-solid fa-envelope' },
+  { id: 10, text: 'Home', path: ROUTE_PATHS.PUBLIC, icon: 'fa-solid fa-house', hierarchy: 'parent' },
+  { id: 20, text: 'Öffentlich', path: ROUTE_PATHS.PUBLIC, icon: 'fa-solid fa-bullhorn', hierarchy: 'parent' },
+  { id: 21, text: 'Bucket-List', path: ROUTE_PATHS.PUBLIC_BUCKET_LIST, icon: 'fa-solid fa-bucket', hierarchy: 'child' },
+  { id: 22, text: 'Fantasies', path: ROUTE_PATHS.PUBLIC_FANTASIES, icon: 'fa-solid fa-comment-dots', hierarchy: 'child' },
+  { id: 30, text: 'Privat', path: ROUTE_PATHS.PRIVATE, icon: 'fa-solid fa-key', hierarchy: 'parent' },
+  { id: 31, text: 'Bucket-List', path: ROUTE_PATHS.PRIVATE_BUCKET_LIST, icon: 'fa-solid fa-bucket', hierarchy: 'child' },
+  { id: 32, text: 'Fantasies', path: ROUTE_PATHS.PRIVATE_FANTASIES, icon: 'fa-solid fa-comment-dots', hierarchy: 'child' },
+  { id: 40, text: 'Notizen', path: ROUTE_PATHS.NOTES, icon: 'fa-solid fa-clipboard', hierarchy: 'parent' },
+  { id: 50, text: 'Unternehmungen', path: ROUTE_PATHS.ACTIVITIES, icon: 'fa-solid fa-children', hierarchy: 'parent' },
+  { id: 60, text: 'Nachrichten', path: ROUTE_PATHS.MESSAGES, icon: 'fa-solid fa-envelope', hierarchy: 'parent' },
+  { id: 70, text: 'Logout', path: ROUTE_PATHS.LOGOUT, icon: 'fa-solid fa-arrow-right-from-bracket', hierarchy: 'parent' },
 ];
 
 export interface MenuItem {
@@ -49,6 +50,7 @@ export interface MenuItem {
   text: string;
   path: string;
   icon?: string;
+  hierarchy?: 'parent' | 'child';
 }
 
 export interface SimpleTitleText {

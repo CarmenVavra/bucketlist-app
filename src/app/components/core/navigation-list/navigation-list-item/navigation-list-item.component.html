@@ -1,3 +1,7 @@
 <mat-list-item role="listitem" (click)="selectedItem(item())">
-  <i class="{{item().icon}} list-icon"></i> <span class="list-item">{{item().text}}</span>
+  @if(item().hierarchy === 'parent'){
+  <i class="{{item().icon}} list-icon parent"></i> <span class="list-item">{{item().text}}</span>
+  }@else {
+  <i class="{{item().icon}} list-icon child"></i> <span class="list-item">{{item().text}}</span>
+  }
 </mat-list-item>
