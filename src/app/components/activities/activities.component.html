@@ -3,7 +3,7 @@
 <mat-accordion multi>
   @for(activity of activities(); track $index){
   <app-activity-item [activityItem]="activity" (editActivityItemAction)="openEditActivityItem($event)"
-    (deleteActivityItemAction)="deleteActivityItem($event)"
+    (deleteActivityItemAction)="deleteActivityItem($event)" (takeAwaysAction)="openTakeAways()"
     (doneActivityItemAction)="doneActivityItem($event)"></app-activity-item>
   }
 </mat-accordion>

@@ -7,20 +7,24 @@ import { UnpublishButtonComponent } from "../buttons/unpublish-button/unpublish-
 import { PublishButtonComponent } from "../buttons/publish-button/publish-button.component";
 import { AcceptButtonComponent } from "../buttons/accept-button/accept-button.component";
 import { DenyButtonComponent } from "../buttons/deny-button/deny-button.component";
+import { LoginUser } from '../../auth/models/auth.model';
+import { BlankoButtonComponent } from "../buttons/blanko-button/blanko-button.component";
 
 @Component({
   selector: 'app-expander',
-  imports: [MatAccordion, MatExpansionModule, EditButtonComponent, DeleteButtonComponent, MatExpansionPanelActionRow, DoneButtonComponent, UnpublishButtonComponent, PublishButtonComponent, AcceptButtonComponent, DenyButtonComponent],
+  imports: [MatAccordion, MatExpansionModule, EditButtonComponent, DeleteButtonComponent, MatExpansionPanelActionRow, DoneButtonComponent, UnpublishButtonComponent, PublishButtonComponent, AcceptButtonComponent, DenyButtonComponent, BlankoButtonComponent],
   templateUrl: './expander.component.html',
   styleUrl: './expander.component.css'
 })
 export class ExpanderComponent {
 
+  readonly itemOwner = input<LoginUser>();
   readonly title = input.required<string>();
   readonly text = input.required<string>();
   readonly published = input<boolean>();
   readonly headerRightSide = input<string>();
   readonly subtitle = input<string>();
+
   readonly showAcceptBtn = input<boolean>();
   readonly showDenyBtn = input<boolean>();
   readonly showPublishBtn = input<boolean>();
@@ -28,6 +32,7 @@ export class ExpanderComponent {
   readonly showDoneBtn = input<boolean>();
   readonly showEditBtn = input<boolean>();
   readonly showDeleteBtn = input<boolean>();
+  readonly showBlankoBtn = input<boolean>();
 
   readonly acceptAction = output();
   readonly denyAction = output();
@@ -36,6 +41,7 @@ export class ExpanderComponent {
   readonly doneAction = output();
   readonly editAction = output();
   readonly deleteAction = output();
+  readonly blankoAction = output();
 
   protected accept() {
     this.acceptAction.emit();
@@ -63,5 +69,9 @@ export class ExpanderComponent {
 
   protected delete() {
     this.deleteAction.emit();
+  }
+
+  protected blanko() {
+    this.blankoAction.emit();
   }
 }

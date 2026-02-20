@@ -21,6 +21,7 @@ export class ActivityItemComponent {
   readonly editActivityItemAction = output<ActivityItem>();
   readonly deleteActivityItemAction = output<ActivityItem>();
   readonly doneActivityItemAction = output<ActivityItem>();
+  readonly takeAwaysAction = output();
 
   done() {
     this.doneActivityItemAction.emit(this.activityItem()!);
@@ -32,6 +33,11 @@ export class ActivityItemComponent {
 
   delete() {
     this.deleteActivityItemAction.emit(this.activityItem()!);
+  }
+
+  protected openTakeAways() {
+    console.log('2. step');
+    this.takeAwaysAction.emit();
   }
 
 }

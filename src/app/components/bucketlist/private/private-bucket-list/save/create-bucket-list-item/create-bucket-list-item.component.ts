@@ -55,9 +55,17 @@ export class CreateBucketListItemComponent {
     this.bucketListItem().userId = this.userId!;
     if (this.bucketListItem().userId) {
       this.#bucketListService.create(this.bucketListItem()).pipe(first()).subscribe((bucketList: BucketListItem) => {
-        this.#router.navigateByUrl(ROUTE_PATHS.PRIVATE_BUCKET_LIST);
+        this.goBack();
       });
     }
+  }
+
+  protected cancel() {
+    this.goBack();
+  }
+
+  private goBack() {
+    this.#router.navigateByUrl(ROUTE_PATHS.PRIVATE_BUCKET_LIST);
   }
 
 }

@@ -15,3 +15,4 @@ export interface ActivityItem {
   createdAt?: string;
   updatedAt?: string;
 }
+

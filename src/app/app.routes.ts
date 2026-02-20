@@ -23,6 +23,7 @@ import { CreateNoteComponent } from './components/notes/save/create-note/create-
 import { UpdateNoteComponent } from './components/notes/save/update-note/update-note.component';
 import { CreateFantasyItemComponent } from './components/fantasies/private/save/create-fantasy-item/create-fantasy-item.component';
 import { UpdateFantasyItemComponent } from './components/fantasies/private/save/update-fantasy-item/update-fantasy-item.component';
+import { TakeAwaysComponent } from './components/take-aways/take-aways.component';
 
 export const routes: Routes = [
   // { path: 'permissionDenied', component: PermissionDeniedComponent },
@@ -144,6 +145,12 @@ export const routes: Routes = [
     path: 'activity-item/edit/:activityId',
     component: UpdateActivityComponent,
     data: { breadcrumb: 'Unternehmung bearbeiten' },
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'take-aways',
+    component: TakeAwaysComponent,
+    data: { breadcrumb: 'Take-Aways' },
     canActivate: [AuthGuard],
   },
   {

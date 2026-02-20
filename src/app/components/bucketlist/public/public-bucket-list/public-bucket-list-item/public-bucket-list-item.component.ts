@@ -14,6 +14,7 @@ import { ExpanderComponent } from "../../../../core/expander/expander.component"
 })
 export class PublicBucketListItemComponent {
   readonly prio = signal<string>('');
+  readonly showButtons = signal<boolean>(false);
 
   readonly bucketListItem = input.required<BucketListItem>();
   readonly loggedInUser = input<LoginUser>();
@@ -30,6 +31,8 @@ export class PublicBucketListItemComponent {
   }
 
   ngOnInit(): void {
+    this.showButtons.set(this.loggedInUser()?.id !== this.bucketListItem().userId);
+
     this.prioList.forEach((value) => {
       if (value.id == this.bucketListItem().priorityId) {
         this.prio.set(value.displayName);

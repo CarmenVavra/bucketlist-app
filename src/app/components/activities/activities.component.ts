@@ -57,4 +57,8 @@ export class ActivitiesComponent {
   doneActivityItem(item: ActivityItem) {
     console.log('in doneActivityItem', item);
   }
+
+  protected openTakeAways() {
+    this.#router.navigateByUrl(ROUTE_PATHS.TAKE_AWAYS);
+  }
 }

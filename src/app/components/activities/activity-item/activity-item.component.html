@@ -1,4 +1,5 @@
 <app-expander [title]="activityItem().title!" [text]="activityItem().description!" [subtitle]="activityItem().location"
+  [showBlankoBtn]="true" [showEditBtn]="true" [showDeleteBtn]="true" (blankoAction)="openTakeAways()"
   (editAction)="edit()" (deleteAction)="delete()"></app-expander>
 
 

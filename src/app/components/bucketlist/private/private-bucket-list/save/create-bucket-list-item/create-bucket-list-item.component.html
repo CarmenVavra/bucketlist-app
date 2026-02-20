@@ -16,7 +16,7 @@
   </mat-button-toggle-group>
 
   <mat-action-row>
-    <button mat-button>abbrechen</button>
+    <button mat-button (click)="cancel()">abbrechen</button>
     <button mat-button type="submit" [disabled]="bucketListForm.invalid">speichern</button>
   </mat-action-row>
   <!-- <button type="submit" [disabled]="bucketListForm.invalid">Submit</button> -->

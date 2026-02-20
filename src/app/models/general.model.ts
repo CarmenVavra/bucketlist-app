@@ -19,6 +19,7 @@ export enum ROUTE_PATHS {
   ACTIVITIES = 'activities',
   ACTIVITY_ITEM_CREATE = 'activity-item/create',
   ACTIVITY_ITEM_EDIT = 'activity-item/edit',
+  TAKE_AWAYS = 'take-aways',
   LOGIN = 'login',
   LOGOUT = 'logout',
   REGISTER = 'register',
