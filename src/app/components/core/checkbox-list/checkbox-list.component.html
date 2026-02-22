@@ -4,7 +4,7 @@
       <ul>
         @for (item of items(); track item.id; let i = $index) {
         <li>
-          <mat-checkbox class="checkbox-item" [checked]="item.isChecked" (change)="update($event.checked, i)">
+          <mat-checkbox class="checkbox-item" [checked]="item.isChecked == true" (change)="update($event.checked, i)">
             {{item.label}}
           </mat-checkbox>
           <app-delete-button (deleteAction)="delete(item)"></app-delete-button>

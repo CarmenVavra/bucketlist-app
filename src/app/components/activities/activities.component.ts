@@ -58,7 +58,7 @@ export class ActivitiesComponent {
     console.log('in doneActivityItem', item);
   }
 
-  protected openTakeAways() {
-    this.#router.navigateByUrl(ROUTE_PATHS.TAKE_AWAYS);
+  protected openTakeAways(activityId: number) {
+    this.#router.navigateByUrl(`${ROUTE_PATHS.TAKE_AWAYS}/${activityId}`);
   }
 }

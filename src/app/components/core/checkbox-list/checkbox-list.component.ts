@@ -1,4 +1,4 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CheckboxItem } from './models/checkbox-list.model';
 import { DeleteButtonComponent } from "../buttons/delete-button/delete-button.component";
@@ -14,6 +14,8 @@ import { TakeAway } from '../../take-aways/models/take-aways.model';
 })
 export class CheckboxListComponent {
   readonly items = input.required<CheckboxItem[]>();
+
+  readonly saveAction = output<CheckboxItem[]>();
 
   #fb = inject(FormBuilder);
 
@@ -33,7 +35,8 @@ export class CheckboxListComponent {
   }
 
   protected update(isChecked: boolean, index: number) {
-    console.log('isChecked', isChecked, 'index', index);
+    this.items()[index].isChecked = isChecked;
+    console.log('this.items()', this.items());
   }
 
   protected delete(item: TakeAway) {
@@ -42,7 +45,7 @@ export class CheckboxListComponent {
   }
 
   protected save() {
-    console.log('save items', this.items());
+    this.saveAction.emit(this.items());
   }
 
   protected add() {

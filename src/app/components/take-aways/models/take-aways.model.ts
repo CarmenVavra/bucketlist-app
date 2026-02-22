@@ -9,4 +9,7 @@ export interface TakeAway extends CheckboxItem {
 
 export interface ActivityItemWithTakeAways extends ActivityItem {
   takeAways?: TakeAway[];
+  activityId?: number;
+  isChecked?: boolean;
+  isFavourite?: boolean;
 }

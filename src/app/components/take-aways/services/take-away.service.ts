@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { TakeAway } from '../models/take-aways.model';
+import { ActivityItemWithTakeAways, TakeAway } from '../models/take-aways.model';
 
 @Injectable({
   providedIn: 'root'
@@ -51,6 +51,15 @@ export class TakeAwayService {
     return this.#http.delete(`${this.baseUrl}/delete?id=${id}`).pipe(
       map((res: any) => {
         return res['message'];
+      })
+    );
+  }
+
+  check(item: ActivityItemWithTakeAways): Observable<ActivityItemWithTakeAways> {
+    console.log('item in service check', item);
+    return this.#http.put(`${this.baseUrl}/check`, { data: item }).pipe(
+      map((res: any) => {
+        return res['takeaway'];
       })
     );
   }

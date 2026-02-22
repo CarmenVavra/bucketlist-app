@@ -1,9 +1,10 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, input, signal } from '@angular/core';
 import { CheckboxListComponent } from "../core/checkbox-list/checkbox-list.component";
-import { TakeAway } from './models/take-aways.model';
+import { ActivityItemWithTakeAways, TakeAway } from './models/take-aways.model';
 import { TakeAwayService } from './services/take-away.service';
 import { AuthService } from '../auth/services/auth-service.service';
 import { CheckboxItem } from '../core/checkbox-list/models/checkbox-list.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-take-aways',
@@ -12,14 +13,19 @@ import { CheckboxItem } from '../core/checkbox-list/models/checkbox-list.model';
   styleUrl: './take-aways.component.css'
 })
 export class TakeAwaysComponent {
-  readonly takeAways = signal<TakeAway[]>([]);
+  readonly activityId = signal<number>(0);
+
+  readonly takeAways = signal<ActivityItemWithTakeAways[]>([]);
   readonly userId = signal<number>(0);
   readonly checkboxItems = signal<CheckboxItem[]>([]);
 
   #takeAwayService = inject(TakeAwayService);
   #authService = inject(AuthService);
+  #activatedRoute = inject(ActivatedRoute);
 
   ngOnInit(): void {
+    console.log('this.activityId', this.activityId());
+    this.activityId.set(Number(this.#activatedRoute.snapshot.paramMap.get('activityId')));
     this.userId.set(this.#authService.getStoredUser().id!);
     this.loadTakeAways();
   }
@@ -28,7 +34,7 @@ export class TakeAwaysComponent {
     this.#takeAwayService.getByUserId(this.userId()).subscribe({
       next: (takeAways) => {
         this.takeAways.set(takeAways);
-        this.checkboxItems.set(this.transformTakeAwaysToCheckboxItems(takeAways));
+        this.checkboxItems.set(this.transformActivityItemWithTakeAwaysToCheckboxItems(takeAways));
       },
       error: (error) => {
         console.error('Error loading takeaways:', error);
@@ -41,10 +47,34 @@ export class TakeAwaysComponent {
    * @param takeAways 
    * @returns CheckboxItem[]
    */
-  private transformTakeAwaysToCheckboxItems(takeAways: TakeAway[]): CheckboxItem[] {
+  private transformActivityItemWithTakeAwaysToCheckboxItems(takeAways: ActivityItemWithTakeAways[]): CheckboxItem[] {
     return takeAways.map(takeAway => ({
       id: takeAway.id!,
       label: takeAway.description,
+      isChecked: takeAway.isChecked || false,
+      isFavourite: takeAway.isFavourite || false,
+      activityId: takeAway.activityId
+    }));
+  }
+
+  save(items: CheckboxItem[]): void {
+    this.takeAways.set(this.transformCheckboxItemToActivityItemWithTakeAways(items));
+    console.log('this.takeAways', this.takeAways());
+    this.takeAways().forEach((takeAway) => {
+      this.#takeAwayService.check(takeAway).subscribe((item) => {
+        console.log('updated item', item);
+      });
+    });
+  }
+
+  private transformCheckboxItemToActivityItemWithTakeAways(items: CheckboxItem[]): ActivityItemWithTakeAways[] {
+    return items.map(item => ({
+      id: item.id,
+      activityId: this.activityId(),
+      description: item.label,
+      userId: this.userId(),
+      isChecked: item.isChecked,
+      isFavourite: item.isFavourite,
     }));
   }
 }

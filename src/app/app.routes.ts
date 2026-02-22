@@ -148,7 +148,7 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'take-aways',
+    path: 'take-aways/:activityId',
     component: TakeAwaysComponent,
     data: { breadcrumb: 'Take-Aways' },
     canActivate: [AuthGuard],

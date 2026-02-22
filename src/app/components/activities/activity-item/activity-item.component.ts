@@ -3,10 +3,6 @@ import { ActivityItem } from '../models/activity.model';
 import { MatExpansionModule } from "@angular/material/expansion";
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { DatePipe } from '@angular/common';
-import { DeleteButtonComponent } from "../../core/buttons/delete-button/delete-button.component";
-import { DoneButtonComponent } from "../../core/buttons/done-button/done-button.component";
-import { EditButtonComponent } from "../../core/buttons/edit-button/edit-button.component";
 import { ExpanderComponent } from "../../core/expander/expander.component";
 
 @Component({
@@ -36,8 +32,6 @@ export class ActivityItemComponent {
   }
 
   protected openTakeAways() {
-    console.log('2. step');
     this.takeAwaysAction.emit();
   }
-
 }
