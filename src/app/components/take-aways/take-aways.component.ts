@@ -58,6 +58,10 @@ export class TakeAwaysComponent {
   }
 
   save(items: CheckboxItem[]): void {
+    console.log('in save');
+  }
+
+  toggleChecked(items: CheckboxItem[]): void {
     this.takeAways.set(this.transformCheckboxItemToActivityItemWithTakeAways(items));
     console.log('this.takeAways', this.takeAways());
     this.takeAways().forEach((takeAway) => {
@@ -66,6 +70,7 @@ export class TakeAwaysComponent {
       });
     });
   }
+
 
   private transformCheckboxItemToActivityItemWithTakeAways(items: CheckboxItem[]): ActivityItemWithTakeAways[] {
     return items.map(item => ({

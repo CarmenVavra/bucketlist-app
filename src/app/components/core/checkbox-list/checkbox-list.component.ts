@@ -16,6 +16,8 @@ export class CheckboxListComponent {
   readonly items = input.required<CheckboxItem[]>();
 
   readonly saveAction = output<CheckboxItem[]>();
+  readonly toggleCheckedAction = output<CheckboxItem[]>();
+  readonly deleteAction = output<CheckboxItem>();
 
   #fb = inject(FormBuilder);
 
@@ -46,6 +48,11 @@ export class CheckboxListComponent {
 
   protected save() {
     this.saveAction.emit(this.items());
+  }
+
+  protected toggleChecked() {
+    // TODO: only once, not for every item
+    this.toggleCheckedAction.emit(this.items());
   }
 
   protected add() {
