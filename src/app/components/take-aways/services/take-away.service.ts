@@ -31,7 +31,7 @@ export class TakeAwayService {
     );
   }
 
-  create(item: TakeAway): Observable<TakeAway> {
+  create(item: any): Observable<TakeAway> {
     return this.#http.post(`${this.baseUrl}/create`, { data: item }).pipe(
       map((res: any) => {
         return res['takeaway'];

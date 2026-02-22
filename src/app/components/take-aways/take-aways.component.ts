@@ -5,6 +5,7 @@ import { TakeAwayService } from './services/take-away.service';
 import { AuthService } from '../auth/services/auth-service.service';
 import { CheckboxItem } from '../core/checkbox-list/models/checkbox-list.model';
 import { ActivatedRoute } from '@angular/router';
+import { FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-take-aways',
@@ -57,8 +58,26 @@ export class TakeAwaysComponent {
     }));
   }
 
-  save(items: CheckboxItem[]): void {
-    console.log('in save');
+  save(newEntries: FormArray): void {
+    newEntries.value.forEach((entry: any) => {
+      const newTakeAway: ActivityItemWithTakeAways = {
+        description: entry,
+        activityId: this.activityId(),
+        userId: this.userId(),
+        isChecked: false,
+        isFavourite: false
+      };
+
+      this.#takeAwayService.create(newTakeAway).subscribe({
+        next: (createdTakeAway) => {
+          console.log('Created takeaway:', createdTakeAway);
+          this.loadTakeAways();
+        },
+        error: (error) => {
+          console.error('Error creating takeaway:', error);
+        }
+      });
+    });
   }
 
   toggleChecked(items: CheckboxItem[]): void {

@@ -1,5 +1,5 @@
-<section class="example-section">
-  <div [formGroup]="form">
+<section class="check-section">
+  <div [formGroup]="toggleCbxForm">
     <span class="example-list-section">
       <ul>
         @for (item of items(); track item.id; let i = $index) {
@@ -7,12 +7,37 @@
           <mat-checkbox class="checkbox-item" [checked]="item.isChecked == true" (change)="update($event.checked, i)">
             {{item.label}}
           </mat-checkbox>
-          <app-delete-button (deleteAction)="delete(item)"></app-delete-button>
+          <app-delete-button (deleteAction)="delete(item.id!)"></app-delete-button>
         </li>
         }
       </ul>
     </span>
     <app-save-button (saveAction)="toggleChecked()"></app-save-button>
   </div>
+</section>
+<section class="save-section">
+  <div class="controls-container">
+    <!-- TODO: add controls dynamically using formArray -->
 
+    <div [formGroup]="newEntriesForm">
+      <ng-container formArrayName="newEntries">
+        @for (newEntryForm of newEntries.controls; track $index; let i = $index) {
+        <ng-container [formGroupName]="i">
+          <div>
+            <mat-form-field appearance="fill">
+              <input matInput formControlName="newEntry" placeholder="neuer Eintrag">
+            </mat-form-field>
+            <mat-icon class="delete-btn" (click)="delete(i)">
+              delete_forever</mat-icon>
+          </div>
+        </ng-container>
+        }
+      </ng-container>
+    </div>
+  </div>
+  <button mat-button (click)="save()" title="speichern"><i
+      class="fa-solid fa-floppy-disk sizing save-icon"></i></button>
+  <div class="add-button-container">
+    <div (click)="add()"><i class="fa-solid fa-circle-plus fa-2x"></i></div>
+  </div>
 </section>

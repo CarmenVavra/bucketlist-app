@@ -3,32 +3,41 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CheckboxItem } from './models/checkbox-list.model';
 import { DeleteButtonComponent } from "../buttons/delete-button/delete-button.component";
 import { SaveButtonComponent } from "../buttons/save-button/save-button.component";
-import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TakeAway } from '../../take-aways/models/take-aways.model';
+import { MatFormField } from "@angular/material/select";
+import { MatIcon } from "@angular/material/icon";
+import { MatInput } from '@angular/material/input';
 
 @Component({
   selector: 'app-checkbox-list',
-  imports: [MatCheckboxModule, DeleteButtonComponent, SaveButtonComponent, FormsModule, ReactiveFormsModule],
+  imports: [MatCheckboxModule, DeleteButtonComponent, SaveButtonComponent, FormsModule, ReactiveFormsModule, MatFormField, MatIcon, MatInput],
   templateUrl: './checkbox-list.component.html',
   styleUrl: './checkbox-list.component.css'
 })
 export class CheckboxListComponent {
   readonly items = input.required<CheckboxItem[]>();
 
-  readonly saveAction = output<CheckboxItem[]>();
+  readonly saveAction = output<FormArray>();
   readonly toggleCheckedAction = output<CheckboxItem[]>();
   readonly deleteAction = output<CheckboxItem>();
 
   #fb = inject(FormBuilder);
 
-  form = this.#fb.group({
+  toggleCbxForm = this.#fb.group({
     itemControl: this.#fb.array([]),
   });
 
-  itemForm = new FormGroup('');
+  newEntriesForm = this.#fb.group({
+    newEntries: this.#fb.array([]),
+  });
+
+  get newEntries() {
+    return this.newEntriesForm.get('newEntries')! as FormArray;
+  }
 
   get itemControl() {
-    return this.form.get('itemControl')! as FormArray;
+    return this.toggleCbxForm.get('itemControl')! as FormArray;
   }
 
   ngOnInit(): void {
@@ -41,21 +50,27 @@ export class CheckboxListComponent {
     console.log('this.items()', this.items());
   }
 
-  protected delete(item: TakeAway) {
-    console.log('delete item ', item);
+  protected delete(itemId: number) {
+    this.deleteAction.emit(this.items().find(item => item.id === itemId)!);
+    console.log('delete item ', this.items().find(item => item.id === itemId));
     // this.itemControl.removeAt(index);
   }
 
   protected save() {
-    this.saveAction.emit(this.items());
+    this.saveAction.emit(this.newEntries);
   }
 
   protected toggleChecked() {
-    // TODO: only once, not for every item
+    // TODO: only once, not for every item?
     this.toggleCheckedAction.emit(this.items());
   }
 
   protected add() {
-    console.log('add');
+    const newEntryForm = this.#fb.group({
+      newEntry: new FormControl('', Validators.required),
+    });
+
+    this.newEntries.push(newEntryForm);
+    console.log('add this.newEntries', this.newEntries);
   }
 }
