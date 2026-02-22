@@ -4,10 +4,17 @@
       <ul>
         @for (item of items(); track item.id; let i = $index) {
         <li>
-          <mat-checkbox class="checkbox-item" [checked]="item.isChecked == true" (change)="update($event.checked, i)">
-            {{item.label}}
-          </mat-checkbox>
-          <app-delete-button (deleteAction)="delete(item.id!)"></app-delete-button>
+          <div class="row">
+            <div class="col">
+              <mat-checkbox class="checkbox-item" [checked]="item.isChecked == true"
+                (change)="update($event.checked, i)">
+                {{item.label}}
+              </mat-checkbox>
+            </div>
+            <div class="col">
+              <app-delete-button (deleteAction)="delete(item.id!)"></app-delete-button>
+            </div>
+          </div>
         </li>
         }
       </ul>
@@ -24,11 +31,18 @@
         @for (newEntryForm of newEntries.controls; track $index; let i = $index) {
         <ng-container [formGroupName]="i">
           <div>
-            <mat-form-field appearance="fill">
-              <input matInput formControlName="newEntry" placeholder="neuer Eintrag">
-            </mat-form-field>
-            <mat-icon class="delete-btn" (click)="delete(i)">
-              delete_forever</mat-icon>
+            <div class="row">
+              <div class="col first-col">
+                <mat-form-field appearance="fill">
+                  <input matInput formControlName="newEntry" placeholder="neuer Eintrag">
+                </mat-form-field>
+              </div>
+              <div class="col second-col">
+                <app-delete-button (deleteAction)="delete(i)"></app-delete-button>
+                <!-- <mat-icon class="delete-btn" (click)="delete(i)">
+                  delete_forever</mat-icon> -->
+              </div>
+            </div>
           </div>
         </ng-container>
         }

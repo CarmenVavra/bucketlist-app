@@ -3,10 +3,19 @@
   margin: 12px 0;
 }
 
-.controls-container {
-  display: flex;
-  justify-content: flex-end;
+.save-section {
   margin-top: 12px;
+  width: 90vw;
+  max-width: 550px;
+}
+
+.first-col,
+mat-form-field {
+  width: 100%;
+}
+
+.second-col {
+  padding-right: 0.9rem;
 }
 
 .example-margin {
@@ -18,6 +27,8 @@ ul {
   margin-top: 4px;
   width: 90vw;
   max-width: 550px;
+  margin-block-start: 0px !important;
+  padding-inline-start: 0px !important;
 }
 
 li {

@@ -25,12 +25,14 @@ export class TakeAwaysComponent {
   #activatedRoute = inject(ActivatedRoute);
 
   ngOnInit(): void {
-    console.log('this.activityId', this.activityId());
     this.activityId.set(Number(this.#activatedRoute.snapshot.paramMap.get('activityId')));
     this.userId.set(this.#authService.getStoredUser().id!);
     this.loadTakeAways();
   }
 
+  /**
+   * loads takeaways for the current activity and user from the backend by calling the getByUserId method of the TakeAwayService and sets the takeAways signal with the response, also transforms the response into CheckboxItem objects for use in the CheckboxListComponent
+   */
   private loadTakeAways(): void {
     this.#takeAwayService.getByUserId(this.userId()).subscribe({
       next: (takeAways) => {
@@ -58,6 +60,10 @@ export class TakeAwaysComponent {
     }));
   }
 
+  /**
+   * saves new takeaways created in the CheckboxListComponent by emitting the new entries as FormArray and calling the create method of the TakeAwayService for each new entry
+   * @param newEntries 
+   */
   save(newEntries: FormArray): void {
     newEntries.value.forEach((entry: any) => {
       const newTakeAway: ActivityItemWithTakeAways = {
@@ -70,7 +76,6 @@ export class TakeAwaysComponent {
 
       this.#takeAwayService.create(newTakeAway).subscribe({
         next: (createdTakeAway) => {
-          console.log('Created takeaway:', createdTakeAway);
           this.loadTakeAways();
         },
         error: (error) => {
@@ -80,9 +85,12 @@ export class TakeAwaysComponent {
     });
   }
 
+  /**
+   * updates the checked status of takeaways in the backend by calling the check method of the TakeAwayService for each item in the list
+   * @param items 
+   */
   toggleChecked(items: CheckboxItem[]): void {
     this.takeAways.set(this.transformCheckboxItemToActivityItemWithTakeAways(items));
-    console.log('this.takeAways', this.takeAways());
     this.takeAways().forEach((takeAway) => {
       this.#takeAwayService.check(takeAway).subscribe((item) => {
         console.log('updated item', item);
@@ -90,7 +98,11 @@ export class TakeAwaysComponent {
     });
   }
 
-
+  /**
+   * transforms CheckboxItem objects back into ActivityItemWithTakeAways objects for use in the toggleChecked method to update the checked status of takeaways in the backend
+   * @param items 
+   * @returns ActivityItemWithTakeAways[]
+   */
   private transformCheckboxItemToActivityItemWithTakeAways(items: CheckboxItem[]): ActivityItemWithTakeAways[] {
     return items.map(item => ({
       id: item.id,

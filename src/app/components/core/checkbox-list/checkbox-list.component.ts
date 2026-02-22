@@ -11,7 +11,7 @@ import { MatInput } from '@angular/material/input';
 
 @Component({
   selector: 'app-checkbox-list',
-  imports: [MatCheckboxModule, DeleteButtonComponent, SaveButtonComponent, FormsModule, ReactiveFormsModule, MatFormField, MatIcon, MatInput],
+  imports: [MatCheckboxModule, DeleteButtonComponent, SaveButtonComponent, FormsModule, ReactiveFormsModule, MatFormField, MatInput],
   templateUrl: './checkbox-list.component.html',
   styleUrl: './checkbox-list.component.css'
 })
