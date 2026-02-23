@@ -23,6 +23,15 @@ export class TakeAwayService {
     );
   }
 
+  getByUserIdAndActivityId(userId: number, activityId: number): Observable<TakeAway[]> {
+    return this.#http.get(`${this.baseUrl}/byUserIdAndActivityId?userId=${userId}&activityId=${activityId}`).pipe(
+      map((res: any) => {
+        return res['takeaways'];
+        // return this.transformToCheckboxItems(res['takeaways']);
+      })
+    );
+  }
+
   getById(id: number): Observable<TakeAway> {
     return this.#http.get(`${this.baseUrl}/getById?id=${id}`).pipe(
       map((res: any) => {

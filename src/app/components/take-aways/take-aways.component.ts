@@ -34,7 +34,7 @@ export class TakeAwaysComponent {
    * loads takeaways for the current activity and user from the backend by calling the getByUserId method of the TakeAwayService and sets the takeAways signal with the response, also transforms the response into CheckboxItem objects for use in the CheckboxListComponent
    */
   private loadTakeAways(): void {
-    this.#takeAwayService.getByUserId(this.userId()).subscribe({
+    this.#takeAwayService.getByUserIdAndActivityId(this.userId(), this.activityId()).subscribe({
       next: (takeAways) => {
         this.takeAways.set(takeAways);
         this.checkboxItems.set(this.transformActivityItemWithTakeAwaysToCheckboxItems(takeAways));

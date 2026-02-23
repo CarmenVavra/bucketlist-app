@@ -8,10 +8,11 @@ import { TakeAway } from '../../take-aways/models/take-aways.model';
 import { MatFormField } from "@angular/material/select";
 import { MatIcon } from "@angular/material/icon";
 import { MatInput } from '@angular/material/input';
+import { PlusButtonComponent } from "../buttons/plus-button/plus-button.component";
 
 @Component({
   selector: 'app-checkbox-list',
-  imports: [MatCheckboxModule, DeleteButtonComponent, SaveButtonComponent, FormsModule, ReactiveFormsModule, MatFormField, MatInput],
+  imports: [MatCheckboxModule, DeleteButtonComponent, SaveButtonComponent, FormsModule, ReactiveFormsModule, MatFormField, MatInput, PlusButtonComponent],
   templateUrl: './checkbox-list.component.html',
   styleUrl: './checkbox-list.component.css'
 })
@@ -59,10 +60,10 @@ export class CheckboxListComponent {
 
   protected save() {
     this.saveAction.emit(this.newEntries);
+    this.newEntries.clear();
   }
 
   protected toggleChecked() {
-    // TODO: only once, not for every item?
     this.toggleCheckedAction.emit(this.items());
   }
 
