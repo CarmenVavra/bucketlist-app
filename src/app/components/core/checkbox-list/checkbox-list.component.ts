@@ -50,9 +50,10 @@ export class CheckboxListComponent {
     console.log('this.items()', this.items());
   }
 
-  protected delete(itemId: number) {
-    this.deleteAction.emit(this.items().find(item => item.id === itemId)!);
-    console.log('delete item ', this.items().find(item => item.id === itemId));
+  protected delete(index: number) {
+
+    this.deleteAction.emit(this.items()[index]);
+    console.log('delete item ', this.items()[index]);
     // this.itemControl.removeAt(index);
   }
 
