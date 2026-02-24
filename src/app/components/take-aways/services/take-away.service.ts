@@ -57,6 +57,7 @@ export class TakeAwayService {
   }
 
   delete(id: number): Observable<string> {
+    console.log('in delete id', id);
     return this.#http.delete(`${this.baseUrl}/delete?id=${id}`).pipe(
       map((res: any) => {
         return res['message'];

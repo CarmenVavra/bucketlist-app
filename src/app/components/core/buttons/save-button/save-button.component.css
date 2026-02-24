@@ -1,8 +1,7 @@
 .save-icon {
-  color: #1faf33;
+  color: rgb(117, 205, 50);
 }
 
-button {
-  margin: 0 4px;
-  background-color: yellow;
+.sizing {
+  font-size: 1.5rem;
 }

@@ -1,4 +1,4 @@
-import { Component, inject, input, output } from '@angular/core';
+import { Component, inject, input, output, ɵCurrencyIndex } from '@angular/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CheckboxItem } from './models/checkbox-list.model';
 import { DeleteButtonComponent } from "../buttons/delete-button/delete-button.component";
@@ -21,7 +21,8 @@ export class CheckboxListComponent {
 
   readonly saveAction = output<FormArray>();
   readonly toggleCheckedAction = output<CheckboxItem[]>();
-  readonly deleteAction = output<CheckboxItem>();
+  readonly deleteItemAction = output<CheckboxItem>();
+  readonly deleteNewEntryAction = output<CheckboxItem>();
 
   #fb = inject(FormBuilder);
 
@@ -51,10 +52,21 @@ export class CheckboxListComponent {
     console.log('this.items()', this.items());
   }
 
-  protected delete(index: number) {
+  protected deleteItem(index: number) {
 
-    this.deleteAction.emit(this.items()[index]);
+    this.deleteItemAction.emit(this.items()[index]);
     console.log('delete item ', this.items()[index]);
+    // this.itemControl.removeAt(index);
+  }
+
+  protected deleteNewEntry(index: number) {
+    console.log('index', index);
+    console.log('this.newEntries before', this.newEntries);
+    console.log('this.newEntriesForm.value.newEntries![index]', this.newEntriesForm.value.newEntries![index]);
+    this.newEntries.removeAt(index);
+    console.log('this.newEntries after', this.newEntries);
+
+    // this.deleteNewEntryAction.emit(this.items()[index]);
     // this.itemControl.removeAt(index);
   }
 

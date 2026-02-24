@@ -113,4 +113,10 @@ export class TakeAwaysComponent {
       isFavourite: item.isFavourite,
     }));
   }
+
+  protected deleteItem(item: CheckboxItem) {
+    this.#takeAwayService.delete(item.id!).subscribe((message) => {
+      this.loadTakeAways();
+    });
+  }
 }

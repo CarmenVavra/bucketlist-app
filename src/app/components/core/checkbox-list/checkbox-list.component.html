@@ -12,23 +12,30 @@
               </mat-checkbox>
             </div>
             <div class="col">
-              <app-delete-button (deleteAction)="delete(item.id!)"></app-delete-button>
+              <app-delete-button (deleteAction)="deleteItem(i)"></app-delete-button>
             </div>
           </div>
         </li>
         }
       </ul>
     </span>
-    @if(items().length > 0) {
-    <app-save-button (saveAction)="toggleChecked()"></app-save-button>
-    }
+    <div class="row">
+      <div class="col first-col">
+      </div>
+      <div class="col second-col">
+        @if(items().length > 0) {
+        <app-save-button (saveAction)="toggleChecked()"></app-save-button>
+        }
+      </div>
+    </div>
   </div>
 </section>
+<hr>
 <section class="save-section">
   <div class="controls-container">
     <div [formGroup]="newEntriesForm">
       <ng-container formArrayName="newEntries">
-        @for (newEntryForm of newEntries.controls; track $index; let i = $index) {
+        @for (newEntryForm of newEntries.controls; track newEntryForm; let i = $index) {
         <ng-container [formGroupName]="i">
           <div>
             <div class="row">
@@ -38,7 +45,7 @@
                 </mat-form-field>
               </div>
               <div class="col second-col">
-                <app-delete-button (deleteAction)="delete(i)"></app-delete-button>
+                <app-delete-button (deleteAction)="deleteNewEntry(i)"></app-delete-button>
               </div>
             </div>
           </div>
@@ -47,10 +54,16 @@
       </ng-container>
     </div>
   </div>
-  <div class="add-button-container">
-    <app-plus-button (openCreateAction)="add()"></app-plus-button>
+  <div class="row">
+    <div class="col first-col">
+      <div class="add-button-container">
+        <app-plus-button (openCreateAction)="add()"></app-plus-button>
+      </div>
+    </div>
+    <div class="col second-col">
+      @if(newEntries.controls.length > 0) {
+      <app-save-button (saveAction)="save()"></app-save-button>
+      }
+    </div>
   </div>
-  @if(newEntries.controls.length > 0) {
-  <app-save-button (saveAction)="save()"></app-save-button>
-  }
 </section>
