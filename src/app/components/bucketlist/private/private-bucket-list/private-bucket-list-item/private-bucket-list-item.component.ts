@@ -8,11 +8,12 @@ import { UnpublishButtonComponent } from "../../../../core/buttons/unpublish-but
 import { DeleteButtonComponent } from "../../../../core/buttons/delete-button/delete-button.component";
 import { DoneButtonComponent } from "../../../../core/buttons/done-button/done-button.component";
 import { EditButtonComponent } from "../../../../core/buttons/edit-button/edit-button.component";
+import { ExpanderComponent } from "../../../../core/expander/expander.component";
 
 
 @Component({
   selector: 'app-private-bucket-list-item',
-  imports: [MatExpansionModule, MatButtonModule, FormsModule, ReactiveFormsModule, PublishButtonComponent, UnpublishButtonComponent, DeleteButtonComponent, DoneButtonComponent, EditButtonComponent],
+  imports: [MatExpansionModule, MatButtonModule, FormsModule, ReactiveFormsModule, ExpanderComponent],
   templateUrl: './private-bucket-list-item.component.html',
   styleUrl: './private-bucket-list-item.component.css'
 })

@@ -9,5 +9,6 @@
 .toolbar,
 .menu-icon {
   background-color: #272932;
-  color: rgb(0, 92, 187);
+  /* color: rgb(0, 92, 187); */
+  color: dodgerblue;
 }

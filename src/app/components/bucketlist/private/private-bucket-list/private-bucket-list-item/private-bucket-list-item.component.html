@@ -1,4 +1,10 @@
-<mat-expansion-panel>
+<app-expander [title]="bucketListItem().title" [text]="bucketListItem().description" [showDeleteBtn]="true"
+  [showEditBtn]="bucketListItem().done == false" [showDoneBtn]="bucketListItem().done == false"
+  [showPublishBtn]="bucketListItem().done == false" [showUnpublishBtn]="bucketListItem().done == false"
+  [published]="bucketListItem().published" (deleteAction)="delete()" (editAction)="edit()" (doneAction)="done()"
+  (publishAction)="publish()" (unpublishAction)="unpublish()"></app-expander>
+
+<!-- <mat-expansion-panel>
   <mat-expansion-panel-header>
     <mat-panel-title> {{ bucketListItem().title }} </mat-panel-title>
   </mat-expansion-panel-header>
@@ -11,4 +17,4 @@
     <app-edit-button (editAction)="edit()"></app-edit-button>
     <app-delete-button (deleteAction)="delete()"></app-delete-button>
   </mat-action-row>
-</mat-expansion-panel>
+</mat-expansion-panel> -->
