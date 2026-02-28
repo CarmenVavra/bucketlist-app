@@ -53,10 +53,9 @@ export class PrivateBucketListComponent {
     this.openConfirmationDialog(bucketListItem, '50ms', '50ms');
   }
 
-
   openConfirmationDialog(item: BucketListItem, enterAnimationDuration: string, exitAnimationDuration: string): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      width: '250px',
+      width: '400px',
       enterAnimationDuration,
       exitAnimationDuration,
     });
