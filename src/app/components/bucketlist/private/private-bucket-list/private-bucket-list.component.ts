@@ -12,6 +12,8 @@ import { AuthService } from '../../../auth/services/auth-service.service';
 import { PlusButtonComponent } from "../../../core/buttons/plus-button/plus-button.component";
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from '../../../core/dialog/confirmation-dialog/confirmation-dialog.component';
+import { MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar';
+import { SnackBarComponent } from '../../../core/snack-bar/snack-bar.component';
 
 
 @Component({
@@ -22,11 +24,12 @@ import { ConfirmationDialogComponent } from '../../../core/dialog/confirmation-d
 })
 export class PrivateBucketListComponent {
   readonly privateBucketList = signal<BucketListItem[]>([]);
-
   #bucketListService = inject(BucketListService);
   #authService = inject(AuthService);
   #router = inject(Router);
   readonly dialog = inject(MatDialog);
+  private _snackBar = inject(MatSnackBar);
+
 
   readonly loggedInUser = this.#authService.getStoredUser();
   readonly userId = this.loggedInUser.id;
@@ -65,6 +68,10 @@ export class PrivateBucketListComponent {
       if (true == result) {
         this.deleteItem(item);
       }
+      this._snackBar.openFromComponent(SnackBarComponent, {
+        duration: 5 * 1000,
+        data: 'Der Eintrag wurde erfolgreich gelöscht!',
+      });
     });
   }
 
