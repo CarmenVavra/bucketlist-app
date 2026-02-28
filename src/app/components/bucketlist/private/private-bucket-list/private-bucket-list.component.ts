@@ -10,6 +10,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from "@angular/material/divider";
 import { AuthService } from '../../../auth/services/auth-service.service';
 import { PlusButtonComponent } from "../../../core/buttons/plus-button/plus-button.component";
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from '../../../core/dialog/confirmation-dialog/confirmation-dialog.component';
 
 
 @Component({
@@ -24,6 +26,7 @@ export class PrivateBucketListComponent {
   #bucketListService = inject(BucketListService);
   #authService = inject(AuthService);
   #router = inject(Router);
+  readonly dialog = inject(MatDialog);
 
   readonly loggedInUser = this.#authService.getStoredUser();
   readonly userId = this.loggedInUser.id;
@@ -47,11 +50,28 @@ export class PrivateBucketListComponent {
   }
 
   deleteBucketListItem(bucketListItem: BucketListItem) {
-    this.#bucketListService.delete(Number(bucketListItem.id)).subscribe((message) => {
-      const index = this.privateBucketList().indexOf(bucketListItem);
-      if (index) {
-        this.privateBucketList().splice(index);
+    this.openConfirmationDialog(bucketListItem, '50ms', '50ms');
+  }
+
+
+  openConfirmationDialog(item: BucketListItem, enterAnimationDuration: string, exitAnimationDuration: string): void {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '250px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      if (true == result) {
+        this.deleteItem(item);
       }
+    });
+  }
+
+  private deleteItem(item: BucketListItem) {
+    this.#bucketListService.delete(Number(item.id)).subscribe((message) => {
+      this.loadPrivateBucketList();
     });
   }
 
