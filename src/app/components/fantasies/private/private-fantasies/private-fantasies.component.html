@@ -12,6 +12,6 @@
 @for(fantasy of fantasies(); track fantasy.id){
 <app-private-fantasy-item [fantasyItem]="fantasy!" (publishAction)="publish($event)"
   (unpublishAction)="unpublish($event)" (doneAction)="done($event)" (editAction)="openEdit($event)"
-  (deleteAction)="delete($event)"></app-private-fantasy-item>
+  (deleteAction)="deleteFantasyItem($event)"></app-private-fantasy-item>
 
 }

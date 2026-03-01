@@ -1,5 +1,6 @@
 <h2>Unternehmungen</h2>
 <div (click)="openCreateActivityItem()"><i class="fa-solid fa-circle-plus fa-2x"></i></div>
+@if(activities().length > 0){
 <mat-accordion multi>
   @for(activity of activities(); track $index){
   <app-activity-item [activityItem]="activity" (editActivityItemAction)="openEditActivityItem($event)"
@@ -7,3 +8,6 @@
     (doneActivityItemAction)="doneActivityItem($event)"></app-activity-item>
   }
 </mat-accordion>
+}@else {
+<p>{{ message() }}</p>
+}

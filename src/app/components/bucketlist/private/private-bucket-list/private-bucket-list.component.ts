@@ -15,6 +15,7 @@ import { ConfirmationDialogComponent } from '../../../core/dialog/confirmation-d
 import { MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar';
 import { SnackBarComponent } from '../../../core/snack-bar/snack-bar.component';
 import { CoreService } from '../../../core/services/core.service';
+import { SNACKBAR_MESSAGES } from '../../../core/models/core.model';
 
 @Component({
   selector: 'app-private-bucket-list',
@@ -55,7 +56,7 @@ export class PrivateBucketListComponent {
   }
 
   deleteBucketListItem(bucketListItem: BucketListItem) {
-    this.#coreService.openConfirmationDialog('50ms', '50ms').subscribe((confirmationResult) => {
+    this.#coreService.openConfirmationDialog().subscribe((confirmationResult) => {
       if (true == confirmationResult) {
         this.deleteItem(bucketListItem);
       }
@@ -66,8 +67,8 @@ export class PrivateBucketListComponent {
     this.#bucketListService.delete(Number(item.id)).subscribe((message) => {
       this.loadPrivateBucketList();
       setTimeout(() => {
-        this.#coreService.openSnackBar(message);
-      }, 500);
+        this.#coreService.openSnackBar(SNACKBAR_MESSAGES.DELETE);
+      }, 300);
     });
   }
 

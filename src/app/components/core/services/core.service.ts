@@ -14,7 +14,7 @@ export class CoreService {
 
   constructor() { }
 
-  openConfirmationDialog(enterAnimationDuration: string, exitAnimationDuration: string): Observable<boolean> {
+  openConfirmationDialog(enterAnimationDuration: string = '50ms', exitAnimationDuration: string = '50ms'): Observable<boolean> {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '400px',
       enterAnimationDuration,
@@ -28,7 +28,7 @@ export class CoreService {
 
   openSnackBar(message: string) {
     this.snackBar.openFromComponent(SnackBarComponent, {
-      duration: 2000,
+      duration: 3000,
       data: message,
     });
   }

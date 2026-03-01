@@ -6,6 +6,8 @@ import { ActivityService } from './services/activity.service';
 import { Router } from '@angular/router';
 import { ROUTE_PATHS } from '../../models/general.model';
 import { AuthService } from '../auth/services/auth-service.service';
+import { CoreService } from '../core/services/core.service';
+import { INLINE_MESSAGES, SNACKBAR_MESSAGES } from '../core/models/core.model';
 
 @Component({
   selector: 'app-activities',
@@ -15,46 +17,51 @@ import { AuthService } from '../auth/services/auth-service.service';
 })
 export class ActivitiesComponent {
   readonly activities = signal<ActivityItem[]>([]);
+  readonly message = signal<string>('');
 
   #authService = inject(AuthService);
   #activityService = inject(ActivityService);
+  #coreService = inject(CoreService);
   #router = inject(Router);
 
   ngOnInit(): void {
     this.loadActivities();
   }
 
-  loadActivities() {
+  private loadActivities() {
     const userId = this.#authService.getStoredUser().id;
     this.#activityService.getByUserId(userId!).subscribe((activities) => {
       this.activities.set(activities);
       if (this.activities().length === 0) {
-        console.log('keine Unternehmungen vorhanden');
-      } else {
-        this.activities.set(activities);
+        this.message.set(INLINE_MESSAGES.NO_DATA_AVAILABLE);
       }
     });
   }
 
-  openCreateActivityItem() {
+  protected openCreateActivityItem() {
     this.#router.navigateByUrl(ROUTE_PATHS.ACTIVITY_ITEM_CREATE);
   }
 
-  openEditActivityItem(item: ActivityItem) {
+  protected openEditActivityItem(item: ActivityItem) {
     this.#router.navigateByUrl(`${ROUTE_PATHS.ACTIVITY_ITEM_EDIT}/${item.id}`);
   }
 
-  deleteActivityItem(item: ActivityItem) {
-    this.#activityService.delete(item.id!).subscribe((response) => {
-      this.loadActivities();
-      // const index = this.activities().indexOf(item);
-      // if (index) {
-      //   this.activities().splice(index, 1);
-      // }
+  protected deleteActivityItem(item: ActivityItem) {
+    this.#coreService.openConfirmationDialog().subscribe((confirmationResult) => {
+      if (true == confirmationResult) {
+        this.deleteItem(item);
+      }
     });
   }
 
-  doneActivityItem(item: ActivityItem) {
+  private deleteItem(item: ActivityItem) {
+    this.#activityService.delete(item.id!).subscribe((response) => {
+      this.loadActivities();
+      this.#coreService.openSnackBar(SNACKBAR_MESSAGES.DELETE);
+    });
+  }
+
+  protected doneActivityItem(item: ActivityItem) {
     console.log('in doneActivityItem', item);
   }
 

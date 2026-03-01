@@ -7,6 +7,8 @@ import { PrivateFantasyItemComponent } from "../private-fantasy-item/private-fan
 import { AuthService } from '../../../auth/services/auth-service.service';
 import { FantasyService } from '../../services/fantasy.service';
 import { MatDivider } from "@angular/material/divider";
+import { CoreService } from '../../../core/services/core.service';
+import { SNACKBAR_MESSAGES } from '../../../core/models/core.model';
 
 @Component({
   selector: 'app-private-fantasies',
@@ -20,6 +22,7 @@ export class PrivateFantasiesComponent {
   #router = inject(Router);
   #authService = inject(AuthService);
   #fantasyService = inject(FantasyService);
+  #coreService = inject(CoreService);
 
   readonly userId = this.#authService.getStoredUser().id;
 
@@ -61,9 +64,20 @@ export class PrivateFantasiesComponent {
     this.#router.navigateByUrl(`${ROUTE_PATHS.FANTASY_ITEM_EDIT}/${fantasyItem.id}`)
   }
 
-  protected delete(fantasyItem: FantasyItem) {
+  protected deleteFantasyItem(fantasyItem: FantasyItem) {
+    this.#coreService.openConfirmationDialog().subscribe((confirmationResult) => {
+      if (true == confirmationResult) {
+        this.deleteItem(fantasyItem);
+      }
+    });
+  }
+
+  protected deleteItem(fantasyItem: FantasyItem) {
     this.#fantasyService.delete(fantasyItem.id!).subscribe((message) => {
       this.loadItems();
+      setTimeout(() => {
+        this.#coreService.openSnackBar(SNACKBAR_MESSAGES.DELETE);
+      }, 300);
     });
   }
 
