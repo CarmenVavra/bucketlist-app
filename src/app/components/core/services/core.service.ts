@@ -2,12 +2,15 @@ import { inject, Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from '../dialog/confirmation-dialog/confirmation-dialog.component';
 import { map, Observable } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackBarComponent } from '../snack-bar/snack-bar.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CoreService {
   dialog = inject(MatDialog);
+  snackBar = inject(MatSnackBar);
 
   constructor() { }
 
@@ -21,5 +24,12 @@ export class CoreService {
     return dialogRef.afterClosed().pipe(
       map(result => result === true)
     );
+  }
+
+  openSnackBar(message: string) {
+    this.snackBar.openFromComponent(SnackBarComponent, {
+      duration: 5 * 1000,
+      data: message,
+    });
   }
 }

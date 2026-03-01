@@ -81,10 +81,11 @@ export class PrivateBucketListComponent {
   private deleteItem(item: BucketListItem) {
     this.#bucketListService.delete(Number(item.id)).subscribe((message) => {
       this.loadPrivateBucketList();
-      this.snackBar.openFromComponent(SnackBarComponent, {
-        duration: 5 * 1000,
-        data: message,
-      });
+      this.#coreService.openSnackBar(message);
+      // this.snackBar.openFromComponent(SnackBarComponent, {
+      //   duration: 5 * 1000,
+      //   data: message,
+      // });
     });
   }
 
