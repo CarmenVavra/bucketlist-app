@@ -14,7 +14,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from '../../../core/dialog/confirmation-dialog/confirmation-dialog.component';
 import { MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar';
 import { SnackBarComponent } from '../../../core/snack-bar/snack-bar.component';
-
+import { CoreService } from '../../../core/services/core.service';
 
 @Component({
   selector: 'app-private-bucket-list',
@@ -24,12 +24,14 @@ import { SnackBarComponent } from '../../../core/snack-bar/snack-bar.component';
 })
 export class PrivateBucketListComponent {
   readonly privateBucketList = signal<BucketListItem[]>([]);
+
   #bucketListService = inject(BucketListService);
   #authService = inject(AuthService);
+  #coreService = inject(CoreService);
   #router = inject(Router);
-  readonly dialog = inject(MatDialog);
-  private _snackBar = inject(MatSnackBar);
 
+  readonly dialog = inject(MatDialog);
+  private snackBar = inject(MatSnackBar);
 
   readonly loggedInUser = this.#authService.getStoredUser();
   readonly userId = this.loggedInUser.id;
@@ -53,31 +55,36 @@ export class PrivateBucketListComponent {
   }
 
   deleteBucketListItem(bucketListItem: BucketListItem) {
-    this.openConfirmationDialog(bucketListItem, '50ms', '50ms');
-  }
-
-  openConfirmationDialog(item: BucketListItem, enterAnimationDuration: string, exitAnimationDuration: string): void {
-    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      width: '400px',
-      enterAnimationDuration,
-      exitAnimationDuration,
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      if (true == result) {
-        this.deleteItem(item);
+    this.#coreService.openConfirmationDialog('50ms', '50ms').subscribe((confirmationResult) => {
+      console.log('confirmationresult', confirmationResult);
+      if (true == confirmationResult) {
+        this.deleteItem(bucketListItem);
       }
-      this._snackBar.openFromComponent(SnackBarComponent, {
-        duration: 5 * 1000,
-        data: 'Der Eintrag wurde erfolgreich gelöscht!',
-      });
     });
+    // this.openConfirmationDialog(bucketListItem, '50ms', '50ms');
   }
+
+  // openConfirmationDialog(item: BucketListItem, enterAnimationDuration: string, exitAnimationDuration: string): void {
+  //   const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+  //     width: '400px',
+  //     enterAnimationDuration,
+  //     exitAnimationDuration,
+  //   });
+
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     if (true == result) {
+  //       this.deleteItem(item);
+  //     }
+  //   });
+  // }
 
   private deleteItem(item: BucketListItem) {
     this.#bucketListService.delete(Number(item.id)).subscribe((message) => {
       this.loadPrivateBucketList();
+      this.snackBar.openFromComponent(SnackBarComponent, {
+        duration: 5 * 1000,
+        data: message,
+      });
     });
   }
 
@@ -122,5 +129,4 @@ export class PrivateBucketListComponent {
   goBack() {
     this.#router.navigateByUrl(ROUTE_PATHS.PRIVATE_BUCKET_LIST);
   }
-
 }

@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 import { BucketListItem } from '../models/bucket-list.model';
+import { ConfirmationDialogComponent } from '../../core/dialog/confirmation-dialog/confirmation-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +11,7 @@ import { BucketListItem } from '../models/bucket-list.model';
 export class BucketListService {
 
   #http = inject(HttpClient);
+  readonly dialog = inject(MatDialog);
 
   baseUrl = 'http://localhost/carToni_BucketList_Backend/bucketList';
 
@@ -155,4 +158,6 @@ export class BucketListService {
       })
     );
   }
+
+
 }
