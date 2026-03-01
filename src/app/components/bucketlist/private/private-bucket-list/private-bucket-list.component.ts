@@ -56,36 +56,18 @@ export class PrivateBucketListComponent {
 
   deleteBucketListItem(bucketListItem: BucketListItem) {
     this.#coreService.openConfirmationDialog('50ms', '50ms').subscribe((confirmationResult) => {
-      console.log('confirmationresult', confirmationResult);
       if (true == confirmationResult) {
         this.deleteItem(bucketListItem);
       }
     });
-    // this.openConfirmationDialog(bucketListItem, '50ms', '50ms');
   }
-
-  // openConfirmationDialog(item: BucketListItem, enterAnimationDuration: string, exitAnimationDuration: string): void {
-  //   const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-  //     width: '400px',
-  //     enterAnimationDuration,
-  //     exitAnimationDuration,
-  //   });
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     if (true == result) {
-  //       this.deleteItem(item);
-  //     }
-  //   });
-  // }
 
   private deleteItem(item: BucketListItem) {
     this.#bucketListService.delete(Number(item.id)).subscribe((message) => {
       this.loadPrivateBucketList();
-      this.#coreService.openSnackBar(message);
-      // this.snackBar.openFromComponent(SnackBarComponent, {
-      //   duration: 5 * 1000,
-      //   data: message,
-      // });
+      setTimeout(() => {
+        this.#coreService.openSnackBar(message);
+      }, 500);
     });
   }
 

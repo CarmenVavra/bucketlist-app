@@ -28,7 +28,7 @@ export class CoreService {
 
   openSnackBar(message: string) {
     this.snackBar.openFromComponent(SnackBarComponent, {
-      duration: 5 * 1000,
+      duration: 2000,
       data: message,
     });
   }
