@@ -15,7 +15,7 @@ import { ConfirmationDialogComponent } from '../../../core/dialog/confirmation-d
 import { MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar';
 import { SnackBarComponent } from '../../../core/snack-bar/snack-bar.component';
 import { CoreService } from '../../../core/services/core.service';
-import { SNACKBAR_MESSAGES } from '../../../core/models/core.model';
+import { INLINE_MESSAGES, SNACKBAR_MESSAGES } from '../../../core/models/core.model';
 
 @Component({
   selector: 'app-private-bucket-list',
@@ -25,14 +25,12 @@ import { SNACKBAR_MESSAGES } from '../../../core/models/core.model';
 })
 export class PrivateBucketListComponent {
   readonly privateBucketList = signal<BucketListItem[]>([]);
+  readonly message = signal<string>('');
 
   #bucketListService = inject(BucketListService);
   #authService = inject(AuthService);
   #coreService = inject(CoreService);
   #router = inject(Router);
-
-  readonly dialog = inject(MatDialog);
-  private snackBar = inject(MatSnackBar);
 
   readonly loggedInUser = this.#authService.getStoredUser();
   readonly userId = this.loggedInUser.id;
@@ -43,7 +41,12 @@ export class PrivateBucketListComponent {
 
   loadPrivateBucketList() {
     this.#bucketListService.getAllByUserId(this.userId!).pipe(first()).subscribe((bucketList) => {
+      if (bucketList.length === 0) {
+        this.message.set(INLINE_MESSAGES.NO_DATA_AVAILABLE);
+      }
+
       this.privateBucketList.set(bucketList);
+
     });
   }
 
@@ -76,6 +79,9 @@ export class PrivateBucketListComponent {
     this.#bucketListService.togglePublishBucketList(Number(bucketListItem.id), true).pipe(first()).subscribe((bucketlistItem) => {
       this.loadPrivateBucketList();
       this.goBack();
+      setTimeout(() => {
+        this.#coreService.openSnackBar(SNACKBAR_MESSAGES.PUBLISH);
+      }, 300);
     });
   }
 
@@ -83,12 +89,19 @@ export class PrivateBucketListComponent {
     this.#bucketListService.togglePublishBucketList(Number(bucketListItem.id), false).pipe(first()).subscribe((bucketlistItem) => {
       this.loadPrivateBucketList()
       this.goBack();
+      setTimeout(() => {
+        this.#coreService.openSnackBar(SNACKBAR_MESSAGES.UNPUBLISH);
+      }, 300);
     });
   }
 
   doneBucketListItem(bucketListItem: BucketListItem) {
     this.#bucketListService.setIsDone(Number(bucketListItem.id)).pipe(first()).subscribe((bucketistItem) => {
+      this.loadPrivateDone();
       this.goBack();
+      setTimeout(() => {
+        this.#coreService.openSnackBar(SNACKBAR_MESSAGES.DONE);
+      }, 300);
     });
   }
 
@@ -101,6 +114,7 @@ export class PrivateBucketListComponent {
   loadPrivateAccepted() {
     this.#bucketListService.showPrivateAccepted(this.userId!).pipe(first()).subscribe((bucketList) => {
       this.privateBucketList.set(bucketList);
+      console.log('this.privateBucketList', this.privateBucketList());
     });
   }
 

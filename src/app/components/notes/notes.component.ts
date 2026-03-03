@@ -6,6 +6,7 @@ import { ROUTE_PATHS } from '../../models/general.model';
 import { AuthService } from '../auth/services/auth-service.service';
 import { NoteItem } from './models/notes.model';
 import { NoteItemComponent } from "./note-item/note-item.component";
+import { INLINE_MESSAGES } from '../core/models/core.model';
 
 @Component({
   selector: 'app-notes',
@@ -16,6 +17,7 @@ import { NoteItemComponent } from "./note-item/note-item.component";
 export class NotesComponent {
   readonly title = signal<string>('');
   readonly text = signal<string>('');
+  readonly message = signal<string>('');
 
   #router = inject(Router);
   #authService = inject(AuthService);
@@ -30,6 +32,9 @@ export class NotesComponent {
 
   private loadItems() {
     this.#noteService.getAllByUserId(this.userId!).subscribe((items) => {
+      if (items.length === 0) {
+        this.message.set(INLINE_MESSAGES.NO_DATA_AVAILABLE);
+      }
       this.noteItems.set(items);
     });
   }

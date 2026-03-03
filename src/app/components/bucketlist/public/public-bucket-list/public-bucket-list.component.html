@@ -1,5 +1,6 @@
 <!-- <span (click)="openCreateBucket()"><i class="fa-solid fa-circle-plus fa-2x"></i></span> -->
 <h2>Öffentlicher Bereich Bucket-List</h2>
+@if(publicBucketList.length > 0){
 <mat-accordion multi>
   @for(bucket of publicBucketList(); track $index){
   <app-public-bucket-list-item [bucketListItem]="bucket" [loggedInUser]="loggedInUser"
@@ -7,3 +8,6 @@
     (denyBucketListItemAction)="denyBucketListItem($event)"></app-public-bucket-list-item>
   }
 </mat-accordion>
+}@else {
+<p>{{ message() }}</p>
+}

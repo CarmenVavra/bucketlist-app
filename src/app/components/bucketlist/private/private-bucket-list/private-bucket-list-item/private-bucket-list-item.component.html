@@ -1,6 +1,8 @@
 <app-expander [title]="bucketListItem().title" [text]="bucketListItem().description" [showDeleteBtn]="true"
-  [showEditBtn]="bucketListItem().done == false" [showDoneBtn]="bucketListItem().done == false"
-  [showPublishBtn]="bucketListItem().done == false" [showUnpublishBtn]="bucketListItem().done == false"
+  [showEditBtn]="bucketListItem().done == false && bucketListItem().accepted == false && bucketListItem().accepted == false"
+  [showDoneBtn]="bucketListItem().done == false && bucketListItem().accepted == false"
+  [showPublishBtn]="bucketListItem().done == false && bucketListItem().accepted == false"
+  [showUnpublishBtn]="bucketListItem().done == false && bucketListItem().accepted == false"
   [published]="bucketListItem().published" (deleteAction)="delete()" (editAction)="edit()" (doneAction)="done()"
   (publishAction)="publish()" (unpublishAction)="unpublish()"></app-expander>
 

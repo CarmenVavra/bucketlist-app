@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ROUTE_PATHS } from '../../models/general.model';
 import { MatDivider } from "@angular/material/divider";
 import { MessageListComponent } from "./message-list/message-list.component";
+import { INLINE_MESSAGES } from '../core/models/core.model';
 
 @Component({
   selector: 'app-messages',
@@ -21,6 +22,7 @@ export class MessagesComponent {
   readonly messageHeadline = signal<string>('');
   readonly messageType = signal<string>('');
   readonly color = signal<string>('');
+  readonly message = signal<string>('');
 
   #messageService = inject(MessageService);
   #authService = inject(AuthService);
@@ -88,7 +90,14 @@ export class MessagesComponent {
     this.color.set(this.messageTypes.RECEIVED);
     this.messageType.set(this.messageTypes.RECEIVED);
     this.#messageService.getAllReceivedByUserIdRecipient(this.loggedInUser.id!).subscribe((messages) => {
+      console.log('messages', messages);
+      if (messages.length === 0) {
+        this.message.set(INLINE_MESSAGES.NO_DATA_AVAILABLE);
+      } else {
+        this.message.set('');
+      }
       this.messages.set(messages);
+
       this.#router.navigate([], {
         queryParams: {
           messageType: this.messageTypes.RECEIVED,
@@ -101,6 +110,12 @@ export class MessagesComponent {
     this.color.set(this.messageTypes.SENT);
     this.messageType.set(this.messageTypes.SENT);
     this.#messageService.getAllSentByUserIdRecipient(this.loggedInUser.id!).subscribe((messages) => {
+      console.log('messages', messages);
+      if (messages.length === 0) {
+        this.message.set(INLINE_MESSAGES.NO_DATA_AVAILABLE);
+      } else {
+        this.message.set('');
+      }
       this.messages.set(messages);
       this.#router.navigate([], {
         queryParams: {
@@ -114,6 +129,12 @@ export class MessagesComponent {
     this.color.set(this.messageTypes.ANSWERED);
     this.messageType.set(this.messageTypes.ANSWERED);
     this.#messageService.getAllAnsweredByUserIdRecipient(this.loggedInUser.id!).subscribe((messages) => {
+      console.log('messages', messages);
+      if (messages.length === 0) {
+        this.message.set(INLINE_MESSAGES.NO_DATA_AVAILABLE);
+      } else {
+        this.message.set('');
+      }
       this.messages.set(messages);
       this.#router.navigate([], {
         queryParams: {
@@ -127,6 +148,12 @@ export class MessagesComponent {
     this.color.set(this.messageTypes.DRAFT);
     this.messageType.set(this.messageTypes.DRAFT);
     this.#messageService.getAllDraftByUserId(this.loggedInUser.id!).subscribe((messages) => {
+      console.log('messages', messages);
+      if (messages.length === 0) {
+        this.message.set(INLINE_MESSAGES.NO_DATA_AVAILABLE);
+      } else {
+        this.message.set('');
+      }
       this.messages.set(messages);
       this.#router.navigate([], {
         queryParams: {

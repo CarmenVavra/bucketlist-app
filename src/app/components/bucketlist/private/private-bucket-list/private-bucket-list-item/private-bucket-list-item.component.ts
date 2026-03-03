@@ -27,6 +27,10 @@ export class PrivateBucketListItemComponent {
   readonly unpublishBucketListItemAction = output<BucketListItem>();
   readonly doneBucketListItemAction = output<BucketListItem>();
 
+  ngOnInit(): void {
+    console.log('this.bucketListItem()', this.bucketListItem());
+  }
+
   edit() {
     this.editBucketListItemAction.emit(this.bucketListItem());
   }

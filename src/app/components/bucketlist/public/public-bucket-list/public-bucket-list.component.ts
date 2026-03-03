@@ -6,6 +6,8 @@ import { MatExpansionModule, MatExpansionPanel } from '@angular/material/expansi
 import { PublicBucketListItemComponent } from "./public-bucket-list-item/public-bucket-list-item.component";
 import { MatIcon } from "@angular/material/icon";
 import { AuthService } from '../../../auth/services/auth-service.service';
+import { CoreService } from '../../../core/services/core.service';
+import { INLINE_MESSAGES, SNACKBAR_MESSAGES } from '../../../core/models/core.model';
 
 
 @Component({
@@ -16,28 +18,43 @@ import { AuthService } from '../../../auth/services/auth-service.service';
 })
 export class PublicBucketListComponent {
   readonly publicBucketList = signal<BucketListItem[]>([]);
+  readonly message = signal<string>('');
 
   #bucketListService = inject(BucketListService);
   #authService = inject(AuthService);
+  #coreService = inject(CoreService);
 
   readonly loggedInUser = this.#authService.getStoredUser();
 
   ngOnInit(): void {
-    this.#bucketListService.getAll().pipe(first()).subscribe((bucketList) => {
-      this.publicBucketList.set(bucketList);
-    });
+    this.loadPublicBucketList();
   }
 
   acceptBucketListItem(bucketListItem: BucketListItem) {
     this.#bucketListService.setIsAccepted(Number(bucketListItem.id)).pipe(first()).subscribe((bucketlist) => {
-      console.log('in acceptBucketListItem bucketListItem', bucketlist);
+      this.loadPublicBucketList();
+      setTimeout(() => {
+        this.#coreService.openSnackBar(SNACKBAR_MESSAGES.ACCEPT);
+      }, 300);
     });
   }
 
   denyBucketListItem(bucketListItem: BucketListItem) {
     this.#bucketListService.setIsDenied(Number(bucketListItem.id)).pipe(first()).subscribe((bucketlist) => {
-      console.log('in denyBucketListItem bucketListItem', bucketListItem);
+      this.loadPublicBucketList();
+      setTimeout(() => {
+        this.#coreService.openSnackBar(SNACKBAR_MESSAGES.DENY);
+      }, 300);
+    });
+  }
 
+  private loadPublicBucketList() {
+    this.#bucketListService.getAll().pipe(first()).subscribe((bucketList) => {
+      if (bucketList.length === 0) {
+        this.message.set(INLINE_MESSAGES.NO_DATA_AVAILABLE);
+      }
+
+      this.publicBucketList.set(bucketList);
     });
   }
 }

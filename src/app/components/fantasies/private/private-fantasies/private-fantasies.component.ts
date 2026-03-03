@@ -8,16 +8,18 @@ import { AuthService } from '../../../auth/services/auth-service.service';
 import { FantasyService } from '../../services/fantasy.service';
 import { MatDivider } from "@angular/material/divider";
 import { CoreService } from '../../../core/services/core.service';
-import { SNACKBAR_MESSAGES } from '../../../core/models/core.model';
+import { INLINE_MESSAGES, SNACKBAR_MESSAGES } from '../../../core/models/core.model';
+import { MatAccordion } from "@angular/material/expansion";
 
 @Component({
   selector: 'app-private-fantasies',
-  imports: [PlusButtonComponent, PrivateFantasyItemComponent, MatDivider],
+  imports: [PlusButtonComponent, PrivateFantasyItemComponent, MatDivider, MatAccordion],
   templateUrl: './private-fantasies.component.html',
   styleUrl: './private-fantasies.component.css'
 })
 export class PrivateFantasiesComponent {
   readonly fantasies = signal<FantasyItem[]>([]);
+  readonly message = signal<string>('');
 
   #router = inject(Router);
   #authService = inject(AuthService);
@@ -32,6 +34,9 @@ export class PrivateFantasiesComponent {
 
   private loadItems() {
     this.#fantasyService.getPrivateListByUserId(this.userId!).subscribe((fantasies) => {
+      if (fantasies.length === 0) {
+        this.message.set(INLINE_MESSAGES.NO_DATA_AVAILABLE);
+      }
       this.fantasies.set(fantasies);
     });
   }

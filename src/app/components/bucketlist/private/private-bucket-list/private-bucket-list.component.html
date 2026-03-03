@@ -13,6 +13,8 @@
   <div (click)="openCreateBucketListItem()"><i class="fa-solid fa-circle-plus fa-2x"></i></div>
 </div> -->
 <app-plus-button (openCreateAction)="openCreateBucketListItem()"></app-plus-button>
+@if(privateBucketList().length > 0){
+
 <mat-accordion multi>
   @for(bucket of privateBucketList(); track $index){
   <app-private-bucket-list-item [bucketListItem]="bucket" (editBucketListItemAction)="openEditBucketListItem($event)"
@@ -22,3 +24,6 @@
     (doneBucketListItemAction)="doneBucketListItem($event)"></app-private-bucket-list-item>
   }
 </mat-accordion>
+}@else {
+<p>{{ message() }}</p>
+}

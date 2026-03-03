@@ -9,9 +9,14 @@
 </div>
 <mat-divider></mat-divider>
 <app-plus-button (openCreateAction)="openCreate()"></app-plus-button>
-@for(fantasy of fantasies(); track fantasy.id){
-<app-private-fantasy-item [fantasyItem]="fantasy!" (publishAction)="publish($event)"
-  (unpublishAction)="unpublish($event)" (doneAction)="done($event)" (editAction)="openEdit($event)"
-  (deleteAction)="deleteFantasyItem($event)"></app-private-fantasy-item>
-
+@if(fantasies.length > 0){
+<mat-accordion>
+  @for(fantasy of fantasies(); track fantasy.id){
+  <app-private-fantasy-item [fantasyItem]="fantasy!" (publishAction)="publish($event)"
+    (unpublishAction)="unpublish($event)" (doneAction)="done($event)" (editAction)="openEdit($event)"
+    (deleteAction)="deleteFantasyItem($event)"></app-private-fantasy-item>
+  }
+</mat-accordion>
+}@else {
+<p>{{ message() }}</p>
 }
