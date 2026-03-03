@@ -6,7 +6,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ROUTE_PATHS } from '../../models/general.model';
 import { MatDivider } from "@angular/material/divider";
 import { MessageListComponent } from "./message-list/message-list.component";
-import { INLINE_MESSAGES } from '../core/models/core.model';
+import { INLINE_MESSAGES, SNACKBAR_MESSAGES } from '../core/models/core.model';
+import { CoreService } from '../core/services/core.service';
 
 @Component({
   selector: 'app-messages',
@@ -28,6 +29,7 @@ export class MessagesComponent {
   #authService = inject(AuthService);
   #router = inject(Router);
   #activatedRoute = inject(ActivatedRoute);
+  #coreService = inject(CoreService);
 
   readonly loggedInUser = this.#authService.getStoredUser();
 
@@ -163,10 +165,22 @@ export class MessagesComponent {
     });
   }
 
+  protected deleteMessageItem(messageItem: MessageItem) {
+    this.#coreService.openConfirmationDialog().subscribe((confirmationResult) => {
+      if (true == confirmationResult) {
+        this.deleteItem(messageItem);
+      }
+    });
+  }
+
   deleteItem(messageItem: MessageItem) {
     this.#messageService.delete(messageItem.id!).subscribe((response) => {
-      const index = this.messages().indexOf(messageItem);
-      this.messages().splice(index, 1);
+      this.laodMessages();
+      setTimeout(() => {
+        this.#coreService.openSnackBar(SNACKBAR_MESSAGES.DELETE);
+      }, 300);
+      // const index = this.messages().indexOf(messageItem);
+      // this.messages().splice(index, 1);
     });
   }
 }

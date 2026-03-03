@@ -3,7 +3,7 @@
 @if(noteItems().length > 0){
 @for(noteItem of noteItems(); track noteItem.id){
 <app-note-item [noteItem]="noteItem" (openEditAction)="openEdit($event)"
-  (deleteAction)="delete($event)"></app-note-item>
+  (deleteAction)="deleteNoteItem($event)"></app-note-item>
 }
 }@else {
 <p>{{ message() }}</p>

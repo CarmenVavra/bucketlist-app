@@ -17,7 +17,7 @@
 
 
 <app-message-list [messages]="messages()" [color]="color()" [messageType]="messageType()"
-        (deleteAction)="deleteItem($event)" (editAction)="openEditMessage($event)"
+        (deleteAction)="deleteMessageItem($event)" (editAction)="openEditMessage($event)"
         (replyAction)="openReplyMessage($event)"></app-message-list>
 
 

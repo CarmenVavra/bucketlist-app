@@ -6,7 +6,8 @@ import { ROUTE_PATHS } from '../../models/general.model';
 import { AuthService } from '../auth/services/auth-service.service';
 import { NoteItem } from './models/notes.model';
 import { NoteItemComponent } from "./note-item/note-item.component";
-import { INLINE_MESSAGES } from '../core/models/core.model';
+import { INLINE_MESSAGES, SNACKBAR_MESSAGES } from '../core/models/core.model';
+import { CoreService } from '../core/services/core.service';
 
 @Component({
   selector: 'app-notes',
@@ -22,6 +23,7 @@ export class NotesComponent {
   #router = inject(Router);
   #authService = inject(AuthService);
   #noteService = inject(NoteService);
+  #coreService = inject(CoreService);
 
   readonly userId = this.#authService.getStoredUser().id;
   readonly noteItems = signal<NoteItem[]>([]);
@@ -47,9 +49,20 @@ export class NotesComponent {
     this.#router.navigateByUrl(`${ROUTE_PATHS.NOTE_ITEM_EDIT}/${noteItem.id}`);
   }
 
-  delete(noteItem: NoteItem) {
+  protected deleteNoteItem(noteItem: NoteItem) {
+    this.#coreService.openConfirmationDialog().subscribe((confirmationResult) => {
+      if (true == confirmationResult) {
+        this.deleteItem(noteItem);
+      }
+    });
+  }
+
+  private deleteItem(noteItem: NoteItem) {
     this.#noteService.delete(noteItem.id!).subscribe((message) => {
       this.loadItems();
+      setTimeout(() => {
+        this.#coreService.openSnackBar(SNACKBAR_MESSAGES.DELETE);
+      }, 300);
     });
   }
 }
