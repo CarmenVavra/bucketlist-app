@@ -36,12 +36,12 @@ export class PrivateFantasiesComponent {
     this.#fantasyService.getPrivateListByUserId(this.userId!).subscribe((fantasies) => {
       if (fantasies.length === 0) {
         this.message.set(INLINE_MESSAGES.NO_DATA_AVAILABLE);
+      } else {
+        this.message.set('');
       }
       this.fantasies.set(fantasies);
     });
   }
-
-
 
   protected openCreate() {
     this.#router.navigateByUrl(ROUTE_PATHS.FANTASY_ITEM_CREATE);
@@ -92,18 +92,33 @@ export class PrivateFantasiesComponent {
 
   protected loadPrivateDone() {
     this.#fantasyService.showPrivateDone(this.userId!).subscribe((fantasies) => {
+      if (fantasies.length === 0) {
+        this.message.set(INLINE_MESSAGES.NO_DATA_AVAILABLE);
+      } else {
+        this.message.set('');
+      }
       this.fantasies.set(fantasies);
     });
   }
 
   protected loadPrivateAccepted() {
     this.#fantasyService.showPrivateAccepted(this.userId!).subscribe((fantasies) => {
+      if (fantasies.length === 0) {
+        this.message.set(INLINE_MESSAGES.NO_DATA_AVAILABLE);
+      } else {
+        this.message.set('');
+      }
       this.fantasies.set(fantasies);
     });
   }
 
   protected loadPrivateDenied() {
     this.#fantasyService.showPrivateDenied(this.userId!).subscribe((fantasies) => {
+      if (fantasies.length === 0) {
+        this.message.set(INLINE_MESSAGES.NO_DATA_AVAILABLE);
+      } else {
+        this.message.set('');
+      }
       this.fantasies.set(fantasies);
     });
   }

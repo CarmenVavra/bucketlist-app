@@ -92,7 +92,6 @@ export class MessagesComponent {
     this.color.set(this.messageTypes.RECEIVED);
     this.messageType.set(this.messageTypes.RECEIVED);
     this.#messageService.getAllReceivedByUserIdRecipient(this.loggedInUser.id!).subscribe((messages) => {
-      console.log('messages', messages);
       if (messages.length === 0) {
         this.message.set(INLINE_MESSAGES.NO_DATA_AVAILABLE);
       } else {
@@ -112,7 +111,6 @@ export class MessagesComponent {
     this.color.set(this.messageTypes.SENT);
     this.messageType.set(this.messageTypes.SENT);
     this.#messageService.getAllSentByUserIdRecipient(this.loggedInUser.id!).subscribe((messages) => {
-      console.log('messages', messages);
       if (messages.length === 0) {
         this.message.set(INLINE_MESSAGES.NO_DATA_AVAILABLE);
       } else {
@@ -131,7 +129,6 @@ export class MessagesComponent {
     this.color.set(this.messageTypes.ANSWERED);
     this.messageType.set(this.messageTypes.ANSWERED);
     this.#messageService.getAllAnsweredByUserIdRecipient(this.loggedInUser.id!).subscribe((messages) => {
-      console.log('messages', messages);
       if (messages.length === 0) {
         this.message.set(INLINE_MESSAGES.NO_DATA_AVAILABLE);
       } else {
@@ -150,7 +147,6 @@ export class MessagesComponent {
     this.color.set(this.messageTypes.DRAFT);
     this.messageType.set(this.messageTypes.DRAFT);
     this.#messageService.getAllDraftByUserId(this.loggedInUser.id!).subscribe((messages) => {
-      console.log('messages', messages);
       if (messages.length === 0) {
         this.message.set(INLINE_MESSAGES.NO_DATA_AVAILABLE);
       } else {
