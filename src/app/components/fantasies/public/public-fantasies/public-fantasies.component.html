@@ -1,9 +1,10 @@
 <h2>Öffentlicher Bereich Fantasien</h2>
-@if(fantasies.length > 0){
+<app-text-container [text]="text()"></app-text-container>
+@if(fantasies().length > 0){
 @for(fantasy of fantasies(); track fantasy.id){
 <app-public-fantasy-item [title]="fantasy.title!" [text]="fantasy.description!" [nickname]="fantasy.nickname!"
   (acceptAction)="accept(fantasy)" (denyAction)="deny(fantasy)"></app-public-fantasy-item>
 }
 }@else {
-<p>{{ message() }}</p>
+<app-message-container [message]="message()"></app-message-container>
 }

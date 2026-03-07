@@ -12,3 +12,9 @@ export enum SNACKBAR_MESSAGES {
 export enum INLINE_MESSAGES {
   NO_DATA_AVAILABLE = 'Es sind keine Daten vorhanden!',
 }
+
+export enum TEXT {
+  PUBLIC_BUCKET_LIST = 'Hier werden veröffentlichte Bucket-List Einträge angezeigt. Du kannst Einträge akzeptieren oder ablehnen.',
+  PUBLIC_FANTASIES = PUBLIC_BUCKET_LIST,
+
+}

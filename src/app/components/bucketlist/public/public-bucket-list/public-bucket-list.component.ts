@@ -7,18 +7,21 @@ import { PublicBucketListItemComponent } from "./public-bucket-list-item/public-
 import { MatIcon } from "@angular/material/icon";
 import { AuthService } from '../../../auth/services/auth-service.service';
 import { CoreService } from '../../../core/services/core.service';
-import { INLINE_MESSAGES, SNACKBAR_MESSAGES } from '../../../core/models/core.model';
+import { INLINE_MESSAGES, SNACKBAR_MESSAGES, TEXT } from '../../../core/models/core.model';
+import { MessageContainerComponent } from "../../../core/message-container/message-container.component";
+import { TextContainerComponent } from "../../../core/text-container/text-container.component";
 
 
 @Component({
   selector: 'app-public-bucket-list',
-  imports: [MatExpansionModule, PublicBucketListItemComponent],
+  imports: [MatExpansionModule, PublicBucketListItemComponent, MessageContainerComponent, TextContainerComponent],
   templateUrl: './public-bucket-list.component.html',
   styleUrl: './public-bucket-list.component.css',
 })
 export class PublicBucketListComponent {
   readonly publicBucketList = signal<BucketListItem[]>([]);
   readonly message = signal<string>('');
+  readonly text = signal<string>(TEXT.PUBLIC_BUCKET_LIST);
 
   #bucketListService = inject(BucketListService);
   #authService = inject(AuthService);
@@ -53,7 +56,6 @@ export class PublicBucketListComponent {
       if (bucketList.length === 0) {
         this.message.set(INLINE_MESSAGES.NO_DATA_AVAILABLE);
       }
-
       this.publicBucketList.set(bucketList);
     });
   }

@@ -2,17 +2,20 @@ import { Component, inject, signal } from '@angular/core';
 import { PublicFantasyItemComponent } from "../public-fantasy-item/public-fantasy-item.component";
 import { FantasyItem } from '../../models/fantasy.model';
 import { FantasyService } from '../../services/fantasy.service';
-import { INLINE_MESSAGES } from '../../../core/models/core.model';
+import { INLINE_MESSAGES, TEXT } from '../../../core/models/core.model';
+import { TextContainerComponent } from "../../../core/text-container/text-container.component";
+import { MessageContainerComponent } from "../../../core/message-container/message-container.component";
 
 @Component({
   selector: 'app-public-fantasies',
-  imports: [PublicFantasyItemComponent],
+  imports: [PublicFantasyItemComponent, TextContainerComponent, MessageContainerComponent],
   templateUrl: './public-fantasies.component.html',
   styleUrl: './public-fantasies.component.css'
 })
 export class PublicFantasiesComponent {
   readonly fantasies = signal<FantasyItem[]>([]);
   readonly message = signal<string>('');
+  readonly text = signal<string>(TEXT.PUBLIC_FANTASIES);
 
   #fantasyService = inject(FantasyService);
 
