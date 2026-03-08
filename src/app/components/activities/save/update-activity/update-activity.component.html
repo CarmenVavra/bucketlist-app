@@ -29,28 +29,8 @@
       <mat-timepicker-toggle matIconSuffix [for]="timePicker" />
       <mat-timepicker #timePicker />
     </mat-form-field>
-    <!-- <mat-form-field>
-      <mat-label>von</mat-label>
-      <input matInput [matDatepicker]="fromDatePicker" formControlName="executionFromDate">
-      <mat-hint>DD/MM/YYYY</mat-hint>
-      <mat-datepicker-toggle matIconSuffix [for]="fromDatePicker"></mat-datepicker-toggle>
-      <mat-datepicker #fromDatePicker></mat-datepicker>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>bis</mat-label>
-      <input matInput [matDatepicker]="toDatePicker" formControlName="executionToDate">
-      <mat-hint>DD/MM/YYYY</mat-hint>
-      <mat-datepicker-toggle matIconSuffix [for]="toDatePicker"></mat-datepicker-toggle>
-      <mat-datepicker #toDatePicker></mat-datepicker>
-    </mat-form-field> -->
   </div>
   <div class="date-from-to-container">
-    <!-- <mat-form-field>
-      <mat-label>Uhrzeit</mat-label>
-      <input matInput [matTimepicker]="timePicker" formControlName="executionTime" />
-      <mat-timepicker-toggle matIconSuffix [for]="timePicker" />
-      <mat-timepicker #timePicker />
-    </mat-form-field> -->
     <mat-form-field>
       <mat-label>Datum von</mat-label>
       <input matInput [matDatepicker]="fromDatePicker" formControlName="executionFromDate">
@@ -80,23 +60,6 @@
       <mat-timepicker #toTimePicker />
     </mat-form-field>
   </div>
-
-
-
-  <!-- <mat-form-field>
-    <mat-label>Geburtsdatum</mat-label>
-    <input matInput [matDatepicker]="picker" formControlName="birthdate">
-    <mat-hint>MM/DD/YYYY</mat-hint>
-    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Geburtsdatum</mat-label>
-    <input matInput [matDatepicker]="picker" formControlName="birthdate">
-    <mat-hint>MM/DD/YYYY</mat-hint>
-    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field> -->
   <mat-action-row>
     <button mat-button>abbrechen</button>
     <!-- <button mat-button type="submit" [disabled]="activityForm.invalid">speichern</button> -->
