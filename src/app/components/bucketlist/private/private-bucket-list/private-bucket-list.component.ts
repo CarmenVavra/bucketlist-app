@@ -69,9 +69,7 @@ export class PrivateBucketListComponent {
   private deleteItem(item: BucketListItem) {
     this.#bucketListService.delete(Number(item.id)).subscribe((message) => {
       this.loadPrivateBucketList();
-      setTimeout(() => {
-        this.#coreService.openSnackBar(SNACKBAR_MESSAGES.DELETE);
-      }, 300);
+      this.#coreService.openSnackBar(SNACKBAR_MESSAGES.DELETE);
     });
   }
 
@@ -79,9 +77,7 @@ export class PrivateBucketListComponent {
     this.#bucketListService.togglePublishBucketList(Number(bucketListItem.id), true).pipe(first()).subscribe((bucketlistItem) => {
       this.loadPrivateBucketList();
       this.goBack();
-      setTimeout(() => {
-        this.#coreService.openSnackBar(SNACKBAR_MESSAGES.PUBLISH);
-      }, 300);
+      this.#coreService.openSnackBar(SNACKBAR_MESSAGES.PUBLISH);
     });
   }
 
@@ -89,9 +85,7 @@ export class PrivateBucketListComponent {
     this.#bucketListService.togglePublishBucketList(Number(bucketListItem.id), false).pipe(first()).subscribe((bucketlistItem) => {
       this.loadPrivateBucketList()
       this.goBack();
-      setTimeout(() => {
-        this.#coreService.openSnackBar(SNACKBAR_MESSAGES.UNPUBLISH);
-      }, 300);
+      this.#coreService.openSnackBar(SNACKBAR_MESSAGES.UNPUBLISH);
     });
   }
 
@@ -99,9 +93,7 @@ export class PrivateBucketListComponent {
     this.#bucketListService.setIsDone(Number(bucketListItem.id)).pipe(first()).subscribe((bucketistItem) => {
       this.loadPrivateDone();
       this.goBack();
-      setTimeout(() => {
-        this.#coreService.openSnackBar(SNACKBAR_MESSAGES.DONE);
-      }, 300);
+      this.#coreService.openSnackBar(SNACKBAR_MESSAGES.DONE);
     });
   }
 
@@ -114,7 +106,6 @@ export class PrivateBucketListComponent {
   loadPrivateAccepted() {
     this.#bucketListService.showPrivateAccepted(this.userId!).pipe(first()).subscribe((bucketList) => {
       this.privateBucketList.set(bucketList);
-      console.log('this.privateBucketList', this.privateBucketList());
     });
   }
 

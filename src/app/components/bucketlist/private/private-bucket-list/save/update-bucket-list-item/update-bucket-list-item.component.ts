@@ -11,6 +11,8 @@ import { ROUTE_PATHS } from '../../../../../../models/general.model';
 import { MatButtonModule } from '@angular/material/button';
 import { AuthService } from '../../../../../auth/services/auth-service.service';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { CoreService } from '../../../../../core/services/core.service';
+import { SNACKBAR_MESSAGES } from '../../../../../core/models/core.model';
 
 @Component({
   selector: 'app-update-bucket-list-item',
@@ -25,6 +27,7 @@ export class UpdateBucketListItemComponent {
   #authService = inject(AuthService);
   #activatedRoute = inject(ActivatedRoute);
   #bucketListService = inject(BucketListService);
+  #coreService = inject(CoreService);
 
   readonly bucketListItem = signal<BucketListItem>({
     title: '',
@@ -60,6 +63,7 @@ export class UpdateBucketListItemComponent {
     this.bucketListItem().priorityId = this.bucketListForm.value.priorityId;
     this.#bucketListService.update(this.bucketListItem()).pipe(first()).subscribe((bucketListItem) => {
       this.bucketListItem.set(bucketListItem);
+      this.#coreService.openSnackBar(SNACKBAR_MESSAGES.EDIT);
       this.goBack();
     });
   }

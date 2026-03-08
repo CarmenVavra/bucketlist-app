@@ -80,9 +80,7 @@ export class PrivateFantasiesComponent {
   protected deleteItem(fantasyItem: FantasyItem) {
     this.#fantasyService.delete(fantasyItem.id!).subscribe((message) => {
       this.loadItems();
-      setTimeout(() => {
-        this.#coreService.openSnackBar(SNACKBAR_MESSAGES.DELETE);
-      }, 300);
+      this.#coreService.openSnackBar(SNACKBAR_MESSAGES.DELETE);
     });
   }
 

@@ -172,11 +172,7 @@ export class MessagesComponent {
   deleteItem(messageItem: MessageItem) {
     this.#messageService.delete(messageItem.id!).subscribe((response) => {
       this.laodMessages();
-      setTimeout(() => {
-        this.#coreService.openSnackBar(SNACKBAR_MESSAGES.DELETE);
-      }, 300);
-      // const index = this.messages().indexOf(messageItem);
-      // this.messages().splice(index, 1);
+      this.#coreService.openSnackBar(SNACKBAR_MESSAGES.DELETE);
     });
   }
 }

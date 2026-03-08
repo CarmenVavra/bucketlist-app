@@ -97,3 +97,8 @@ mat-expansion-panel-title {
 .mat-drawer-inner-container {
   overflow: unset !important;
 }
+
+
+div.mat-mdc-form-field-infix {
+  width: 100% !important;
+}

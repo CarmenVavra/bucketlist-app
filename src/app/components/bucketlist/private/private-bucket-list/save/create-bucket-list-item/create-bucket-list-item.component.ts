@@ -12,6 +12,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { AuthService } from '../../../../../auth/services/auth-service.service';
 import { LoginUser } from '../../../../../auth/models/auth.model';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { CoreService } from '../../../../../core/services/core.service';
+import { SNACKBAR_MESSAGES } from '../../../../../core/models/core.model';
 
 @Component({
   selector: 'app-create-bucket-list-item',
@@ -37,6 +39,7 @@ export class CreateBucketListItemComponent {
   #fb = inject(FormBuilder);
   #authService = inject(AuthService);
   #bucketListService = inject(BucketListService);
+  #coreService = inject(CoreService);
   #router = inject(Router);
 
   readonly loggedInUser = this.#authService.getStoredUser();
@@ -55,6 +58,7 @@ export class CreateBucketListItemComponent {
     this.bucketListItem().userId = this.userId!;
     if (this.bucketListItem().userId) {
       this.#bucketListService.create(this.bucketListItem()).pipe(first()).subscribe((bucketList: BucketListItem) => {
+        this.#coreService.openSnackBar(SNACKBAR_MESSAGES.CREATE);
         this.goBack();
       });
     }

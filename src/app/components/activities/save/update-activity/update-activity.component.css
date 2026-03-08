@@ -2,12 +2,9 @@
   display: flex;
 }
 
-.date-container {
-  display: flex;
-  gap: 16px;
-}
-
-.time-container {
+.at-container,
+.date-from-to-container,
+.time-from-to-container {
   display: flex;
   gap: 16px;
 }

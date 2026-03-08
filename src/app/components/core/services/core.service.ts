@@ -27,9 +27,11 @@ export class CoreService {
   }
 
   openSnackBar(message: string) {
-    this.snackBar.openFromComponent(SnackBarComponent, {
-      duration: 3000,
-      data: message,
-    });
+    setTimeout(() => {
+      this.snackBar.openFromComponent(SnackBarComponent, {
+        duration: 3000,
+        data: message,
+      });
+    }, 300);
   }
 }

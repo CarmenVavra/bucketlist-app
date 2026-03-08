@@ -6,6 +6,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ROUTE_PATHS, SimpleTitleText } from '../../../../../models/general.model';
 import { FantasyService } from '../../../services/fantasy.service';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { CoreService } from '../../../../core/services/core.service';
+import { SNACKBAR_MESSAGES } from '../../../../core/models/core.model';
 
 @Component({
   selector: 'app-update-fantasy-item',
@@ -22,8 +24,8 @@ export class UpdateFantasyItemComponent {
 
   #router = inject(Router);
   #activatedRoute = inject(ActivatedRoute);
-  #authService = inject(AuthService);
   #fantasyService = inject(FantasyService);
+  #coreService = inject(CoreService);
 
   ngOnInit(): void {
     this.loadItem();
@@ -42,7 +44,7 @@ export class UpdateFantasyItemComponent {
     this.fantasyItem().description = formData.text;
     this.#fantasyService.update(this.fantasyItem()).subscribe((fantasyItem) => {
       this.fantasyItem.set(fantasyItem);
-      console.log('updated fantasyItem', fantasyItem);
+      this.#coreService.openSnackBar(SNACKBAR_MESSAGES.EDIT);
       this.goBack();
     });
   }

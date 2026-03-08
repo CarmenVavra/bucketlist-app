@@ -2,12 +2,13 @@
   display: flex;
 }
 
-.date-container {
+.at-container,
+.date-from-to-container,
+.time-from-to-container {
   display: flex;
   gap: 16px;
 }
 
-.time-container {
-  display: flex;
-  gap: 16px;
+div.mat-mdc-form-field-infix {
+  width: 0px !important;
 }

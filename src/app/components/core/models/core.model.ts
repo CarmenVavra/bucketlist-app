@@ -3,7 +3,7 @@ export enum SNACKBAR_MESSAGES {
   EDIT = 'Der Eintrag wurde erfolgreich bearbeitet!',
   DELETE = 'Der Eintrag wurde erfolgreich gelöscht!',
   PUBLISH = 'Der Eintrag wurde erfolgreich veröffentlicht',
-  UNPUBLISH = 'Der Eintrag wurde erfolgreich nicht mehr veröffentlicht!',
+  UNPUBLISH = 'Der Eintrag wurde erfolgreich zurückgezogen!',
   ACCEPT = 'Der Eintrag wurde erfolgreich akzeptiert!',
   DENY = 'Der Eintrag wurde erfolgreich abgelehnt!',
   DONE = 'Der Eintrag wurde erfolgreich erledigt!',

@@ -5,6 +5,8 @@ import { ROUTE_PATHS, SimpleTitleText } from '../../../../../models/general.mode
 import { FantasyService } from '../../../services/fantasy.service';
 import { FantasyItem } from '../../../models/fantasy.model';
 import { AuthService } from '../../../../auth/services/auth-service.service';
+import { CoreService } from '../../../../core/services/core.service';
+import { SNACKBAR_MESSAGES } from '../../../../core/models/core.model';
 
 @Component({
   selector: 'app-create-fantasy-item',
@@ -16,6 +18,7 @@ export class CreateFantasyItemComponent {
   #router = inject(Router);
   #authService = inject(AuthService);
   #fantasyService = inject(FantasyService);
+  #coreService = inject(CoreService);
 
   readonly fantasyItem = signal<FantasyItem>({
     title: '',
@@ -29,6 +32,7 @@ export class CreateFantasyItemComponent {
     this.fantasyItem().userId = this.#authService.getStoredUser().id!;
     this.#fantasyService.create(this.fantasyItem()).subscribe((fantasyItem) => {
       this.fantasyItem.set(fantasyItem);
+      this.#coreService.openSnackBar(SNACKBAR_MESSAGES.CREATE);
       this.goBack();
     });
   }

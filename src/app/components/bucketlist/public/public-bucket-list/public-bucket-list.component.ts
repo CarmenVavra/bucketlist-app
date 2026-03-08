@@ -36,18 +36,14 @@ export class PublicBucketListComponent {
   acceptBucketListItem(bucketListItem: BucketListItem) {
     this.#bucketListService.setIsAccepted(Number(bucketListItem.id)).pipe(first()).subscribe((bucketlist) => {
       this.loadPublicBucketList();
-      setTimeout(() => {
-        this.#coreService.openSnackBar(SNACKBAR_MESSAGES.ACCEPT);
-      }, 300);
+      this.#coreService.openSnackBar(SNACKBAR_MESSAGES.ACCEPT);
     });
   }
 
   denyBucketListItem(bucketListItem: BucketListItem) {
     this.#bucketListService.setIsDenied(Number(bucketListItem.id)).pipe(first()).subscribe((bucketlist) => {
       this.loadPublicBucketList();
-      setTimeout(() => {
-        this.#coreService.openSnackBar(SNACKBAR_MESSAGES.DENY);
-      }, 300);
+      this.#coreService.openSnackBar(SNACKBAR_MESSAGES.DENY);
     });
   }
 

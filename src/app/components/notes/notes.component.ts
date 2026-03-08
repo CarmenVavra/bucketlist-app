@@ -60,9 +60,7 @@ export class NotesComponent {
   private deleteItem(noteItem: NoteItem) {
     this.#noteService.delete(noteItem.id!).subscribe((message) => {
       this.loadItems();
-      setTimeout(() => {
-        this.#coreService.openSnackBar(SNACKBAR_MESSAGES.DELETE);
-      }, 300);
+      this.#coreService.openSnackBar(SNACKBAR_MESSAGES.DELETE);
     });
   }
 }
