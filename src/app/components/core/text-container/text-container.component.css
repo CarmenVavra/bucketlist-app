@@ -4,6 +4,13 @@
   border-radius: 10px;
   color: rgb(171, 192, 213);
   margin: 10px 0;
-  width: 90vw;
   max-width: 510px;
+}
+
+@media (max-width: 768px) {
+  .text-container {
+    padding: 3px 10px;
+    border-radius: 5px;
+    margin: 5px 0;
+  }
 }

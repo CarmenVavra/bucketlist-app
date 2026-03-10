@@ -16,10 +16,11 @@ import { MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar';
 import { SnackBarComponent } from '../../../core/snack-bar/snack-bar.component';
 import { CoreService } from '../../../core/services/core.service';
 import { INLINE_MESSAGES, SNACKBAR_MESSAGES } from '../../../core/models/core.model';
+import { MessageContainerComponent } from "../../../core/message-container/message-container.component";
 
 @Component({
   selector: 'app-private-bucket-list',
-  imports: [MatExpansionModule, PrivateBucketListItemComponent, MatButtonModule, MatDividerModule, PlusButtonComponent],
+  imports: [MatExpansionModule, PrivateBucketListItemComponent, MatButtonModule, MatDividerModule, PlusButtonComponent, MessageContainerComponent],
   templateUrl: './private-bucket-list.component.html',
   styleUrl: './private-bucket-list.component.css'
 })

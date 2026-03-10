@@ -31,6 +31,11 @@ mat-expansion-panel-header {
   font-weight: bold;
 }
 
+/* .mat-expansion-panel-header {
+  width: 100% !important;
+  max-width: 450px !important;
+} */
+
 .mat-expanded.mat-expansion-panel-spacing {
   margin: 16px 0 !important;
 }

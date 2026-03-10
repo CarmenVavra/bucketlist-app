@@ -10,10 +10,11 @@ import { MatDivider } from "@angular/material/divider";
 import { CoreService } from '../../../core/services/core.service';
 import { INLINE_MESSAGES, SNACKBAR_MESSAGES } from '../../../core/models/core.model';
 import { MatAccordion } from "@angular/material/expansion";
+import { MessageContainerComponent } from "../../../core/message-container/message-container.component";
 
 @Component({
   selector: 'app-private-fantasies',
-  imports: [PlusButtonComponent, PrivateFantasyItemComponent, MatDivider, MatAccordion],
+  imports: [PlusButtonComponent, PrivateFantasyItemComponent, MatDivider, MatAccordion, MessageContainerComponent],
   templateUrl: './private-fantasies.component.html',
   styleUrl: './private-fantasies.component.css'
 })
