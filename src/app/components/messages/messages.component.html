@@ -15,10 +15,10 @@
         <div (click)="openCreateMessage()"><i class="fa-solid fa-circle-plus fa-2x"></i></div>
 </div>
 
-
+@if(messages().length > 0){
 <app-message-list [messages]="messages()" [color]="color()" [messageType]="messageType()"
         (deleteAction)="deleteMessageItem($event)" (editAction)="openEditMessage($event)"
         (replyAction)="openReplyMessage($event)"></app-message-list>
-
-
-<p>{{ message() }}</p>
+}@else {
+<app-message-container [message]="message()"></app-message-container>
+}

@@ -9,7 +9,7 @@
 
 @media (max-width: 768px) {
   .text-container {
-    padding: 3px 10px;
+    /* padding: 3px 10px; */
     border-radius: 5px;
     margin: 5px 0;
   }

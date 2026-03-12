@@ -8,10 +8,11 @@ import { MatDivider } from "@angular/material/divider";
 import { MessageListComponent } from "./message-list/message-list.component";
 import { INLINE_MESSAGES, SNACKBAR_MESSAGES } from '../core/models/core.model';
 import { CoreService } from '../core/services/core.service';
+import { MessageContainerComponent } from "../core/message-container/message-container.component";
 
 @Component({
   selector: 'app-messages',
-  imports: [MatDivider, MessageListComponent],
+  imports: [MatDivider, MessageListComponent, MessageContainerComponent],
   templateUrl: './messages.component.html',
   styleUrl: './messages.component.css'
 })

@@ -1,17 +1,25 @@
 <div class="form-container">
 
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <mat-form-field class="form-field">
-      <mat-label>
-        Titel
-      </mat-label>
-      <input matInput id="title" formControlName="title">
+    <mat-form-field>
+      <mat-label>Empfänger</mat-label>
+      <mat-select formControlName="userIdRecipient">
+        @for ( user of availableUsers(); track user) {
+        <mat-option [value]="user.id">{{user.nickname}}</mat-option>
+        }
+      </mat-select>
     </mat-form-field>
     <mat-form-field class="form-field">
       <mat-label>
-        Beschreibung
+        Betreff
       </mat-label>
-      <textarea matInput id="description" formControlName="text"></textarea>
+      <input matInput id="subject" formControlName="subject">
+    </mat-form-field>
+    <mat-form-field class="form-field">
+      <mat-label>
+        Nachricht
+      </mat-label>
+      <textarea matInput id="mail" formControlName="mail"></textarea>
     </mat-form-field>
 
     <mat-action-row>

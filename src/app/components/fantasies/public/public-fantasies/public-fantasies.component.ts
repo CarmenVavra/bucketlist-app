@@ -5,10 +5,11 @@ import { FantasyService } from '../../services/fantasy.service';
 import { INLINE_MESSAGES, TEXT } from '../../../core/models/core.model';
 import { TextContainerComponent } from "../../../core/text-container/text-container.component";
 import { MessageContainerComponent } from "../../../core/message-container/message-container.component";
+import { MatAccordion } from "@angular/material/expansion";
 
 @Component({
   selector: 'app-public-fantasies',
-  imports: [PublicFantasyItemComponent, TextContainerComponent, MessageContainerComponent],
+  imports: [PublicFantasyItemComponent, TextContainerComponent, MessageContainerComponent, MatAccordion],
   templateUrl: './public-fantasies.component.html',
   styleUrl: './public-fantasies.component.css'
 })

@@ -11,11 +11,12 @@ import { ROUTE_PATHS } from '../../../../models/general.model';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { AuthService } from '../../../auth/services/auth-service.service';
 import { LoginUser } from '../../../auth/models/auth.model';
+import { SimpleSendMailFormComponent } from "../../../core/forms/simple-send-mail-form/simple-send-mail-form.component";
 
 @Component({
   selector: 'app-create-message',
-  imports: [FormsModule, ReactiveFormsModule, MatFormField, MatLabel, MatInputModule,
-    MatExpansionModule, MatButtonModule, MatSelect, MatOption],
+  imports: [FormsModule, ReactiveFormsModule, MatInputModule,
+    MatExpansionModule, MatButtonModule, SimpleSendMailFormComponent],
   templateUrl: './create-message.component.html',
   styleUrl: './create-message.component.css'
 })

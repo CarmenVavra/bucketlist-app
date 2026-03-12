@@ -3,8 +3,15 @@
   padding: 3px 20px;
   border-radius: 10px;
   color: #272932;
-  margin: 20px 0;
-  width: 90vw;
+  margin: 10px 0;
+  /* width: 90vw; */
   max-width: 510px;
+}
 
+@media (max-width: 768px) {
+  .message-container {
+    /* padding: 3px 8px; */
+    border-radius: 5px;
+    margin: 5px 0;
+  }
 }

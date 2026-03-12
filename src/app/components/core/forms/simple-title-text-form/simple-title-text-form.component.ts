@@ -14,8 +14,6 @@ import { SimpleTitleText } from '../../../../models/general.model';
 })
 export class SimpleTitleTextFormComponent implements OnInit {
 
-  readonly titleLabel = signal<string>('');
-  readonly textLabel = signal<string>('');
   readonly formData = signal<SimpleTitleText>({});
 
   readonly title = input<string>();

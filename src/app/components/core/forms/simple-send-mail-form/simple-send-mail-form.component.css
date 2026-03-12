@@ -13,3 +13,8 @@
 .mat-mdc-form-field {
   display: block !important;
 }
+
+.form-container {
+  width: 90vw;
+  max-width: 510px;
+}
