@@ -1,4 +1,4 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
@@ -17,19 +17,30 @@ export class SimpleSendMailFormComponent {
 
   readonly availableUsers = input<LoginUser[]>();
 
+  readonly submitAction = output<FormGroup>();
+  // readonly cancelAction = output<>();
+  readonly saveAsDraftAction = output<FormGroup>();
+
   #fb = inject(FormBuilder);
 
   form = this.#fb.group({
     subject: new FormControl('', [Validators.required]),
-    mail: new FormControl('', [Validators.required, Validators.minLength(5)]),
+    text: new FormControl('', [Validators.required, Validators.minLength(5)]),
     userIdRecipient: new FormControl('', [Validators.required]),
   });
 
   protected onSubmit() {
-    console.log('in onSubmit');
+    console.log('in onSubmit this.form', this.form);
+    this.submitAction.emit(this.form);
   }
 
   protected onCancel() {
+
     console.log('in onCancel');
+  }
+
+  protected saveAsDraft() {
+    console.log('in saveAsDraft');
+    this.saveAsDraftAction.emit(this.form);
   }
 }

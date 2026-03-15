@@ -8,10 +8,11 @@ import { NoteItem } from './models/notes.model';
 import { NoteItemComponent } from "./note-item/note-item.component";
 import { INLINE_MESSAGES, SNACKBAR_MESSAGES } from '../core/models/core.model';
 import { CoreService } from '../core/services/core.service';
+import { MessageContainerComponent } from "../core/message-container/message-container.component";
 
 @Component({
   selector: 'app-notes',
-  imports: [PlusButtonComponent, NoteItemComponent],
+  imports: [PlusButtonComponent, NoteItemComponent, MessageContainerComponent],
   templateUrl: './notes.component.html',
   styleUrl: './notes.component.css'
 })

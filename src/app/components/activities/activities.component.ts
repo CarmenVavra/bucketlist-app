@@ -8,10 +8,11 @@ import { ROUTE_PATHS } from '../../models/general.model';
 import { AuthService } from '../auth/services/auth-service.service';
 import { CoreService } from '../core/services/core.service';
 import { INLINE_MESSAGES, SNACKBAR_MESSAGES } from '../core/models/core.model';
+import { MessageContainerComponent } from "../core/message-container/message-container.component";
 
 @Component({
   selector: 'app-activities',
-  imports: [MatAccordion, ActivityItemComponent],
+  imports: [MatAccordion, ActivityItemComponent, MessageContainerComponent],
   templateUrl: './activities.component.html',
   styleUrl: './activities.component.css'
 })

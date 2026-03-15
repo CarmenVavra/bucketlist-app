@@ -6,5 +6,5 @@
   (deleteAction)="deleteNoteItem($event)"></app-note-item>
 }
 }@else {
-<p>{{ message() }}</p>
+<app-message-container [message]="message()"></app-message-container>
 }

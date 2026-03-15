@@ -12,6 +12,8 @@ import { MatButton, MatButtonModule } from '@angular/material/button';
 import { AuthService } from '../../../auth/services/auth-service.service';
 import { LoginUser } from '../../../auth/models/auth.model';
 import { SimpleSendMailFormComponent } from "../../../core/forms/simple-send-mail-form/simple-send-mail-form.component";
+import { CoreService } from '../../../core/services/core.service';
+import { SNACKBAR_MESSAGES } from '../../../core/models/core.model';
 
 @Component({
   selector: 'app-create-message',
@@ -22,7 +24,7 @@ import { SimpleSendMailFormComponent } from "../../../core/forms/simple-send-mai
 })
 export class CreateMessageComponent {
 
-  readonly messageForm: FormGroup = new FormGroup('');
+  messageForm: FormGroup = new FormGroup('');
   readonly availableUsers = signal<LoginUser[]>([]);
 
   readonly temp = signal<NavigationExtras>({});
@@ -40,6 +42,7 @@ export class CreateMessageComponent {
   #authService = inject(AuthService);
   #messageService = inject(MessageService);
   #router = inject(Router);
+  #coreService = inject(CoreService);
 
   readonly loggedInUser = this.#authService.getStoredUser();
   readonly userId = this.loggedInUser.id;
@@ -56,13 +59,13 @@ export class CreateMessageComponent {
     });
   }
 
-  saveAsDraft() {
+  saveAsDraft(form: FormGroup) {
+    this.messageForm = form;
     this.messageItem.set(this.messageForm.value);
     this.messageItem().userId = this.userId!;
     if (this.messageItem().userId) {
       this.#messageService.create(this.messageItem()).pipe(first()).subscribe((message: MessageItem) => {
-        // this.#router.navigateByUrl(ROUTE_PATHS.MESSAGES);
-        // this.temp().queryParams =
+        this.#coreService.openSnackBar(SNACKBAR_MESSAGES.DRAFT_MESSAGE);
         this.#router.navigate([ROUTE_PATHS.MESSAGES], {
           queryParams: {
             messageType: 'draft',
@@ -72,13 +75,15 @@ export class CreateMessageComponent {
     }
   }
 
-  onSubmit() {
+  onSubmit(form: FormGroup) {
+    this.messageForm = form;
     this.messageItem.set(this.messageForm.value);
     this.messageItem().userId = this.userId!;
     this.messageItem().sent = true;
     this.messageItem().sentAt = new Date();
     if (this.messageItem().userId) {
       this.#messageService.create(this.messageItem()).pipe(first()).subscribe((message: MessageItem) => {
+        this.#coreService.openSnackBar(SNACKBAR_MESSAGES.SENT_MESSAGE);
         this.#router.navigateByUrl(ROUTE_PATHS.MESSAGES);
       });
     }

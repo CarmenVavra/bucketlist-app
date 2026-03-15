@@ -8,3 +8,7 @@
   display: block;
   padding: 2px;
 }
+
+.mat-mdc-form-field {
+  display: block !important;
+}

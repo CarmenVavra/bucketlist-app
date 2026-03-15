@@ -12,11 +12,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { AuthService } from '../../../auth/services/auth-service.service';
 import { MatCardModule } from "@angular/material/card";
 import { DatePipe } from '@angular/common';
+import { SimpleSendMailFormComponent } from "../../../core/forms/simple-send-mail-form/simple-send-mail-form.component";
+import { CoreService } from '../../../core/services/core.service';
+import { SNACKBAR_MESSAGES } from '../../../core/models/core.model';
 
 @Component({
   selector: 'app-reply-message',
-  imports: [MatFormField, MatLabel, MatExpansionModule, FormsModule, ReactiveFormsModule, MatInputModule,
-    MatButtonModule, MatCardModule, DatePipe],
+  imports: [MatExpansionModule, FormsModule, ReactiveFormsModule, MatInputModule,
+    MatButtonModule, MatCardModule, DatePipe, SimpleSendMailFormComponent],
   templateUrl: './reply-message.component.html',
   styleUrl: './reply-message.component.css'
 })
@@ -28,6 +31,7 @@ export class ReplyMessageComponent {
   #authService = inject(AuthService);
   #activatedRoute = inject(ActivatedRoute);
   #messageService = inject(MessageService);
+  #coreService = inject(CoreService);
 
   readonly sentMessageItem = signal<MessageItem>({
     subject: '',
@@ -72,6 +76,7 @@ export class ReplyMessageComponent {
     this.sentMessageItem().answered = true;
     this.sentMessageItem().answeredAt = new Date();
     this.#messageService.reply(this.messageItem(), this.sentMessageItem()).subscribe((item) => {
+      this.#coreService.openSnackBar(SNACKBAR_MESSAGES.REPLY_MESSAGE);
       this.goBack();
     });
   }
