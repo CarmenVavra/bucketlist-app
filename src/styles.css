@@ -20,6 +20,10 @@ body {
   width: 60px;
 }
 
+.mat-drawer {
+  background-color: rgb(0, 49, 97) !important;
+}
+
 .plus-button-container {
   margin-top: 1rem;
 }
@@ -97,7 +101,6 @@ mat-expansion-panel-title {
 .mat-drawer-inner-container {
   overflow: unset !important;
 }
-
 
 div.mat-mdc-form-field-infix {
   width: 100% !important;

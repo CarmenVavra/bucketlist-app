@@ -1,6 +1,6 @@
 <app-expander [title]="bucketListItem().title" [text]="bucketListItem().description"
   [headerRightSide]="bucketListItem().nickname" [showAcceptBtn]="showButtons()" [showDenyBtn]="showButtons()"
-  (acceptAction)="accept()" (denyAction)="deny()"></app-expander>
+  [priorityClass]="priorityClass()" (acceptAction)="accept()" (denyAction)="deny()"></app-expander>
 
 
 

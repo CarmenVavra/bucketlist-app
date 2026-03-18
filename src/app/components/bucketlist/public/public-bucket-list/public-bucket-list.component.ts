@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { BucketListItem } from '../../models/bucket-list.model';
+import { BucketListItem, PRIORITY } from '../../models/bucket-list.model';
 import { BucketListService } from '../../services/bucket-list.service';
 import { first } from 'rxjs';
 import { MatExpansionModule, MatExpansionPanel } from '@angular/material/expansion';
@@ -53,6 +53,39 @@ export class PublicBucketListComponent {
         this.message.set(INLINE_MESSAGES.NO_DATA_AVAILABLE);
       }
       this.publicBucketList.set(bucketList);
+      // this.setPriorityClass();
     });
   }
+
+  // private setPriorityClass() {
+  //   this.publicBucketList().forEach((item) => {
+  //     if (PRIORITY.LOW.id == item.priorityId) {
+  //       this.priorityClass.set(PRIORITY.LOW.text);
+  //     }
+  //     if (PRIORITY.MEDIUM.id == item.priorityId) {
+  //       this.priorityClass.set(PRIORITY.MEDIUM.text);
+  //     }
+  //     if (PRIORITY.HIGH.id == item.priorityId) {
+  //       this.priorityClass.set(PRIORITY.HIGH.text);
+  //     }
+  //     console.log('this.priorityClass()', this.priorityClass());
+  //     // switch (item.priorityId) {
+  //   case PRIORITY.LOW.id:
+  //     this.priorityClass.set(PRIORITY.LOW.text);
+  //     console.log('in switch low priority', this.priorityClass());
+  //     break;
+  //   case PRIORITY.MEDIUM.id:
+  //     console.log('in switch medium priority');
+  //     this.priorityClass.set(PRIORITY.MEDIUM.text);
+  //     break;
+  //   case PRIORITY.HIGH.id:
+  //     console.log('in switch high priority');
+  //     this.priorityClass.set(PRIORITY.HIGH.text);
+  //     break;
+  //   default:
+  //     this.priorityClass.set('');
+  //     break;
+  // }
+  //   });
+  // }
 }

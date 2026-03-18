@@ -12,3 +12,15 @@
 .mat-mdc-form-field {
   display: block !important;
 }
+
+
+mat-card {
+  width: 90vw;
+  max-width: 510px;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-radius: 5px;
+  background-color: #E0E2EC;
+  color: rgb(35, 57, 73);
+  line-height: 2rem;
+}

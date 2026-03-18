@@ -46,6 +46,22 @@ mat-expansion-panel-header {
   color: rgb(35, 57, 73) !important;
 }
 
+.fa-circle {
+  margin-right: 5px;
+}
+
+.high {
+  color: orangered;
+}
+
+.medium {
+  color: yellowgreen;
+}
+
+.low {
+  color: green;
+}
+
 /* .mat-expansion-indicator svg {
   color: rgb(109, 145, 182) !important;
 }

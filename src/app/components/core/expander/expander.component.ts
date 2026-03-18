@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { Component, input, output, signal } from '@angular/core';
 import { MatAccordion, MatExpansionModule, MatExpansionPanelActionRow } from "@angular/material/expansion";
 import { EditButtonComponent } from "../buttons/edit-button/edit-button.component";
 import { DeleteButtonComponent } from "../buttons/delete-button/delete-button.component";
@@ -24,6 +24,7 @@ export class ExpanderComponent {
   readonly published = input<boolean>();
   readonly headerRightSide = input<string>();
   readonly subtitle = input<string>();
+  readonly priorityClass = input<string>();
 
   readonly showAcceptBtn = input<boolean>();
   readonly showDenyBtn = input<boolean>();

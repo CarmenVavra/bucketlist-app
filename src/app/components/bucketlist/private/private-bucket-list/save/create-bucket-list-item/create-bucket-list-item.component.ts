@@ -23,7 +23,7 @@ import { SNACKBAR_MESSAGES } from '../../../../../core/models/core.model';
   styleUrl: './create-bucket-list-item.component.css'
 })
 export class CreateBucketListItemComponent {
-  readonly bucketListForm: FormGroup = new FormGroup('');
+  bucketListForm: FormGroup = new FormGroup('');
 
   get priority() {
     return PRIORITY.LIST;
@@ -49,7 +49,7 @@ export class CreateBucketListItemComponent {
     this.bucketListForm = this.#fb.group({
       title: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      priorityId: new FormControl(0),
+      priorityId: new FormControl(PRIORITY.LOW.id, [Validators.required]),
     });
   }
 

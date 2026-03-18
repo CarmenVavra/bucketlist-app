@@ -1,6 +1,8 @@
 <div class="form-container">
 
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    @if(availableUsers(); as user){
+    @if(user.length > 0){
     <mat-form-field>
       <mat-label>Empfänger</mat-label>
       <mat-select formControlName="userIdRecipient">
@@ -9,6 +11,8 @@
         }
       </mat-select>
     </mat-form-field>
+    }
+    }
     <mat-form-field class="form-field">
       <mat-label>
         Betreff

@@ -14,6 +14,7 @@ import { ExpanderComponent } from "../../../../core/expander/expander.component"
 })
 export class PublicBucketListItemComponent {
   readonly prio = signal<string>('');
+  readonly priorityClass = signal<string>('');
   readonly showButtons = signal<boolean>(false);
 
   readonly bucketListItem = input.required<BucketListItem>();
@@ -34,8 +35,9 @@ export class PublicBucketListItemComponent {
     this.showButtons.set(this.loggedInUser()?.id !== this.bucketListItem().userId);
 
     this.prioList.forEach((value) => {
-      if (value.id == this.bucketListItem().priorityId) {
+      if (Number(value.id) == this.bucketListItem().priorityId) {
         this.prio.set(value.displayName);
+        this.priorityClass.set(value.text);
       }
     });
   }
