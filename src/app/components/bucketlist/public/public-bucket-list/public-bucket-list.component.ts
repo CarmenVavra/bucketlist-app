@@ -10,11 +10,12 @@ import { CoreService } from '../../../core/services/core.service';
 import { INLINE_MESSAGES, SNACKBAR_MESSAGES, TEXT } from '../../../core/models/core.model';
 import { MessageContainerComponent } from "../../../core/message-container/message-container.component";
 import { TextContainerComponent } from "../../../core/text-container/text-container.component";
+import { PriorityLegendComponent } from "../../../core/priority-legend/priority-legend.component";
 
 
 @Component({
   selector: 'app-public-bucket-list',
-  imports: [MatExpansionModule, PublicBucketListItemComponent, MessageContainerComponent, TextContainerComponent],
+  imports: [MatExpansionModule, PublicBucketListItemComponent, MessageContainerComponent, TextContainerComponent, PriorityLegendComponent],
   templateUrl: './public-bucket-list.component.html',
   styleUrl: './public-bucket-list.component.css',
 })

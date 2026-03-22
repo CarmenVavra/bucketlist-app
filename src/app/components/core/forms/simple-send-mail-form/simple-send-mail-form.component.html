@@ -27,7 +27,7 @@
     </mat-form-field>
 
     <mat-action-row>
-      <button mat-button (click)="onCancel()">abbrechen</button>
+      <button mat-button type="button" (click)="cancel()">abbrechen</button>
       <button mat-button type="button" (click)="saveAsDraft()" [disabled]="form.invalid">Entwurf
         speichern</button>
       <button mat-button type="submit" [disabled]="form.invalid">speichern</button>

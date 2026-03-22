@@ -1,6 +1,6 @@
 import { Component, ElementRef, input, output, signal, viewChild, ViewChild } from '@angular/core';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { BucketListItem } from '../../../models/bucket-list.model';
+import { BucketListItem, PRIORITY } from '../../../models/bucket-list.model';
 import { MatButtonModule } from "@angular/material/button";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PublishButtonComponent } from "../../../../core/buttons/publish-button/publish-button.component";
@@ -19,6 +19,8 @@ import { ExpanderComponent } from "../../../../core/expander/expander.component"
 })
 export class PrivateBucketListItemComponent {
 
+  readonly priorityClass = signal<string>('');
+
   readonly bucketListItem = input.required<BucketListItem>();
 
   readonly editBucketListItemAction = output<BucketListItem>();
@@ -27,8 +29,16 @@ export class PrivateBucketListItemComponent {
   readonly unpublishBucketListItemAction = output<BucketListItem>();
   readonly doneBucketListItemAction = output<BucketListItem>();
 
+  get prioList() {
+    return PRIORITY.LIST;
+  }
+
   ngOnInit(): void {
-    console.log('this.bucketListItem()', this.bucketListItem());
+    this.prioList.forEach((value) => {
+      if (Number(value.id) == this.bucketListItem().priorityId) {
+        this.priorityClass.set(value.text);
+      }
+    });
   }
 
   edit() {

@@ -21,7 +21,7 @@
   <div>Erstelle einen neuen Eintrag</div>
 </div>
 @if(privateBucketList().length > 0){
-
+<app-priority-legend></app-priority-legend>
 <mat-accordion multi>
   @for(bucket of privateBucketList(); track $index){
   <app-private-bucket-list-item [bucketListItem]="bucket" (editBucketListItemAction)="openEditBucketListItem($event)"

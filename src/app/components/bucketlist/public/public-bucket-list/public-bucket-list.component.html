@@ -2,6 +2,7 @@
 <h2>Öffentlicher Bereich Bucket-List</h2>
 <app-text-container [text]="text()"></app-text-container>
 @if(publicBucketList().length > 0){
+<app-priority-legend></app-priority-legend>
 <mat-accordion multi>
   @for(bucket of publicBucketList(); track $index){
   <app-public-bucket-list-item [bucketListItem]="bucket" [loggedInUser]="loggedInUser"

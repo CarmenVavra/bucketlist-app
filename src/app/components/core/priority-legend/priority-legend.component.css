@@ -1,0 +1,29 @@
+.priority-container {
+  padding: 3px 20px;
+  color: rgb(171, 192, 213);
+  margin: 10px 0;
+  max-width: 510px;
+}
+
+@media (max-width: 768px) {
+  .priority-container {
+    margin: 5px 0;
+  }
+}
+
+.priority {
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.high {
+  color: orangered;
+}
+
+.medium {
+  color: yellowgreen;
+}
+
+.low {
+  color: green;
+}

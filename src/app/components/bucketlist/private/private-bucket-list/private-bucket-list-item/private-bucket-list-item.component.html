@@ -3,8 +3,9 @@
   [showDoneBtn]="bucketListItem().done == false && bucketListItem().accepted == false"
   [showPublishBtn]="bucketListItem().done == false && bucketListItem().accepted == false"
   [showUnpublishBtn]="bucketListItem().done == false && bucketListItem().accepted == false"
-  [published]="bucketListItem().published" (deleteAction)="delete()" (editAction)="edit()" (doneAction)="done()"
-  (publishAction)="publish()" (unpublishAction)="unpublish()"></app-expander>
+  [priorityClass]="priorityClass()" [published]="bucketListItem().published" (deleteAction)="delete()"
+  (editAction)="edit()" (doneAction)="done()" (publishAction)="publish()"
+  (unpublishAction)="unpublish()"></app-expander>
 
 <!-- <mat-expansion-panel>
   <mat-expansion-panel-header>

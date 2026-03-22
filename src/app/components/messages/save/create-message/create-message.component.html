@@ -1,5 +1,5 @@
 <app-simple-send-mail-form [availableUsers]="availableUsers()" (submitAction)="onSubmit($event)"
-  (saveAsDraftAction)="saveAsDraft($event)"></app-simple-send-mail-form>
+  (saveAsDraftAction)="saveAsDraft($event)" (cancelAction)="cancel()"></app-simple-send-mail-form>
 
 <!-- <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
   <mat-form-field>

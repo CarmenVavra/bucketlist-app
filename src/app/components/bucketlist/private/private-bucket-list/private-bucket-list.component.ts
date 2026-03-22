@@ -10,17 +10,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from "@angular/material/divider";
 import { AuthService } from '../../../auth/services/auth-service.service';
 import { PlusButtonComponent } from "../../../core/buttons/plus-button/plus-button.component";
-import { MatDialog } from '@angular/material/dialog';
-import { ConfirmationDialogComponent } from '../../../core/dialog/confirmation-dialog/confirmation-dialog.component';
-import { MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar';
-import { SnackBarComponent } from '../../../core/snack-bar/snack-bar.component';
 import { CoreService } from '../../../core/services/core.service';
 import { INLINE_MESSAGES, SNACKBAR_MESSAGES } from '../../../core/models/core.model';
 import { MessageContainerComponent } from "../../../core/message-container/message-container.component";
+import { PriorityLegendComponent } from "../../../core/priority-legend/priority-legend.component";
 
 @Component({
   selector: 'app-private-bucket-list',
-  imports: [MatExpansionModule, PrivateBucketListItemComponent, MatButtonModule, MatDividerModule, PlusButtonComponent, MessageContainerComponent],
+  imports: [MatExpansionModule, PrivateBucketListItemComponent, MatButtonModule, MatDividerModule, PlusButtonComponent, MessageContainerComponent, PriorityLegendComponent],
   templateUrl: './private-bucket-list.component.html',
   styleUrl: './private-bucket-list.component.css'
 })

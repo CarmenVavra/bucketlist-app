@@ -89,4 +89,8 @@ export class CreateMessageComponent {
     }
   }
 
+  protected cancel() {
+    console.log('cancel');
+  }
+
 }

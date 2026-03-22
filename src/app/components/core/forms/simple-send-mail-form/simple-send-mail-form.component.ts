@@ -18,7 +18,7 @@ export class SimpleSendMailFormComponent {
   readonly availableUsers = input<LoginUser[]>();
 
   readonly submitAction = output<FormGroup>();
-  // readonly cancelAction = output<>();
+  readonly cancelAction = output();
   readonly saveAsDraftAction = output<FormGroup>();
 
   #fb = inject(FormBuilder);
@@ -34,8 +34,8 @@ export class SimpleSendMailFormComponent {
     this.submitAction.emit(this.form);
   }
 
-  protected onCancel() {
-
+  protected cancel() {
+    this.cancelAction.emit();
     console.log('in onCancel');
   }
 
