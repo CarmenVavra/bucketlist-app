@@ -9,10 +9,11 @@ import { MessageListComponent } from "./message-list/message-list.component";
 import { INLINE_MESSAGES, SNACKBAR_MESSAGES } from '../core/models/core.model';
 import { CoreService } from '../core/services/core.service';
 import { MessageContainerComponent } from "../core/message-container/message-container.component";
+import { PlusButtonComponent } from "../core/buttons/plus-button/plus-button.component";
 
 @Component({
   selector: 'app-messages',
-  imports: [MatDivider, MessageListComponent, MessageContainerComponent],
+  imports: [MatDivider, MessageListComponent, MessageContainerComponent, PlusButtonComponent],
   templateUrl: './messages.component.html',
   styleUrl: './messages.component.css'
 })

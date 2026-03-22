@@ -9,17 +9,7 @@
       class="fa-solid fa-eye sizing-eyes"></i><i>abgelehnt</i></span>
 </div>
 <mat-divider></mat-divider>
-<!-- <div class="plus-button-container">
-  <div (click)="openCreateBucketListItem()"><i class="fa-solid fa-circle-plus fa-2x"></i></div>
-</div> -->
-
-<div class="create-btn-container">
-  <!-- <span> -->
-  <app-plus-button (openCreateAction)="openCreateBucketListItem()"></app-plus-button>
-
-  <!-- </span> -->
-  <div>Erstelle einen neuen Eintrag</div>
-</div>
+<app-plus-button (openCreateAction)="openCreateBucketListItem()"></app-plus-button>
 @if(privateBucketList().length > 0){
 <app-priority-legend></app-priority-legend>
 <mat-accordion multi>

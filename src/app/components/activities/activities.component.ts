@@ -9,10 +9,11 @@ import { AuthService } from '../auth/services/auth-service.service';
 import { CoreService } from '../core/services/core.service';
 import { INLINE_MESSAGES, SNACKBAR_MESSAGES } from '../core/models/core.model';
 import { MessageContainerComponent } from "../core/message-container/message-container.component";
+import { PlusButtonComponent } from "../core/buttons/plus-button/plus-button.component";
 
 @Component({
   selector: 'app-activities',
-  imports: [MatAccordion, ActivityItemComponent, MessageContainerComponent],
+  imports: [MatAccordion, ActivityItemComponent, MessageContainerComponent, PlusButtonComponent],
   templateUrl: './activities.component.html',
   styleUrl: './activities.component.css'
 })

@@ -30,8 +30,3 @@
 .denied {
   color: indianred;
 }
-
-.create-btn-container {
-  display: flex;
-  align-items: center;
-}

@@ -11,9 +11,7 @@
                         class="fa-solid fa-envelope-open-text sizing-icon"></i><i>Entwürfe</i></span>
 </div>
 <mat-divider></mat-divider>
-<div class="plus-button-container">
-        <div (click)="openCreateMessage()"><i class="fa-solid fa-circle-plus fa-2x"></i></div>
-</div>
+<app-plus-button (openCreateAction)="openCreateMessage()"></app-plus-button>
 
 @if(messages().length > 0){
 <app-message-list [messages]="messages()" [color]="color()" [messageType]="messageType()"
