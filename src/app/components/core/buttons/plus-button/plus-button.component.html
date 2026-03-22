@@ -1,4 +1,7 @@
 <div class="plus-button-container">
-  <div (click)="openCreate()" title="neuer Eintrag"><i class="fa-solid fa-circle-plus fa-2x"></i> Erstelle einen neuen
-    Eintrag</div>
+  <div (click)="openCreate()" title="neuer Eintrag"><i class="fa-solid fa-circle-plus fa-2x"></i>
+    @if(showText()){
+    <span>Erstelle einen neuen Eintrag</span>
+    }
+  </div>
 </div>
