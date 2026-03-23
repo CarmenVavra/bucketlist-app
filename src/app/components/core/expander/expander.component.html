@@ -9,6 +9,24 @@
       </mat-panel-title>
       <mat-panel-description class="header-right"> {{ headerRightSide() }} </mat-panel-description>
     </mat-expansion-panel-header>
+    <div class="date-time-container">
+      <span class="date-container">
+        @if(dateFromDate()){
+        <span><i class="fa-regular fa-calendar-days"></i> {{ dateFromDate() | date: 'dd.MM.YYYY' }}</span>
+        }
+        @if(printToDate()){
+        <span> - {{ toDate() | date: 'dd.MM.YYYY' }}</span>
+        }
+      </span>
+      <span class="time-container">
+        @if(timeFromTime()){
+        <span><i class="fa-regular fa-clock"></i> {{ timeFromTime() }}</span>
+        }
+        @if(printToTime()){
+        <span> - {{ printToTime() }}</span>
+        }
+      </span>
+    </div>
     <div>{{ subtitle() }}</div>
     <p>{{ text() }}</p>
     <mat-action-row>

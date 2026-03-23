@@ -62,6 +62,41 @@ mat-expansion-panel-header {
   color: green;
 }
 
+.date-container {
+  margin-right: 50px;
+}
+
+@media (max-width: 768px) {
+  .date-container {
+    margin-right: 8px;
+  }
+}
+
+@media (max-width: 768px) {
+  .time-container {
+    text-wrap: nowrap !important;
+  }
+}
+
+/* 
+.time-container {
+  margin-left: 50px;
+} */
+
+.date-time-container {
+  background-color: rgb(157, 171, 171);
+  padding: 10px;
+  border: 1px solid #b0b8b4;
+  border-radius: 3px;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .date-time-container {
+    padding: 5px;
+  }
+}
+
 /* .mat-expansion-indicator svg {
   color: rgb(109, 145, 182) !important;
 }

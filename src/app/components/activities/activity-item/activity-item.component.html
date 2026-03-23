@@ -1,12 +1,9 @@
 <app-expander [title]="activityItem().title!" [text]="activityItem().description!" [subtitle]="activityItem().location"
-  [showBlankoBtn]="true" [showEditBtn]="true" [showDeleteBtn]="true" (blankoAction)="openTakeAways()"
-  (editAction)="edit()" (deleteAction)="delete()"></app-expander>
-
-
-
-
-
-
+  [showBlankoBtn]="true" [showEditBtn]="true" [showDeleteBtn]="true" [date]="activityItem().executionDate"
+  [fromDate]="activityItem().executionFromDate" [toDate]="activityItem().executionToDate"
+  [time]="activityItem().executionTime" [fromTime]="activityItem().executionFromTime"
+  [toTime]="activityItem().executionToTime" (blankoAction)="openTakeAways()" (editAction)="edit()"
+  (deleteAction)="delete()"></app-expander>
 
 
 <!-- <mat-expansion-panel class="accordion">

@@ -9,10 +9,14 @@ import { AcceptButtonComponent } from "../buttons/accept-button/accept-button.co
 import { DenyButtonComponent } from "../buttons/deny-button/deny-button.component";
 import { LoginUser } from '../../auth/models/auth.model';
 import { BlankoButtonComponent } from "../buttons/blanko-button/blanko-button.component";
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-expander',
-  imports: [MatAccordion, MatExpansionModule, EditButtonComponent, DeleteButtonComponent, MatExpansionPanelActionRow, DoneButtonComponent, UnpublishButtonComponent, PublishButtonComponent, AcceptButtonComponent, DenyButtonComponent, BlankoButtonComponent],
+  imports: [MatAccordion, MatExpansionModule, EditButtonComponent, DeleteButtonComponent,
+    MatExpansionPanelActionRow, DoneButtonComponent, UnpublishButtonComponent,
+    PublishButtonComponent, AcceptButtonComponent, DenyButtonComponent,
+    BlankoButtonComponent, DatePipe],
   templateUrl: './expander.component.html',
   styleUrl: './expander.component.css'
 })
@@ -25,6 +29,12 @@ export class ExpanderComponent {
   readonly headerRightSide = input<string>();
   readonly subtitle = input<string>();
   readonly priorityClass = input<string>();
+  readonly date = input<string>();
+  readonly toDate = input<string>();
+  readonly fromDate = input<string>();
+  readonly time = input<string>();
+  readonly toTime = input<string>();
+  readonly fromTime = input<string>();
 
   readonly showAcceptBtn = input<boolean>();
   readonly showDenyBtn = input<boolean>();
@@ -43,6 +53,31 @@ export class ExpanderComponent {
   readonly editAction = output();
   readonly deleteAction = output();
   readonly blankoAction = output();
+
+  readonly dateFromDate = signal<string>('');
+  readonly timeFromTime = signal<string>('');
+  readonly printToDate = signal<string>('');
+  readonly printToTime = signal<string>('');
+
+  ngOnInit(): void {
+    if (!this.date()?.includes('0000')) {
+      this.dateFromDate.set(this.date()!);
+    }
+
+    if (!this.fromDate()?.includes('0000') && !this.toDate()?.includes('0000')) {
+      this.dateFromDate.set(this.fromDate()!);
+      this.printToDate.set(this.toDate()!);
+    }
+
+    if (!this.time()?.includes('00:00:00')) {
+      this.timeFromTime.set(this.time()?.substring(0, 5)!);
+    }
+
+    if (!this.fromTime()?.includes('00:00:00') && !this.toTime()?.includes('00:00:00')) {
+      this.timeFromTime.set(this.fromTime()?.substring(0, 5)!);
+      this.printToTime.set(this.toTime()?.substring(0, 5)!);
+    }
+  }
 
   protected accept() {
     this.acceptAction.emit();
