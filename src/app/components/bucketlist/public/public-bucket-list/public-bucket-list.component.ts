@@ -1,10 +1,9 @@
 import { Component, inject, signal } from '@angular/core';
-import { BucketListItem, PRIORITY } from '../../models/bucket-list.model';
+import { BucketListItem } from '../../models/bucket-list.model';
 import { BucketListService } from '../../services/bucket-list.service';
 import { first } from 'rxjs';
-import { MatExpansionModule, MatExpansionPanel } from '@angular/material/expansion';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { PublicBucketListItemComponent } from "./public-bucket-list-item/public-bucket-list-item.component";
-import { MatIcon } from "@angular/material/icon";
 import { AuthService } from '../../../auth/services/auth-service.service';
 import { CoreService } from '../../../core/services/core.service';
 import { INLINE_MESSAGES, SNACKBAR_MESSAGES, TEXT } from '../../../core/models/core.model';

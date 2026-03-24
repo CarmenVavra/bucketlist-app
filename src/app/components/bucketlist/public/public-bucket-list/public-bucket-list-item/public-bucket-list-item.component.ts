@@ -1,5 +1,5 @@
 import { Component, input, output, signal } from '@angular/core';
-import { MatExpansionModule, MatExpansionPanel } from '@angular/material/expansion';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { BucketListItem, PRIORITY } from '../../../models/bucket-list.model';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from "@angular/material/card";

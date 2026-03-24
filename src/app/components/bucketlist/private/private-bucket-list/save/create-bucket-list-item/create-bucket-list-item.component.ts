@@ -1,4 +1,4 @@
-import { Component, inject, input, output, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormField, MatLabel } from "@angular/material/select";
@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
 import { ROUTE_PATHS } from '../../../../../../models/general.model';
 import { MatButtonModule } from '@angular/material/button';
 import { AuthService } from '../../../../../auth/services/auth-service.service';
-import { LoginUser } from '../../../../../auth/models/auth.model';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { CoreService } from '../../../../../core/services/core.service';
 import { SNACKBAR_MESSAGES } from '../../../../../core/models/core.model';

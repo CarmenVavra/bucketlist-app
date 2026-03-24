@@ -1,11 +1,9 @@
 import { Component, inject, signal } from '@angular/core';
 import { SimpleTitleTextFormComponent } from "../../../../core/forms/simple-title-text-form/simple-title-text-form.component";
 import { FantasyItem } from '../../../models/fantasy.model';
-import { AuthService } from '../../../../auth/services/auth-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ROUTE_PATHS, SimpleTitleText } from '../../../../../models/general.model';
 import { FantasyService } from '../../../services/fantasy.service';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { CoreService } from '../../../../core/services/core.service';
 import { SNACKBAR_MESSAGES } from '../../../../core/models/core.model';
 

@@ -4,9 +4,7 @@ import { MessageItem } from '../models/message.model';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../auth/services/auth-service.service';
-import { throwMatDuplicatedDrawerError } from '@angular/material/sidenav';
 import { LoginUser } from '../../auth/models/auth.model';
-import { AccordionHeaderComponent } from "../../core/accordion/accordion-header/accordion-header.component";
 import { AccordionComponent } from "../../core/accordion/accordion.component";
 
 @Component({

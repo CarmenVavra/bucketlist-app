@@ -1,12 +1,11 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatFormField, MatLabel, MatHint } from "@angular/material/select";
-import { MatInput, MatInputModule } from "@angular/material/input";
+import { MatLabel, MatHint } from "@angular/material/select";
+import { MatInputModule } from "@angular/material/input";
 import { MatNativeDateModule, provideNativeDateAdapter } from '@angular/material/core';
-import { MatDatepicker, MatDatepickerModule } from '@angular/material/datepicker';
-import { MatIcon } from "@angular/material/icon";
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatButton, MatButtonModule } from "@angular/material/button";
+import { MatButtonModule } from "@angular/material/button";
 import { AuthService } from '../services/auth-service.service';
 import { first } from 'rxjs';
 import { RegisterUser } from '../models/auth.model';

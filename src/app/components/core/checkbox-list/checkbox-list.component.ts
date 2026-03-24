@@ -1,12 +1,10 @@
-import { Component, inject, input, output, ɵCurrencyIndex } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CheckboxItem } from './models/checkbox-list.model';
 import { DeleteButtonComponent } from "../buttons/delete-button/delete-button.component";
 import { SaveButtonComponent } from "../buttons/save-button/save-button.component";
 import { FormArray, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { TakeAway } from '../../take-aways/models/take-aways.model';
 import { MatFormField } from "@angular/material/select";
-import { MatIcon } from "@angular/material/icon";
 import { MatInput } from '@angular/material/input';
 import { PlusButtonComponent } from "../buttons/plus-button/plus-button.component";
 

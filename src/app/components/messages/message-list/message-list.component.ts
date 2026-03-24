@@ -1,4 +1,4 @@
-import { Component, inject, input, output, signal } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { MatAccordion } from "@angular/material/expansion";
 import { MessageListItemComponent } from "../message-list-item/message-list-item.component";
 import { MessageItem } from '../models/message.model';

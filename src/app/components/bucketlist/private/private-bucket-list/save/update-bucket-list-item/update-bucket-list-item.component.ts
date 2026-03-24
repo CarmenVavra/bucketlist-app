@@ -1,10 +1,10 @@
-import { Component, inject, input, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { MatFormField, MatLabel } from "@angular/material/select";
 import { MatExpansionModule } from "@angular/material/expansion";
-import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BucketListItem, PRIORITY } from '../../../../models/bucket-list.model';
 import { BucketListService } from '../../../../services/bucket-list.service';
-import { first, Observable, Subject } from 'rxjs';
+import { first } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
 import { ROUTE_PATHS } from '../../../../../../models/general.model';
