@@ -42,7 +42,7 @@ export const MENUITEMS: MenuItem[] = [
   { id: 32, text: 'Fantasies', path: ROUTE_PATHS.PRIVATE_FANTASIES, icon: 'fa-solid fa-comment-dots', hierarchy: 'child' },
   { id: 40, text: 'Notizen', path: ROUTE_PATHS.NOTES, icon: 'fa-solid fa-clipboard', hierarchy: 'child' },
   { id: 50, text: 'Unternehmungen', path: ROUTE_PATHS.ACTIVITIES, icon: 'fa-solid fa-children', hierarchy: 'child' },
-  { id: 60, text: 'Nachrichten', path: ROUTE_PATHS.MESSAGES, icon: 'fa-solid fa-envelope', hierarchy: 'child' },
+  // { id: 60, text: 'Nachrichten', path: ROUTE_PATHS.MESSAGES, icon: 'fa-solid fa-envelope', hierarchy: 'child' },
   { id: 70, text: 'Logout', path: ROUTE_PATHS.LOGOUT, icon: 'fa-solid fa-arrow-right-from-bracket', hierarchy: 'parent' },
 ];
 

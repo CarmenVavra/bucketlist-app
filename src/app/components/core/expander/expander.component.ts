@@ -58,25 +58,32 @@ export class ExpanderComponent {
   readonly timeFromTime = signal<string>('');
   readonly printToDate = signal<string>('');
   readonly printToTime = signal<string>('');
+  readonly showDate = signal<boolean>(false);
 
   ngOnInit(): void {
-    if (!this.date()?.includes('0000')) {
+    if (!this.date()?.includes('0000') && this.date() != undefined) {
       this.dateFromDate.set(this.date()!);
+      this.showDate.set(true);
     }
 
-    if (!this.fromDate()?.includes('0000') && !this.toDate()?.includes('0000')) {
+    if (!this.fromDate()?.includes('0000') && !this.toDate()?.includes('0000') && this.fromDate() != undefined) {
       this.dateFromDate.set(this.fromDate()!);
       this.printToDate.set(this.toDate()!);
+      this.showDate.set(true);
     }
 
-    if (!this.time()?.includes('00:00:00')) {
+    if (!this.time()?.includes('00:00:00') && this.time() != undefined) {
       this.timeFromTime.set(this.time()?.substring(0, 5)!);
+      this.showDate.set(true);
     }
 
-    if (!this.fromTime()?.includes('00:00:00') && !this.toTime()?.includes('00:00:00')) {
+    if (!this.fromTime()?.includes('00:00:00') && !this.toTime()?.includes('00:00:00') && this.fromTime() != undefined) {
       this.timeFromTime.set(this.fromTime()?.substring(0, 5)!);
       this.printToTime.set(this.toTime()?.substring(0, 5)!);
+      this.showDate.set(true);
     }
+
+    console.log('this.showDate(), this.date()', this.showDate(), this.date());
   }
 
   protected accept() {

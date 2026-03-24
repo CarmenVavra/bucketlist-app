@@ -9,6 +9,7 @@
       </mat-panel-title>
       <mat-panel-description class="header-right"> {{ headerRightSide() }} </mat-panel-description>
     </mat-expansion-panel-header>
+    @if(true === showDate()){
     <div class="date-time-container">
       <span class="date-container">
         @if(dateFromDate()){
@@ -27,8 +28,9 @@
         }
       </span>
     </div>
+    }
     <div>{{ subtitle() }}</div>
-    <p>{{ text() }}</p>
+    <p class="format-text">{{ text() }}</p>
     <mat-action-row>
       <app-blanko-button [class.hide]="!showBlankoBtn()" (blankoAction)="blanko()"></app-blanko-button>
       <app-accept-button [class.hide]="!showAcceptBtn()" (acceptAction)="accept()"></app-accept-button>

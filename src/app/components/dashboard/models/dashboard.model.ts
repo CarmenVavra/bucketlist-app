@@ -50,9 +50,9 @@ export const PRIVATE_CARD_ITEMS: DashboardCard[] = [
     title: 'Unternehmungen', subtitle: '', content: 'Private Activities',
     path: ROUTE_PATHS.ACTIVITIES, icon: 'fa-solid fa-children', color: 'activities'
   },
-  {
-    title: 'Nachrichten', subtitle: '', content: 'Private Nachrichten',
-    path: ROUTE_PATHS.MESSAGES, icon: 'fa-solid fa-envelope', color: 'messages'
-  },
+  // {
+  //   title: 'Nachrichten', subtitle: '', content: 'Private Nachrichten',
+  //   path: ROUTE_PATHS.MESSAGES, icon: 'fa-solid fa-envelope', color: 'messages'
+  // },
 ];
 

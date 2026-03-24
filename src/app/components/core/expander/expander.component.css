@@ -78,6 +78,10 @@ mat-expansion-panel-header {
   }
 }
 
+.format-text {
+  white-space: pre-wrap;
+}
+
 /* 
 .time-container {
   margin-left: 50px;
