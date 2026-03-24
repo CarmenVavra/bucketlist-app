@@ -27,8 +27,6 @@ export class CreateMessageComponent {
   messageForm: FormGroup = new FormGroup('');
   readonly availableUsers = signal<LoginUser[]>([]);
 
-  readonly temp = signal<NavigationExtras>({});
-
   readonly messageItem = signal<MessageItem>({
     userId: -1,
     subject: '',
