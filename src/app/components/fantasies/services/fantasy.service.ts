@@ -103,7 +103,6 @@ export class FantasyService {
   setIsDenied(id: number): Observable<FantasyItem> {
     return this.#http.put(`${this.baseUrl}/denied`, { id: id }).pipe(
       map((res: any) => {
-        console.log('res', res['fantasy']);
         return res['fantasy'];
       })
     );

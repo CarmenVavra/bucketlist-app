@@ -30,17 +30,14 @@ export class SimpleSendMailFormComponent {
   });
 
   protected onSubmit() {
-    console.log('in onSubmit this.form', this.form);
     this.submitAction.emit(this.form);
   }
 
   protected cancel() {
     this.cancelAction.emit();
-    console.log('in onCancel');
   }
 
   protected saveAsDraft() {
-    console.log('in saveAsDraft');
     this.saveAsDraftAction.emit(this.form);
   }
 }

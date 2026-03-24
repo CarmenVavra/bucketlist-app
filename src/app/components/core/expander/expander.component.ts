@@ -82,8 +82,6 @@ export class ExpanderComponent {
       this.printToTime.set(this.toTime()?.substring(0, 5)!);
       this.showDate.set(true);
     }
-
-    console.log('this.showDate(), this.date()', this.showDate(), this.date());
   }
 
   protected accept() {

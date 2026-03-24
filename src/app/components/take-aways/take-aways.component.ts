@@ -93,7 +93,6 @@ export class TakeAwaysComponent {
     this.takeAways.set(this.transformCheckboxItemToActivityItemWithTakeAways(items));
     this.takeAways().forEach((takeAway) => {
       this.#takeAwayService.check(takeAway).subscribe((item) => {
-        console.log('updated item', item);
       });
     });
   }

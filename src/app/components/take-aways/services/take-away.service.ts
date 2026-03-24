@@ -57,7 +57,6 @@ export class TakeAwayService {
   }
 
   delete(id: number): Observable<string> {
-    console.log('in delete id', id);
     return this.#http.delete(`${this.baseUrl}/delete?id=${id}`).pipe(
       map((res: any) => {
         return res['message'];
@@ -66,7 +65,6 @@ export class TakeAwayService {
   }
 
   check(item: ActivityItemWithTakeAways): Observable<ActivityItemWithTakeAways> {
-    console.log('item in service check', item);
     return this.#http.put(`${this.baseUrl}/check`, { data: item }).pipe(
       map((res: any) => {
         return res['takeaway'];
