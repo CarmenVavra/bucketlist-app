@@ -9,12 +9,25 @@ mat-expansion-panel {
   border: 1px solid rgb(66, 109, 139);
 }
 
-mat-panel-title,
+mat-panel-title {
+  width: 280px;
+  min-width: 150px;
+  color: rgb(126, 166, 207);
+  text-wrap: nowrap !important;
+}
+
+@media (max-width: 768px) {
+  mat-panel-title {
+    text-wrap: wrap !important;
+  }
+}
+
 mat-panel-description {
-  max-width: 280px;
-  min-width: 110px;
+  width: 280px;
+  min-width: 90px;
   color: rgb(126, 166, 207);
 }
+
 
 .mat-expanded {
   background-color: #b0b8b4;
