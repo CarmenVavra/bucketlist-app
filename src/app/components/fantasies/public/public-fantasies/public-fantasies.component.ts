@@ -26,17 +26,20 @@ export class PublicFantasiesComponent {
 
   protected accept(fantasyItem: FantasyItem) {
     this.#fantasyService.setIsAccepted(fantasyItem.id!).subscribe((fantasy) => {
-      this.fantasies.update((fantasies) => {
-        return fantasies.filter((f) => f.id !== fantasyItem.id);
-      });
+      this.loadItems();
+      // this.fantasies.update((fantasies) => {
+      //   return fantasies.filter((f) => f.id !== fantasyItem.id);
+      // });
     });
   }
 
   protected deny(fantasyItem: FantasyItem) {
     this.#fantasyService.setIsDenied(fantasyItem.id!).subscribe((fantasy) => {
-      this.fantasies.update((fantasies) => {
-        return fantasies.filter((f) => f.id !== fantasyItem.id);
-      });
+      this.loadItems();
+      // this.fantasies.update((fantasies) => {
+      //   this.loadItems();
+      //   // return fantasies.filter((f) => f.id !== fantasyItem.id);
+      // });
     });
   }
 
