@@ -11,7 +11,8 @@ export class ActivityService {
 
   #http = inject(HttpClient);
 
-  baseUrl = 'http://localhost/carToni_BucketList_Backend/activities';
+  // baseUrl = 'http://localhost/carToni_BucketList_Backend/activities';
+  baseUrl = './backend/activities';
 
   constructor() { }
 
