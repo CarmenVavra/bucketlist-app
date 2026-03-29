@@ -8,7 +8,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from "@angular/material/button";
 import { AuthService } from '../services/auth-service.service';
 import { first } from 'rxjs';
-import { RegisterUser } from '../models/auth.model';
+import { RegisterUser, USER_TYPE } from '../models/auth.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -32,6 +33,9 @@ export class RegisterComponent {
   });
 
   #authService = inject(AuthService);
+  #router = inject(Router);
+
+  readonly loggedInUserRole = signal<number>(USER_TYPE.USER);
 
   registerForm = new FormGroup({
     nickname: new FormControl('', [Validators.required]),
@@ -46,6 +50,13 @@ export class RegisterComponent {
     place: new FormControl(''),
     phone: new FormControl(''),
   });
+
+  ngOnInit(): void {
+    this.loggedInUserRole.set(this.#authService.getStoredUser().roleId!);
+    if (this.loggedInUserRole() != USER_TYPE.ADMIN) {
+      this.#router.navigateByUrl('/login');
+    }
+  }
 
   onSubmit() {
     const pwCheck = this.comparePasswords(this.registerForm.value.password, this.registerForm.value.passwordRep);
@@ -64,6 +75,4 @@ export class RegisterComponent {
   private comparePasswords(pw1: any, pw2: any) {
     return pw1 === pw2;
   }
-
-
 }

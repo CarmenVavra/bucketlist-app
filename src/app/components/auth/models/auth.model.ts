@@ -27,4 +27,9 @@ export interface Address {
   place?: string;
 }
 
+export enum USER_TYPE {
+  ADMIN = 1,
+  USER = 2,
+}
+
 export const AUTH_DATA = 'auth_data';
