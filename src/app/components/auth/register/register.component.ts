@@ -38,8 +38,6 @@ export class RegisterComponent {
     firstname: new FormControl(''),
     lastname: new FormControl(''),
     email: new FormControl('', [Validators.required, Validators.email]),
-    // passwordControl: new FormControl('', [Validators.required, Validators.pattern(this.passwordPattern)]),
-    // passwordRepeatControl: new FormControl('', [Validators.required, Validators.pattern(this.passwordPattern)]),
     password: new FormControl('', [Validators.required]),
     passwordRep: new FormControl('', [Validators.required]),
     birthdate: new FormControl(''),

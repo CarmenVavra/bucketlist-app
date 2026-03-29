@@ -9,6 +9,7 @@ export interface RegisterUser {
   address?: Address | null;
   birthdate?: string | null;
   phone?: string | null;
+  roleId?: number;
 }
 
 export interface LoginUser {
@@ -16,6 +17,7 @@ export interface LoginUser {
   nickname?: string | null;
   email?: string | null;
   password?: string | null;
+  roleId?: number | null;
 }
 
 export interface Address {

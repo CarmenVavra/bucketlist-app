@@ -39,10 +39,7 @@ export class PrivateBucketListComponent {
 
   loadPrivateBucketList() {
     this.#bucketListService.getAllByUserId(this.userId!).pipe(first()).subscribe((bucketList) => {
-      if (bucketList.length === 0) {
-        this.message.set(INLINE_MESSAGES.NO_DATA_AVAILABLE);
-      }
-
+      this.checkDataAvailable(bucketList);
       this.privateBucketList.set(bucketList);
 
     });
@@ -97,23 +94,32 @@ export class PrivateBucketListComponent {
 
   loadPrivateDone() {
     this.#bucketListService.showPrivateDone(this.userId!).pipe(first()).subscribe((bucketList) => {
+      this.checkDataAvailable(bucketList);
       this.privateBucketList.set(bucketList);
     });
   }
 
   loadPrivateAccepted() {
     this.#bucketListService.showPrivateAccepted(this.userId!).pipe(first()).subscribe((bucketList) => {
+      this.checkDataAvailable(bucketList);
       this.privateBucketList.set(bucketList);
     });
   }
 
   loadPrivateDenied() {
     this.#bucketListService.showPrivateDenied(this.userId!).pipe(first()).subscribe((bucketList) => {
+      this.checkDataAvailable(bucketList);
       this.privateBucketList.set(bucketList);
     });
   }
 
   goBack() {
     this.#router.navigateByUrl(ROUTE_PATHS.PRIVATE_BUCKET_LIST);
+  }
+
+  private checkDataAvailable(bucketList: BucketListItem[]) {
+    if (bucketList.length === 0) {
+      this.message.set(INLINE_MESSAGES.NO_DATA_AVAILABLE);
+    }
   }
 }

@@ -5,7 +5,6 @@ import { PublicFantasiesComponent } from './components/fantasies/public/public-f
 import { PrivateBucketListComponent } from './components/bucketlist/private/private-bucket-list/private-bucket-list.component';
 import { PrivateFantasiesComponent } from './components/fantasies/private/private-fantasies/private-fantasies.component';
 import { NotesComponent } from './components/notes/notes.component';
-import { MessagesComponent } from './components/messages/messages.component';
 import { ActivitiesComponent } from './components/activities/activities.component';
 import { CreateBucketListItemComponent } from './components/bucketlist/private/private-bucket-list/save/create-bucket-list-item/create-bucket-list-item.component';
 import { UpdateBucketListItemComponent } from './components/bucketlist/private/private-bucket-list/save/update-bucket-list-item/update-bucket-list-item.component';
@@ -13,10 +12,6 @@ import { RegisterComponent } from './components/auth/register/register.component
 import { AuthGuard } from './components/auth/services/auth-guard';
 import { UpdateActivityComponent } from './components/activities/save/update-activity/update-activity.component';
 import { CreateActivityComponent } from './components/activities/save/create-activity/create-activity.component';
-import { UpdateMessageComponent } from './components/messages/save/update-message/update-message.component';
-import { ROUTE_PATHS } from './models/general.model';
-import { CreateMessageComponent } from './components/messages/save/create-message/create-message.component';
-import { ReplyMessageComponent } from './components/messages/save/reply-message/reply-message.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AREA } from './components/dashboard/models/dashboard.model';
 import { CreateNoteComponent } from './components/notes/save/create-note/create-note.component';
@@ -162,6 +157,7 @@ export const routes: Routes = [
     path: 'register',
     component: RegisterComponent,
     data: { breadcrumb: 'Registrierung' },
+    canActivate: [AuthGuard],
   },
   {
     path: 'logout',
