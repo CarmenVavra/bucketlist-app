@@ -170,11 +170,6 @@ export const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: '/',
-    redirectTo: '/login',
-    pathMatch: 'full'
-  },
-  {
     path: '**',
     redirectTo: '/login',
     pathMatch: 'full'
