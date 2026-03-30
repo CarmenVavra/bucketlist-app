@@ -171,7 +171,7 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '/login',
+    redirectTo: '/index.html',
     pathMatch: 'full'
   },
   // { path: '**', component: PageNotFoundComponent },
