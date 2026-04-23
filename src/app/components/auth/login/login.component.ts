@@ -21,8 +21,8 @@ export class LoginComponent {
   readonly loginUser = signal<LoginUser>({});
 
   loginForm = new FormGroup({
-    email: new FormControl('chelsie123@gmx.at', [Validators.required, Validators.email]),
-    password: new FormControl('schnuFFi69'),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required, Validators.minLength(6)]),
   });
 
   #authService = inject(AuthService);

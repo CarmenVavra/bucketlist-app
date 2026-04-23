@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject, signal, SimpleChange, ViewChild } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavToolbarComponent } from './components/core/nav-toolbar/nav-toolbar.component';
 import { MatButtonModule } from '@angular/material/button';
@@ -7,7 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { NavigationListComponent } from "./components/core/navigation-list/navigation-list.component";
-import { AUTH_DATA, LoginUser } from './components/auth/models/auth.model';
+import { LoginUser } from './components/auth/models/auth.model';
 import { AuthService } from './components/auth/services/auth-service.service';
 
 @Component({
@@ -49,14 +49,4 @@ export class AppComponent {
   navItemClicked() {
     this.opened.set(false);
   }
-
-  // doUnload() {
-  //   console.log('in doUnload');
-  //   this.doBeforeUnload();
-  // }
-
-  // doBeforeUnload() {
-  //   console.log('in doBeforeUnload');
-  //   localStorage.clear();
-  // }
 }
