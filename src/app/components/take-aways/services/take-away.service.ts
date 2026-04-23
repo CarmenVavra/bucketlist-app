@@ -10,64 +10,78 @@ export class TakeAwayService {
 
   #http = inject(HttpClient);
 
-  baseUrl = 'http://localhost/carToni_BucketList_Backend/takeaways';
+  baseUrl = 'http://localhost:8080/takeaway';
 
   constructor() { }
 
   getByUserId(id: number): Observable<TakeAway[]> {
-    return this.#http.get(`${this.baseUrl}/byUserId?id=${id}`).pipe(
+    return this.#http.get(`${this.baseUrl}/user?userId=${id}`).pipe(
       map((res: any) => {
-        return res['takeaways'];
+        return res;
         // return this.transformToCheckboxItems(res['takeaways']);
       })
     );
   }
 
   getByUserIdAndActivityId(userId: number, activityId: number): Observable<TakeAway[]> {
-    return this.#http.get(`${this.baseUrl}/byUserIdAndActivityId?userId=${userId}&activityId=${activityId}`).pipe(
+    console.log('in getByUserIdAndActivityId activityId, userId', activityId, userId);
+    return this.#http.get(`${this.baseUrl}/activity/byActivityId?activityId=${activityId}`).pipe(
       map((res: any) => {
-        return res['takeaways'];
+        console.log('res', res);
+        return res;
         // return this.transformToCheckboxItems(res['takeaways']);
       })
     );
   }
 
   getById(id: number): Observable<TakeAway> {
-    return this.#http.get(`${this.baseUrl}/getById?id=${id}`).pipe(
+    return this.#http.get(`${this.baseUrl}?id=${id}`).pipe(
       map((res: any) => {
-        return res['takeaway'];
+        return res;
       })
     );
   }
 
-  create(item: any): Observable<TakeAway> {
-    return this.#http.post(`${this.baseUrl}/create`, { data: item }).pipe(
+  // create(item: ActivityItemWithTakeAways): Observable<TakeAway> {
+  //   console.log('in create item', item);
+
+  //   return this.#http.post(`${this.baseUrl}/create`, item).pipe(
+  //     map((res: any) => {
+  //       return res;
+  //     })
+  //   );
+  // }
+
+  create(item: TakeAway, activityId: number): Observable<TakeAway> {
+    console.log('in create item', item);
+
+    return this.#http.post(`${this.baseUrl}/create?activityId=${activityId}`, item).pipe(
       map((res: any) => {
-        return res['takeaway'];
+        return res;
       })
     );
   }
 
   update(item: TakeAway): Observable<TakeAway> {
-    return this.#http.put(`${this.baseUrl}/update`, { data: item }).pipe(
+    return this.#http.put(`${this.baseUrl}`, item).pipe(
       map((res: any) => {
-        return res['takeaway'];
+        return res;
       })
     );
   }
 
   delete(id: number): Observable<string> {
-    return this.#http.delete(`${this.baseUrl}/delete?id=${id}`).pipe(
+    return this.#http.delete(`${this.baseUrl}?id=${id}`).pipe(
       map((res: any) => {
-        return res['message'];
+        return res;
       })
     );
   }
 
   check(item: ActivityItemWithTakeAways): Observable<ActivityItemWithTakeAways> {
-    return this.#http.put(`${this.baseUrl}/check`, { data: item }).pipe(
+    return this.#http.patch(`${this.baseUrl}/activity/setChecked?id=${item.id}&isChecked=${item.isChecked}`, item).pipe(
       map((res: any) => {
-        return res['takeaway'];
+        return res;
       })
     );
   }

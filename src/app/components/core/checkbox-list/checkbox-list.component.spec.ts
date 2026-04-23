@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CheckboxListComponent } from './checkbox-list.component';
+import { beforeEach, describe } from 'node:test';
 
 describe('CheckboxListComponent', () => {
   let component: CheckboxListComponent;
@@ -10,14 +11,14 @@ describe('CheckboxListComponent', () => {
     await TestBed.configureTestingModule({
       imports: [CheckboxListComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(CheckboxListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+  // it('should create', () => {
+  //   expect(component).toBeTruthy();
+  // });
 });

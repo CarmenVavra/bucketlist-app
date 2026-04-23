@@ -10,46 +10,47 @@ export class NoteService {
 
   #http = inject(HttpClient);
 
-  baseUrl = 'http://localhost/carToni_BucketList_Backend/notes';
+  baseUrl = 'http://localhost:8080/note';
 
   constructor() { }
 
   getAllByUserId(userId: number): Observable<NoteItem[]> {
-    return this.#http.get(`${this.baseUrl}/listByUserId?userId=${userId}`).pipe(
+    return this.#http.get(`${this.baseUrl}/user?userId=${userId}`).pipe(
       map((res: any) => {
-        return res['notes'];
+        return res;
       })
     );
   }
 
   getById(id: number): Observable<NoteItem> {
-    return this.#http.get(`${this.baseUrl}/getById?id=${id}`).pipe(
+    return this.#http.get(`${this.baseUrl}?id=${id}`).pipe(
       map((res: any) => {
-        return res['noteItem'];
+        return res;
       })
     );
   }
 
   create(item: NoteItem): Observable<NoteItem> {
-    return this.#http.post(`${this.baseUrl}/create`, { data: item }).pipe(
+    console.log('item note create', item);
+    return this.#http.post(`${this.baseUrl}`, item).pipe(
       map((res: any) => {
-        return res['noteItem'];
+        return res;
       })
     );
   }
 
   update(item: NoteItem): Observable<NoteItem> {
-    return this.#http.put(`${this.baseUrl}/update`, { data: item }).pipe(
+    return this.#http.put(`${this.baseUrl}`, item).pipe(
       map((res: any) => {
-        return res['noteItem'];
+        return res;
       })
     );
   }
 
   delete(itemId: number): Observable<string> {
-    return this.#http.delete(`${this.baseUrl}/delete?itemId=${itemId}`).pipe(
+    return this.#http.delete(`${this.baseUrl}?id=${itemId}`).pipe(
       map((res: any) => {
-        return res['message'];
+        return res;
       })
     );
   }

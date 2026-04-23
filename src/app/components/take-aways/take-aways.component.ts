@@ -6,6 +6,8 @@ import { AuthService } from '../auth/services/auth-service.service';
 import { CheckboxItem } from '../core/checkbox-list/models/checkbox-list.model';
 import { ActivatedRoute } from '@angular/router';
 import { FormArray } from '@angular/forms';
+import { MatListItem } from '@angular/material/list';
+import { first, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-take-aways',
@@ -19,6 +21,7 @@ export class TakeAwaysComponent {
   readonly takeAways = signal<ActivityItemWithTakeAways[]>([]);
   readonly userId = signal<number>(0);
   readonly checkboxItems = signal<CheckboxItem[]>([]);
+  readonly unsubscribe$ = new Subject();
 
   #takeAwayService = inject(TakeAwayService);
   #authService = inject(AuthService);
@@ -35,9 +38,9 @@ export class TakeAwaysComponent {
    */
   private loadTakeAways(): void {
     this.#takeAwayService.getByUserIdAndActivityId(this.userId(), this.activityId()).subscribe({
-      next: (takeAways) => {
-        this.takeAways.set(takeAways);
-        this.checkboxItems.set(this.transformActivityItemWithTakeAwaysToCheckboxItems(takeAways));
+      next: (takeaways) => {
+        this.takeAways.set(takeaways);
+        this.checkboxItems.set(this.transformActivityItemWithTakeAwaysToCheckboxItems(takeaways));
       },
       error: (error) => {
         console.error('Error loading takeaways:', error);
@@ -66,16 +69,16 @@ export class TakeAwaysComponent {
    */
   save(newEntries: FormArray): void {
     newEntries.value.forEach((entry: any) => {
+      // entry.newEntry = entry.newEntry.trim();
+      console.log('entry.newEntry', entry.newEntry);
       const newTakeAway: ActivityItemWithTakeAways = {
-        description: entry,
-        activityId: this.activityId(),
+        description: entry.newEntry,
         userId: this.userId(),
-        isChecked: false,
-        isFavourite: false
       };
 
-      this.#takeAwayService.create(newTakeAway).subscribe({
+      this.#takeAwayService.create(newTakeAway, this.activityId()).subscribe({
         next: (createdTakeAway) => {
+          console.log('created Takeaway', createdTakeAway);
           this.loadTakeAways();
         },
         error: (error) => {
@@ -117,5 +120,10 @@ export class TakeAwaysComponent {
     this.#takeAwayService.delete(item.id!).subscribe((message) => {
       this.loadTakeAways();
     });
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next(null);
+    this.unsubscribe$.complete();
   }
 }

@@ -69,7 +69,7 @@ export class PrivateBucketListComponent {
   }
 
   publishBucketListItem(bucketListItem: BucketListItem) {
-    this.#bucketListService.togglePublishBucketList(Number(bucketListItem.id), true).pipe(first()).subscribe((bucketlistItem) => {
+    this.#bucketListService.togglePublishBucketList(bucketListItem, true).pipe(first()).subscribe((bucketlistItem) => {
       this.loadPrivateBucketList();
       this.goBack();
       this.#coreService.openSnackBar(SNACKBAR_MESSAGES.PUBLISH);
@@ -77,7 +77,7 @@ export class PrivateBucketListComponent {
   }
 
   unpublishBucketListItem(bucketListItem: BucketListItem) {
-    this.#bucketListService.togglePublishBucketList(Number(bucketListItem.id), false).pipe(first()).subscribe((bucketlistItem) => {
+    this.#bucketListService.togglePublishBucketList(bucketListItem, false).pipe(first()).subscribe((bucketlistItem) => {
       this.loadPrivateBucketList()
       this.goBack();
       this.#coreService.openSnackBar(SNACKBAR_MESSAGES.UNPUBLISH);
@@ -85,7 +85,7 @@ export class PrivateBucketListComponent {
   }
 
   doneBucketListItem(bucketListItem: BucketListItem) {
-    this.#bucketListService.setIsDone(Number(bucketListItem.id)).pipe(first()).subscribe((bucketistItem) => {
+    this.#bucketListService.setIsDone(bucketListItem).pipe(first()).subscribe((bucketistItem) => {
       this.loadPrivateDone();
       this.goBack();
       this.#coreService.openSnackBar(SNACKBAR_MESSAGES.DONE);

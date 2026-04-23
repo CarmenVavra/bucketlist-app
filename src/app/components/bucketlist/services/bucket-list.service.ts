@@ -12,30 +12,30 @@ export class BucketListService {
   #http = inject(HttpClient);
   readonly dialog = inject(MatDialog);
 
-  baseUrl = 'http://localhost/carToni_BucketList_Backend/bucketList';
+  baseUrl = 'http://localhost:8080/bucketlist';
 
   constructor() { }
 
   getAll(): Observable<BucketListItem[]> {
-    return this.#http.get(`${this.baseUrl}/list`).pipe(
+    return this.#http.get(`${this.baseUrl}/public`).pipe(
       map((res: any) => {
-        return res['bucketlists'];
+        return res;
       })
     );
   }
 
   getAllByUserId(userId: number): Observable<BucketListItem[]> {
-    return this.#http.get(`${this.baseUrl}/listByUserId?userId=${userId}`).pipe(
+    return this.#http.get(`${this.baseUrl}/private?userId=${userId}`).pipe(
       map((res: any) => {
-        return res['bucketlists'];
+        return res;
       })
     );
   }
 
   getBucketListItemById(id: number): Observable<BucketListItem> {
-    return this.#http.get(`${this.baseUrl}/listItemById?id=${id}`).pipe(
+    return this.#http.get(`${this.baseUrl}?id=${id}`).pipe(
       map((res: any) => {
-        return res['bucketListItem'];
+        return res;
       })
     );
   }
@@ -55,105 +55,105 @@ export class BucketListService {
   // }
 
   create(item: BucketListItem): Observable<BucketListItem> {
-    return this.#http.post(`${this.baseUrl}/create`, { data: item }).pipe(
+    return this.#http.post(`${this.baseUrl}`, item).pipe(
       map((res: any) => {
-        return res['bucketList'];
+        return res;
       })
     );
   }
 
   update(item: BucketListItem): Observable<BucketListItem> {
-    return this.#http.put(`${this.baseUrl}/update`, { data: item }).pipe(
+    return this.#http.put(`${this.baseUrl}`, item).pipe(
       map((res: any) => {
-        return res['bucketList'];
+        return res;
       })
     );
   }
 
   delete(itemId: number): Observable<string> {
-    return this.#http.delete(`${this.baseUrl}/delete?itemId=${itemId}`).pipe(
+    return this.#http.delete(`${this.baseUrl}?id=${itemId}`).pipe(
       map((res: any) => {
-        return res['message'];
+        return res;
       })
     );
   }
 
-  togglePublishBucketList(id: number, published: boolean): Observable<BucketListItem> {
-    return this.#http.put(`${this.baseUrl}/publish`, { id: id, published: published }).pipe(
+  togglePublishBucketList(item: BucketListItem, published: boolean): Observable<BucketListItem> {
+    return this.#http.patch(`${this.baseUrl}/togglePublished?id=${item.id}&published=${published}`, item).pipe(
       map((res: any) => {
-        return res['bucketList'];
+        return res;
       })
     );
   }
 
-  setIsDone(id: number): Observable<BucketListItem> {
-    return this.#http.put(`${this.baseUrl}/done`, { id: id }).pipe(
+  setIsDone(item: BucketListItem): Observable<BucketListItem> {
+    return this.#http.patch(`${this.baseUrl}/setDone?id=${item.id}`, item).pipe(
       map((res: any) => {
-        return res['bucketList'];
+        return res;
       })
     );
   }
 
-  setIsAccepted(id: number): Observable<BucketListItem> {
-    return this.#http.put(`${this.baseUrl}/accepted`, { id: id }).pipe(
+  setIsAccepted(item: BucketListItem): Observable<BucketListItem> {
+    return this.#http.patch(`${this.baseUrl}/setAccepted?id=${item.id}`, item).pipe(
       map((res: any) => {
-        return res['bucketList'];
+        return res;
       })
     );
   }
 
-  setIsDenied(id: number): Observable<BucketListItem> {
-    return this.#http.put(`${this.baseUrl}/denied`, { id: id }).pipe(
+  setIsDenied(item: BucketListItem): Observable<BucketListItem> {
+    return this.#http.patch(`${this.baseUrl}/setDenied?id=${item.id}`, item).pipe(
       map((res: any) => {
-        return res['bucketList'];
+        return res;
       })
     );
   }
 
-  showAccepted(): Observable<BucketListItem[]> {
-    return this.#http.get(`${this.baseUrl}/listByAccepted`).pipe(
-      map((res: any) => {
-        return res['bucketLists'];
-      })
-    );
-  }
+  // showAccepted(): Observable<BucketListItem[]> {
+  //   return this.#http.get(`${this.baseUrl}/listByAccepted`).pipe(
+  //     map((res: any) => {
+  //       return res;
+  //     })
+  //   );
+  // }
 
   showPrivateAccepted(userId: number): Observable<BucketListItem[]> {
-    return this.#http.get(`${this.baseUrl}/listByPrivateAccepted?userId=${userId}`).pipe(
+    return this.#http.get(`${this.baseUrl}/byAccepted?userId=${userId}`).pipe(
       map((res: any) => {
-        return res['bucketLists'];
+        return res;
       })
     );
   }
 
-  showDenied(): Observable<BucketListItem[]> {
-    return this.#http.get(`${this.baseUrl}/listByDenied`).pipe(
-      map((res: any) => {
-        return res['bucketLists'];
-      })
-    );
-  }
+  // showDenied(): Observable<BucketListItem[]> {
+  //   return this.#http.get(`${this.baseUrl}/listByDenied`).pipe(
+  //     map((res: any) => {
+  //       return res;
+  //     })
+  //   );
+  // }
 
   showPrivateDenied(userId: number): Observable<BucketListItem[]> {
-    return this.#http.get(`${this.baseUrl}/listByPrivateDenied?userId=${userId}`).pipe(
+    return this.#http.get(`${this.baseUrl}/byDenied?userId=${userId}`).pipe(
       map((res: any) => {
-        return res['bucketLists'];
+        return res;
       })
     );
   }
 
-  showDone(): Observable<BucketListItem[]> {
-    return this.#http.get(`${this.baseUrl}/listByPrivateDone`).pipe(
-      map((res: any) => {
-        return res['bucketLists'];
-      })
-    );
-  }
+  // showDone(): Observable<BucketListItem[]> {
+  //   return this.#http.get(`${this.baseUrl}/listByPrivateDone`).pipe(
+  //     map((res: any) => {
+  //       return res;
+  //     })
+  //   );
+  // }
 
   showPrivateDone(userId: number): Observable<BucketListItem[]> {
-    return this.#http.get(`${this.baseUrl}/listByPrivateDone?userId=${userId}`).pipe(
+    return this.#http.get(`${this.baseUrl}/byDone?userId=${userId}`).pipe(
       map((res: any) => {
-        return res['bucketLists'];
+        return res;
       })
     );
   }

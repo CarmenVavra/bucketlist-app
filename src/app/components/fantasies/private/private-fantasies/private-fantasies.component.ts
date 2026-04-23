@@ -49,19 +49,19 @@ export class PrivateFantasiesComponent {
   }
 
   protected publish(fantasyItem: FantasyItem) {
-    this.#fantasyService.togglePublishFantasies(fantasyItem.id!, true).subscribe((fantasy) => {
+    this.#fantasyService.togglePublishFantasies(fantasyItem, true).subscribe((fantasy) => {
       this.loadItems();
     });
   }
 
   protected unpublish(fantasyItem: FantasyItem) {
-    this.#fantasyService.togglePublishFantasies(fantasyItem.id!, false).subscribe((fantasy) => {
+    this.#fantasyService.togglePublishFantasies(fantasyItem, false).subscribe((fantasy) => {
       this.loadItems();
     });
   }
 
   protected done(fantasyItem: FantasyItem) {
-    this.#fantasyService.setIsDone(fantasyItem.id!).subscribe((fantasy) => {
+    this.#fantasyService.setIsDone(fantasyItem).subscribe((fantasy) => {
       this.loadItems();
     });
   }

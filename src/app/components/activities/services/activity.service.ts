@@ -12,51 +12,53 @@ export class ActivityService {
   #http = inject(HttpClient);
 
   // baseUrl = 'http://localhost/carToni_BucketList_Backend/activities';
-  baseUrl = './backend/activities';
+  baseUrl = 'http://localhost:8080/activity';
 
   constructor() { }
 
   getByUserId(id: number): Observable<ActivityItem[]> {
-    return this.#http.get(`${this.baseUrl}/listByUserId?id=${id}`).pipe(
+    return this.#http.get(`${this.baseUrl}/user?userId=${id}`).pipe(
       map((res: any) => {
-        return res['activities'];
+        return res;
       })
     );
   }
 
   getById(id: number): Observable<ActivityItem> {
-    return this.#http.get(`${this.baseUrl}/getById?id=${id}`).pipe(
+    return this.#http.get(`${this.baseUrl}?id=${id}`).pipe(
       map((res: any) => {
-        return res['activity'];
+        return res;
       })
     );
   }
 
   create(item: ActivityItem): Observable<ActivityItem> {
-    return this.#http.post(`${this.baseUrl}/create`, { data: item }).pipe(
+    console.log('item', item);
+    return this.#http.post(`${this.baseUrl}`, item).pipe(
       map((res: any) => {
-        return res['activity'];
+        return res;
       })
     );
   }
 
   update(item: ActivityItem): Observable<ActivityItem> {
-    return this.#http.put(`${this.baseUrl}/update`, { data: item }).pipe(
+    return this.#http.put(`${this.baseUrl}`, item).pipe(
       map((res: any) => {
-        return res['activity'];
+        return res;
       })
     );
   }
 
   delete(id: number): Observable<string> {
-    return this.#http.delete(`${this.baseUrl}/delete?id=${id}`).pipe(
+    return this.#http.delete(`${this.baseUrl}?id=${id}`).pipe(
       map((res: any) => {
-        return res['message'];
+        return res;
       })
     );
   }
 
   formatDateForBackend(date: Date): string {
+    if (!date.getDate()) return '';
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const day = String(date.getDate()).padStart(2, '0');
@@ -64,6 +66,7 @@ export class ActivityService {
   }
 
   formatTimeForBackend(time: Date): string {
+    if (!time.getTime()) return '00:00:00';
     const hours = String(time.getHours()).padStart(2, '0');
     const minutes = String(time.getMinutes()).padStart(2, '0');
     return `${hours}:${minutes}:00`;

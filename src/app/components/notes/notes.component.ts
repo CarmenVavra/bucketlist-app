@@ -34,6 +34,7 @@ export class NotesComponent {
   }
 
   private loadItems() {
+    console.log('userId from localStorage', this.userId);
     this.#noteService.getAllByUserId(this.userId!).subscribe((items) => {
       if (items.length === 0) {
         this.message.set(INLINE_MESSAGES.NO_DATA_AVAILABLE);

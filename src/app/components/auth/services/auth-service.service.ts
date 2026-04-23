@@ -12,7 +12,7 @@ export class AuthService {
   #http = inject(HttpClient);
   #localStorageService = inject(LocalStorageService);
 
-  baseUrl = 'http://localhost/carToni_BucketList_Backend/auth';
+  baseUrl = 'http://localhost:8080/auth';
 
   private subject = new BehaviorSubject<LoginUser>(null!);
   user$: Observable<LoginUser> = this.subject.asObservable();
@@ -30,21 +30,21 @@ export class AuthService {
   }
 
   register(user: RegisterUser): Observable<RegisterUser> {
-    return this.#http.post(`${this.baseUrl}/register`, { user: user }).pipe(
+    return this.#http.post(`${this.baseUrl}`, user).pipe(
       map((res: any) => {
-        this.#localStorageService.saveToLocalStorage(AUTH_DATA, JSON.stringify(res['user']));
-        this.subject.next(res['user']);
-        return res['user'];
+        this.#localStorageService.saveToLocalStorage(AUTH_DATA, JSON.stringify(res));
+        this.subject.next(res);
+        return res;
       })
     );
   }
 
   login(user: LoginUser): Observable<RegisterUser> {
-    return this.#http.post(`${this.baseUrl}/login`, { user: user }).pipe(
+    return this.#http.get(`${this.baseUrl}?email=${user.email}&password=${user.password}`).pipe(
       map((res: any) => {
-        this.#localStorageService.saveToLocalStorage(AUTH_DATA, JSON.stringify(res['user']));
-        this.subject.next(res['user']);
-        return res['user'];
+        this.#localStorageService.saveToLocalStorage(AUTH_DATA, JSON.stringify(res));
+        this.subject.next(res);
+        return res;
       })
     );
   }

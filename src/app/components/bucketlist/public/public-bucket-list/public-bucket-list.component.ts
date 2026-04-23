@@ -34,14 +34,14 @@ export class PublicBucketListComponent {
   }
 
   acceptBucketListItem(bucketListItem: BucketListItem) {
-    this.#bucketListService.setIsAccepted(Number(bucketListItem.id)).pipe(first()).subscribe((bucketlist) => {
+    this.#bucketListService.setIsAccepted(bucketListItem).pipe(first()).subscribe((bucketlist) => {
       this.loadPublicBucketList();
       this.#coreService.openSnackBar(SNACKBAR_MESSAGES.ACCEPT);
     });
   }
 
   denyBucketListItem(bucketListItem: BucketListItem) {
-    this.#bucketListService.setIsDenied(Number(bucketListItem.id)).pipe(first()).subscribe((bucketlist) => {
+    this.#bucketListService.setIsDenied(bucketListItem).pipe(first()).subscribe((bucketlist) => {
       this.loadPublicBucketList();
       this.#coreService.openSnackBar(SNACKBAR_MESSAGES.DENY);
     });
