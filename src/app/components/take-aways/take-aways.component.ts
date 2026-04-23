@@ -1,13 +1,12 @@
-import { Component, inject, input, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { CheckboxListComponent } from "../core/checkbox-list/checkbox-list.component";
-import { ActivityItemWithTakeAways, TakeAway } from './models/take-aways.model';
+import { ActivityItemWithTakeAways, ActivityTakeAway } from './models/take-aways.model';
 import { TakeAwayService } from './services/take-away.service';
 import { AuthService } from '../auth/services/auth-service.service';
 import { CheckboxItem } from '../core/checkbox-list/models/checkbox-list.model';
 import { ActivatedRoute } from '@angular/router';
 import { FormArray } from '@angular/forms';
-import { MatListItem } from '@angular/material/list';
-import { first, Subject, takeUntil } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-take-aways',
@@ -37,7 +36,7 @@ export class TakeAwaysComponent {
    * loads takeaways for the current activity and user from the backend by calling the getByUserId method of the TakeAwayService and sets the takeAways signal with the response, also transforms the response into CheckboxItem objects for use in the CheckboxListComponent
    */
   private loadTakeAways(): void {
-    this.#takeAwayService.getByUserIdAndActivityId(this.userId(), this.activityId()).subscribe({
+    this.#takeAwayService.getByActivityId(this.activityId()).subscribe({
       next: (takeaways) => {
         this.takeAways.set(takeaways);
         this.checkboxItems.set(this.transformActivityItemWithTakeAwaysToCheckboxItems(takeaways));
@@ -69,8 +68,6 @@ export class TakeAwaysComponent {
    */
   save(newEntries: FormArray): void {
     newEntries.value.forEach((entry: any) => {
-      // entry.newEntry = entry.newEntry.trim();
-      console.log('entry.newEntry', entry.newEntry);
       const newTakeAway: ActivityItemWithTakeAways = {
         description: entry.newEntry,
         userId: this.userId(),
@@ -78,7 +75,6 @@ export class TakeAwaysComponent {
 
       this.#takeAwayService.create(newTakeAway, this.activityId()).subscribe({
         next: (createdTakeAway) => {
-          console.log('created Takeaway', createdTakeAway);
           this.loadTakeAways();
         },
         error: (error) => {
@@ -93,9 +89,10 @@ export class TakeAwaysComponent {
    * @param items 
    */
   toggleChecked(items: CheckboxItem[]): void {
-    this.takeAways.set(this.transformCheckboxItemToActivityItemWithTakeAways(items));
+    this.takeAways.set(this.transformCheckboxItemToActivityTakeAway(items));
     this.takeAways().forEach((takeAway) => {
       this.#takeAwayService.check(takeAway).subscribe((item) => {
+        this.loadTakeAways();
       });
     });
   }
@@ -103,19 +100,20 @@ export class TakeAwaysComponent {
   /**
    * transforms CheckboxItem objects back into ActivityItemWithTakeAways objects for use in the toggleChecked method to update the checked status of takeaways in the backend
    * @param items 
-   * @returns ActivityItemWithTakeAways[]
+   * @returns ActivityTakeAway[]
    */
-  private transformCheckboxItemToActivityItemWithTakeAways(items: CheckboxItem[]): ActivityItemWithTakeAways[] {
+  private transformCheckboxItemToActivityTakeAway(items: CheckboxItem[]): ActivityTakeAway[] {
     return items.map(item => ({
-      id: item.id,
+      takeAwayId: item.id,
       activityId: this.activityId(),
-      description: item.label,
-      userId: this.userId(),
       isChecked: item.isChecked,
-      isFavourite: item.isFavourite,
     }));
   }
 
+  /**
+   * deletes a takeaway from the backend by calling the delete method of the TakeAwayService with the id of the takeaway to delete
+   * @param item - CheckboxItem representing the takeaway to delete
+   */
   protected deleteItem(item: CheckboxItem) {
     this.#takeAwayService.delete(item.id!).subscribe((message) => {
       this.loadTakeAways();

@@ -14,6 +14,10 @@ export class FantasyService {
 
   constructor() { }
 
+  /**
+   * Retrieves the list of public fantasy items.
+   * @returns - An Observable that emits the list of public fantasy items.
+   */
   getPublicList(): Observable<FantasyItem[]> {
     return this.#http.get(`${this.baseUrl}/public`).pipe(
       map((res: any) => {
@@ -22,6 +26,11 @@ export class FantasyService {
     );
   }
 
+  /**
+   * Retrieves the list of private fantasy items for a specific user.
+   * @param userId - The ID of the user.
+   * @returns - An Observable that emits the list of private fantasy items.
+   */
   getPrivateListByUserId(userId: number): Observable<FantasyItem[]> {
     return this.#http.get(`${this.baseUrl}/private?userId=${userId}`).pipe(
       map((res: any) => {
@@ -30,6 +39,11 @@ export class FantasyService {
     );
   }
 
+  /**
+   * Retrieves a fantasy item by its ID.
+   * @param id - The ID of the fantasy item.
+   * @returns - An Observable that emits the fantasy item.
+   */
   getFantasyItemById(id: number): Observable<FantasyItem> {
     return this.#http.get(`${this.baseUrl}?id=${id}`).pipe(
       map((res: any) => {
@@ -38,20 +52,11 @@ export class FantasyService {
     );
   }
 
-  // mapFormToItem(form: FormGroup): Observable<FantasyItem> {
-  //   return this.#authService.searchByEmail(localStorage.getItem('email')!).pipe(
-  //     map(users => {
-  //       return {
-  //         title: form.get('title')?.value,
-  //         text: form.get('text')?.value,
-  //         headline: form.get('headline')?.value,
-  //         creatorId: Number(users[0]?.id),
-  //         creator: users[0]?.name,
-  //       } as FantasyItem;
-  //     })
-  //   );
-  // }
-
+  /**
+   * Creates a new fantasy item.
+   * @param item - The fantasy item to create.
+   * @returns - An Observable that emits the created fantasy item.
+   */
   create(item: FantasyItem): Observable<FantasyItem> {
     return this.#http.post(`${this.baseUrl}`, item).pipe(
       map((res: any) => {
@@ -60,6 +65,11 @@ export class FantasyService {
     );
   }
 
+  /**
+   * Updates an existing fantasy item.
+   * @param item - The fantasy item to update.
+   * @returns - An Observable that emits the updated fantasy item.
+   */
   update(item: FantasyItem): Observable<FantasyItem> {
     return this.#http.put(`${this.baseUrl}`, item).pipe(
       map((res: any) => {
@@ -68,6 +78,11 @@ export class FantasyService {
     );
   }
 
+  /**
+   * Deletes a fantasy item by its ID.
+   * @param itemId - The ID of the fantasy item to delete.
+   * @returns - An Observable that emits a string indicating the result of the deletion.
+   */
   delete(itemId: number): Observable<string> {
     return this.#http.delete(`${this.baseUrl}?id=${itemId}`).pipe(
       map((res: any) => {
@@ -76,6 +91,12 @@ export class FantasyService {
     );
   }
 
+  /**
+   * Toggles the publish status of a fantasy item.
+   * @param item - The fantasy item to update.
+   * @param published - The new publish status.
+   * @returns - An Observable that emits the updated fantasy item.
+   */
   togglePublishFantasies(item: FantasyItem, published: boolean): Observable<FantasyItem> {
     return this.#http.patch(`${this.baseUrl}/togglePublished?id=${item.id}&published=${published}`, item).pipe(
       map((res: any) => {
@@ -84,6 +105,11 @@ export class FantasyService {
     );
   }
 
+  /**
+   * Sets the done status of a fantasy item.
+   * @param item - The fantasy item to update.
+   * @returns - An Observable that emits the updated fantasy item.
+   */
   setIsDone(item: FantasyItem): Observable<FantasyItem> {
     return this.#http.patch(`${this.baseUrl}/setDone?id=${item.id}`, item).pipe(
       map((res: any) => {
@@ -92,6 +118,11 @@ export class FantasyService {
     );
   }
 
+  /**
+   * Sets the accepted status of a fantasy item.
+   * @param item - The fantasy item to update.
+   * @returns - An Observable that emits the updated fantasy item.
+   */
   setIsAccepted(item: FantasyItem): Observable<FantasyItem> {
     return this.#http.patch(`${this.baseUrl}/setAccepted?id=${item.id}`, item).pipe(
       map((res: any) => {
@@ -100,6 +131,11 @@ export class FantasyService {
     );
   }
 
+  /**
+   * Sets the denied status of a fantasy item.
+   * @param item - The fantasy item to update.
+   * @returns - An Observable that emits the updated fantasy item.
+   */
   setIsDenied(item: FantasyItem): Observable<FantasyItem> {
     return this.#http.patch(`${this.baseUrl}/setDenied?id=${item.id}`, item).pipe(
       map((res: any) => {
@@ -108,6 +144,11 @@ export class FantasyService {
     );
   }
 
+  /**
+   * Shows private accepted fantasy items for a user.
+   * @param userId - The ID of the user.
+   * @returns - An Observable that emits the list of accepted fantasy items.
+   */
   showPrivateAccepted(userId: number): Observable<FantasyItem[]> {
     return this.#http.get(`${this.baseUrl}/byAccepted?userId=${userId}`).pipe(
       map((res: any) => {
@@ -116,6 +157,11 @@ export class FantasyService {
     );
   }
 
+  /**
+   * Shows private denied fantasy items for a user.
+   * @param userId - The ID of the user.
+   * @returns - An Observable that emits the list of denied fantasy items.
+   */
   showPrivateDenied(userId: number): Observable<FantasyItem[]> {
     return this.#http.get(`${this.baseUrl}/byDenied?userId=${userId}`).pipe(
       map((res: any) => {
@@ -124,6 +170,11 @@ export class FantasyService {
     );
   }
 
+  /**
+   * Shows private done fantasy items for a user.
+   * @param userId - The ID of the user.
+   * @returns - An Observable that emits the list of done fantasy items.
+   */
   showPrivateDone(userId: number): Observable<FantasyItem[]> {
     return this.#http.get(`${this.baseUrl}/byDone?userId=${userId}`).pipe(
       map((res: any) => {

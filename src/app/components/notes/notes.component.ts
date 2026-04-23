@@ -33,8 +33,12 @@ export class NotesComponent {
     this.loadItems();
   }
 
+  /**
+   * loads note items for the current user from the backend by calling the getAllByUserId 
+   * method of the NoteService and sets the noteItems signal with the response, also sets a 
+   * message if no items are available
+   */
   private loadItems() {
-    console.log('userId from localStorage', this.userId);
     this.#noteService.getAllByUserId(this.userId!).subscribe((items) => {
       if (items.length === 0) {
         this.message.set(INLINE_MESSAGES.NO_DATA_AVAILABLE);
@@ -43,14 +47,33 @@ export class NotesComponent {
     });
   }
 
+  /**
+   * navigates to the note item creation page when the create button is clicked by calling 
+   * the navigateByUrl method of the Router with the appropriate route path from the 
+   * ROUTE_PATHS enum
+   */
   openCreate() {
     this.#router.navigateByUrl(ROUTE_PATHS.NOTE_ITEM_CREATE);
   }
 
+  /**
+   * navigates to the note item edit page when the edit button is clicked by calling 
+   * the navigateByUrl method of the Router with the appropriate route path from the 
+   * ROUTE_PATHS enum
+   * @param noteItem - NoteItem to edit, the id of the note item is used to construct the route 
+   * path for navigation
+   */
   openEdit(noteItem: NoteItem) {
     this.#router.navigateByUrl(`${ROUTE_PATHS.NOTE_ITEM_EDIT}/${noteItem.id}`);
   }
 
+  /**
+   * opens a confirmation dialog when the delete button is clicked for a note item and 
+   * if the user confirms the deletion, calls the deleteItem method to delete the note item 
+   * from the backend
+   * @param noteItem - NoteItem to delete, the id of the note item is used to call 
+   * the delete method of the NoteService
+   */
   protected deleteNoteItem(noteItem: NoteItem) {
     this.#coreService.openConfirmationDialog().subscribe((confirmationResult) => {
       if (true == confirmationResult) {
@@ -59,6 +82,13 @@ export class NotesComponent {
     });
   }
 
+  /**
+   * deletes a note item from the backend by calling the delete method of the NoteService 
+   * with the id of the note item to delete and reloads the note items after deletion, also 
+   * shows a snackbar message confirming the deletion
+   * @param noteItem - NoteItem to delete, the id of the note item is used to call 
+   * the delete method of the NoteService
+   */
   private deleteItem(noteItem: NoteItem) {
     this.#noteService.delete(noteItem.id!).subscribe((message) => {
       this.loadItems();

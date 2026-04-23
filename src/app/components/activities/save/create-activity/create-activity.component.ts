@@ -14,7 +14,6 @@ import { ActivityService } from '../../services/activity.service';
 import { Router } from '@angular/router';
 import { ROUTE_PATHS } from '../../../../models/general.model';
 import { ActivityFormService } from '../../services/activity-form.service';
-import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-create-activity',
@@ -35,11 +34,6 @@ export class CreateActivityComponent {
 
   constructor() {
     this.activityForm = this.#activityFormService.getActivityFormDefinition();
-
-  }
-
-  ngOnInit(): void {
-
   }
 
   onSubmit() {

@@ -24,28 +24,31 @@ export class PublicFantasiesComponent {
     this.loadItems();
   }
 
+  /**
+   * Accepts a public fantasy item.
+   * @param fantasyItem - The fantasy item to accept.
+   */
   protected accept(fantasyItem: FantasyItem) {
     this.#fantasyService.setIsAccepted(fantasyItem).subscribe((fantasy) => {
       this.loadItems();
-      // this.fantasies.update((fantasies) => {
-      //   return fantasies.filter((f) => f.id !== fantasyItem.id);
-      // });
     });
   }
 
+  /**
+   * Denies a public fantasy item.
+   * @param fantasyItem - The fantasy item to deny.
+   */
   protected deny(fantasyItem: FantasyItem) {
     this.#fantasyService.setIsDenied(fantasyItem).subscribe((fantasy) => {
       this.loadItems();
-      // this.fantasies.update((fantasies) => {
-      //   this.loadItems();
-      //   // return fantasies.filter((f) => f.id !== fantasyItem.id);
-      // });
     });
   }
 
+  /**
+   * Loads public fantasy items from the backend by calling the getPublicList method of the FantasyService and sets the fantasies signal with the response, also sets a message if no items are available
+   */
   private loadItems() {
     this.#fantasyService.getPublicList().subscribe((fantasies) => {
-      console.log('fantasies', fantasies);
       if (fantasies?.length === 0) {
         this.message.set(INLINE_MESSAGES.NO_DATA_AVAILABLE);
       }

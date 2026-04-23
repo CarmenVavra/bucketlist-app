@@ -15,10 +15,16 @@ export class PublicFantasyItemComponent {
   readonly acceptAction = output();
   readonly denyAction = output();
 
+  /**
+   * Emits an event to accept the public fantasy item when the accept button is clicked.
+   */
   protected accept() {
     this.acceptAction.emit();
   }
 
+  /**
+   * Emits an event to deny the public fantasy item when the deny button is clicked.
+   */
   protected deny() {
     this.denyAction.emit();
   }

@@ -40,20 +40,6 @@ export class BucketListService {
     );
   }
 
-  // mapFormToItem(form: FormGroup): Observable<BucketListItem> {
-  //   return this.#authService.searchByEmail(localStorage.getItem('email')!).pipe(
-  //     map(users => {
-  //       return {
-  //         title: form.get('title')?.value,
-  //         text: form.get('text')?.value,
-  //         headline: form.get('headline')?.value,
-  //         creatorId: Number(users[0]?.id),
-  //         creator: users[0]?.name,
-  //       } as BucketListItem;
-  //     })
-  //   );
-  // }
-
   create(item: BucketListItem): Observable<BucketListItem> {
     return this.#http.post(`${this.baseUrl}`, item).pipe(
       map((res: any) => {
@@ -110,14 +96,6 @@ export class BucketListService {
     );
   }
 
-  // showAccepted(): Observable<BucketListItem[]> {
-  //   return this.#http.get(`${this.baseUrl}/listByAccepted`).pipe(
-  //     map((res: any) => {
-  //       return res;
-  //     })
-  //   );
-  // }
-
   showPrivateAccepted(userId: number): Observable<BucketListItem[]> {
     return this.#http.get(`${this.baseUrl}/byAccepted?userId=${userId}`).pipe(
       map((res: any) => {
@@ -125,14 +103,6 @@ export class BucketListService {
       })
     );
   }
-
-  // showDenied(): Observable<BucketListItem[]> {
-  //   return this.#http.get(`${this.baseUrl}/listByDenied`).pipe(
-  //     map((res: any) => {
-  //       return res;
-  //     })
-  //   );
-  // }
 
   showPrivateDenied(userId: number): Observable<BucketListItem[]> {
     return this.#http.get(`${this.baseUrl}/byDenied?userId=${userId}`).pipe(
@@ -142,14 +112,6 @@ export class BucketListService {
     );
   }
 
-  // showDone(): Observable<BucketListItem[]> {
-  //   return this.#http.get(`${this.baseUrl}/listByPrivateDone`).pipe(
-  //     map((res: any) => {
-  //       return res;
-  //     })
-  //   );
-  // }
-
   showPrivateDone(userId: number): Observable<BucketListItem[]> {
     return this.#http.get(`${this.baseUrl}/byDone?userId=${userId}`).pipe(
       map((res: any) => {
@@ -157,6 +119,4 @@ export class BucketListService {
       })
     );
   }
-
-
 }

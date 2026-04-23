@@ -13,3 +13,14 @@ export interface ActivityItemWithTakeAways extends ActivityItem {
   isChecked?: boolean;
   isFavourite?: boolean;
 }
+
+export interface ActivityTakeAway {
+  activityId?: number;
+  takeAwayId?: number;
+  isChecked?: boolean;
+}
+
+export interface TakeawayWithChecked extends TakeAway {
+  activityId?: number;
+  isChecked?: boolean;
+}

@@ -41,7 +41,6 @@ export class PrivateBucketListComponent {
     this.#bucketListService.getAllByUserId(this.userId!).pipe(first()).subscribe((bucketList) => {
       this.checkDataAvailable(bucketList);
       this.privateBucketList.set(bucketList);
-
     });
   }
 
@@ -117,6 +116,10 @@ export class PrivateBucketListComponent {
     this.#router.navigateByUrl(ROUTE_PATHS.PRIVATE_BUCKET_LIST);
   }
 
+  /**
+   * Checks if data is available in the bucket list and updates the message accordingly.
+   * @param bucketList . - The list of bucket list items to check for data availability.
+   */
   private checkDataAvailable(bucketList: BucketListItem[]) {
     if (bucketList.length === 0) {
       this.message.set(INLINE_MESSAGES.NO_DATA_AVAILABLE);
