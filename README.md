@@ -58,5 +58,6 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
 
-#bucketlist-app
+## bucketlist-app
+
 A program for couples to share desires and fantasies and perhaps fulfill them together. Notes can be taken and activities saved.
